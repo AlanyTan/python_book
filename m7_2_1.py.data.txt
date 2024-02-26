@@ -1,2 +1,2 @@
-This is a test somemore info 2
+Writing numbers like 2 booleans like True
 The filename of which I am writing into is ./m7_2_1.py.data.txt
