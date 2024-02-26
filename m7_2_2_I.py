@@ -21,8 +21,7 @@ def main(file_name: str) -> None:
                 case _:
                     print(f"#   {letter}'s ASCII code is {ord(letter)}")
         else:
-            content = file.readline() #input("#==Enter 'exit' to stop:")
-            print(f"#===debug: {content=}")
+            content = file.readline().strip("\n") #input("#==Enter 'exit' to stop:")
         
     print(f"## You entered {count} strings in total")
     file.close()
