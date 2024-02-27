@@ -17,7 +17,7 @@ def main(files: list[str]) -> None:
     print(f"# .write() returned: {file_obj.write(int_info.to_bytes(4,'little'))=}")
     print("# .write() returned:", file_obj.write(
         bytearray("Line 3, string literal.\n", 'utf-8')))
-    print(f"# .write() returned: {file_obj.write(bytes([bool_info]))=}")
+    print(f"# .write() returned: {file_obj.write(bytearray([bool_info]))=}")
     print("# .write() returned:", file_obj.write(bytes("The End.\n", 'utf-8')))
     file_obj.close()
 
