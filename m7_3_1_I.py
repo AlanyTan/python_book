@@ -4,6 +4,7 @@ def main(file_name: str) -> None:
     file_w = open(file_name, 'w+', encoding='utf-8')
     file_content = [
         "abc.dev\n",
+        "\n",
         "skip\n",
         "123\n"
     ]
@@ -13,7 +14,8 @@ def main(file_name: str) -> None:
     #next read from the file in place of user input
     file_r = open(file_name, 'r', encoding='utf-8')
     count = 0
-    while content := file_r.readline().strip("\n"):
+    while content := file_r.readline():
+        content = content.strip("\n")
         if content := '' if content == SKIP_WORD else content:
             print(f"# You entered: {content}")
             count += 1
