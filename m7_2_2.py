@@ -1,11 +1,12 @@
 def main(file_name: str) -> None:
-    int_info = 3
-    bool_info = False
+    int_info = 2
+    bool_info = True
+    text_info = "text like this"
     content = [
-        "Line 1, here are some info.\n",
-        "Line 2, some more info.\n",
+        f"Line 1, {text_info}.\n",
         f"{int_info}\n",
-        f"{False}\n",
+        "Line 3, string liternal.\n",
+        f"{bool_info}\n",
         "The End.\n"
     ]
     file_obj = open(file_name, 'w+', encoding='utf-8')
@@ -14,5 +15,6 @@ def main(file_name: str) -> None:
 
 
 if __name__ == "__main__":
-    file_name = __file__ + ".data.txt"
+    base_name = __file__[:-3]
+    file_name = base_name + ".data.txt"
     main(file_name)

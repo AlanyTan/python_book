@@ -1,0 +1,2 @@
+Saving text like this , number 2 , and boolean True
+into file /home/user/Documents/Python.book/m7_2_1.data.txt

@@ -1,0 +1,5 @@
+Line 1, text like this.
+2
+Line 3, string liternal.
+True
+The End.
