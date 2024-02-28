@@ -6,7 +6,6 @@ def unpack_for_b_w(full_content: bytes, idx: int) -> tuple:
     return byte_chunk, length+2
 
 def main(files: list[str]) -> None:
-
     file_name, open_mode, encoding_type = files[0]
     file_obj = open(file_name, "r" + open_mode, encoding=encoding_type)
     content = file_obj.read()
@@ -28,7 +27,7 @@ def main(files: list[str]) -> None:
 
     idx = 0
     text_info_bytes, length = unpack_for_b_w(content, idx)
-    text_info = str(text_info_bytes,'utf-8')
+    text_info = str(text_info_bytes, 'utf-8')
     idx += length
 
     int_info_bytes, length = unpack_for_b_w(content, idx)
@@ -36,7 +35,7 @@ def main(files: list[str]) -> None:
     idx += length
 
     text_literal_bytes, length = unpack_for_b_w(content, idx)
-    text_literal = str(text_literal_bytes,'utf-8')
+    text_literal = str(text_literal_bytes, 'utf-8')
     idx += length
 
     bool_info_bytes, length = unpack_for_b_w(content, idx)

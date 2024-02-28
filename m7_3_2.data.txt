@@ -1,4 +1,4 @@
 Python程序设计
 2
-Line 3, string literal.
+A string literal.
 True
