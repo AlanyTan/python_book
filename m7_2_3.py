@@ -32,13 +32,11 @@ if __name__ == "__main__":
                   (base_name + ".data.bin", "b", None)]
     main(file_names)
 
-# .write() returned: file_obj.write(f'Line 1, {text_info}')=19
-# .write() returned: file_obj.write(str(int_info))=1
+# .write() returned: file_obj.write(text_info+newline)=11
+# .write() returned: file_obj.write(str(int_info)+newline)=2
 # .write() returned: 24
-# .write() returned: file_obj.write(str(bool_info))=4
-# .write() returned: 9
-# .write() returned: file_obj.write(bytes(f'Line 1, {text_info}','utf-8'))=27
-# .write() returned: file_obj.write(int_info.to_bytes(4,'little'))=4
-# .write() returned: 24
-# .write() returned: file_obj.write(bytes([bool_info]))=1
-# .write() returned: 9
+# .write() returned: file_obj.write(str(bool_info)+newline)=5
+# .write() returned: file_obj.write(pack_for_b_w(bytes(f'Line 1, {text_info}','utf-8')))=28
+# .write() returned: file_obj.write(pack_for_b_w(int_info.to_bytes(BYTES_FOR_INT,'little')))=6
+# .write() returned: 26
+# .write() returned: file_obj.write(pack_for_b_w(bytearray([bool_info])))=3
