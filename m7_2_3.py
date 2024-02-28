@@ -13,16 +13,16 @@ def main(files: list[str]) -> None:
     file_obj = open(file_name, "w+" + open_mode, encoding=encoding_type)
     print(f"# .write() returned: {file_obj.write(text_info+newline)=}")
     print(f"# .write() returned: {file_obj.write(str(int_info)+newline)=}")
-    print("# .write() returned:", file_obj.write("Line 3, string literal.\n"))
+    print("# .write() returned:", file_obj.write("A string literal.\n"))
     print(f"# .write() returned: {file_obj.write(str(bool_info)+newline)=}")
     file_obj.close()
 
     file_name, open_mode, encoding_type = files[1]
     file_obj = open(file_name, "w+" + open_mode, encoding=encoding_type)
-    print(f"# .write() returned: {file_obj.write(pack_for_b_w(bytes(f'Line 1, {text_info}','utf-8')))=}")
+    print(f"# .write() returned: {file_obj.write(pack_for_b_w(bytes(text_info,'utf-8')))=}")
     print(f"# .write() returned: {file_obj.write(pack_for_b_w(int_info.to_bytes(BYTES_FOR_INT,'little')))=}")
     print("# .write() returned:", file_obj.write(pack_for_b_w(
-            bytearray("Line 3, string literal.\n", 'utf-8'))))
+            bytearray("Astring literal.\n", 'utf-8'))))
     print(f"# .write() returned: {file_obj.write(pack_for_b_w(bytearray([bool_info])))=}")
     file_obj.close()
 
@@ -34,9 +34,9 @@ if __name__ == "__main__":
 
 # .write() returned: file_obj.write(text_info+newline)=11
 # .write() returned: file_obj.write(str(int_info)+newline)=2
-# .write() returned: 24
+# .write() returned: 18
 # .write() returned: file_obj.write(str(bool_info)+newline)=5
-# .write() returned: file_obj.write(pack_for_b_w(bytes(f'Line 1, {text_info}','utf-8')))=28
+# .write() returned: file_obj.write(pack_for_b_w(bytes(text_info,'utf-8')))=20
 # .write() returned: file_obj.write(pack_for_b_w(int_info.to_bytes(BYTES_FOR_INT,'little')))=6
-# .write() returned: 26
+# .write() returned: 19
 # .write() returned: file_obj.write(pack_for_b_w(bytearray([bool_info])))=3
