@@ -17,8 +17,8 @@ def main(files: list[str]) -> None:
     text_literal = lines[2]
     bool_info = bool(lines[2].startswith("True"))
     file_obj.close()
-    print("# Read text:", text_info, ", number:", int_info, ", text literal:", text_literal,
-          ", and boolean:", bool_info)
+    print("# Read text:", text_info, ", number:", int_info, 
+          ", text literal:", text_literal, ", and boolean:", bool_info)
     file_obj.close()
 
     file_name, open_mode, encoding_type = files[1]
@@ -41,8 +41,8 @@ def main(files: list[str]) -> None:
 
     bool_info_bytes, length = unpack_for_b_w(content, idx)
     bool_info = bool(bool_info_bytes)
-    print("# Read text:", repr(text_info), ", number:", int_info, ", text literal:", repr(text_literal),
-          ", and boolean:", bool_info)
+    print("# Read text:", repr(text_info), ", number:", int_info, 
+          ", text literal:", repr(text_literal),", and boolean:", bool_info)
     file_obj.close()
     
 if __name__ == '__main__':
@@ -51,3 +51,8 @@ if __name__ == '__main__':
              (base_name + ".data.bin", "b", None)]
     m7_2_3.main(files)
     main(files)
+
+# type(content)=<class 'str'>
+# Read text: Python程序设计 , number: 2 , text literal: Line 3, string literal. , and boolean: False
+# type(content)=<class 'bytes'>
+# Read text: 'Line 1, Python程序设计' , number: 2 , text literal: 'Line 3, string literal.\n' , and boolean: True
