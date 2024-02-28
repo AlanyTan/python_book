@@ -1,5 +1,4 @@
-Line 1, text like this.
+str variable text content.
 2
-Line 3, string liternal.
+A string liternal.
 True
-The End.

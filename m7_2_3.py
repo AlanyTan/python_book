@@ -1,24 +1,29 @@
+BYTES_FOR_INT = 4
+def pack_for_b_w(bytestream: bytes|bytearray) -> bytes:
+        length = len(bytestream)
+        return length.to_bytes(2, 'little') + bytestream
+
 def main(files: list[str]) -> None:
     int_info = 2
     bool_info = True
-    text_info = "Python程序设计\n"
+    text_info = "Python程序设计"
+    newline = '\n'
+
     file_name, open_mode, encoding_type = files[0]
     file_obj = open(file_name, "w+" + open_mode, encoding=encoding_type)
-    print(f"# .write() returned: {file_obj.write(f'Line 1, {text_info}')=}")
-    print(f"# .write() returned: {file_obj.write(str(int_info))=}")
+    print(f"# .write() returned: {file_obj.write(text_info+newline)=}")
+    print(f"# .write() returned: {file_obj.write(str(int_info)+newline)=}")
     print("# .write() returned:", file_obj.write("Line 3, string literal.\n"))
-    print(f"# .write() returned: {file_obj.write(str(bool_info))=}")
-    print("# .write() returned:", file_obj.write("The End.\n"))
+    print(f"# .write() returned: {file_obj.write(str(bool_info)+newline)=}")
     file_obj.close()
 
     file_name, open_mode, encoding_type = files[1]
     file_obj = open(file_name, "w+" + open_mode, encoding=encoding_type)
-    print(f"# .write() returned: {file_obj.write(bytes(f'Line 1, {text_info}','utf-8'))=}")
-    print(f"# .write() returned: {file_obj.write(int_info.to_bytes(4,'little'))=}")
-    print("# .write() returned:", file_obj.write(
-        bytearray("Line 3, string literal.\n", 'utf-8')))
-    print(f"# .write() returned: {file_obj.write(bytearray([bool_info]))=}")
-    print("# .write() returned:", file_obj.write(bytes("The End.\n", 'utf-8')))
+    print(f"# .write() returned: {file_obj.write(pack_for_b_w(bytes(f'Line 1, {text_info}','utf-8')))=}")
+    print(f"# .write() returned: {file_obj.write(pack_for_b_w(int_info.to_bytes(BYTES_FOR_INT,'little')))=}")
+    print("# .write() returned:", file_obj.write(pack_for_b_w(
+            bytearray("Line 3, string literal.\n", 'utf-8'))))
+    print(f"# .write() returned: {file_obj.write(pack_for_b_w(bytearray([bool_info])))=}")
     file_obj.close()
 
 if __name__ == "__main__":
