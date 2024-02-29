@@ -1,0 +1,4 @@
+Python程序设计
+2
+A string literal.
+True
