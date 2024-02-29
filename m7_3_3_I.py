@@ -31,8 +31,6 @@ def main(files: list[str]) -> None:
 
     file_name, open_mode, encoding_type = files[1]
     file_obj = open(file_name, "r" + open_mode, encoding=encoding_type)
-    #content = file_obj.read()
-    #print(f"# {type(content)=}")
 
     data_items = []
     file_pointer = 0
