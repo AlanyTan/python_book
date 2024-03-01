@@ -1,4 +1,5 @@
 BYTES_FOR_INT = 4
+
 def pack_for_b_w(bytestream: bytes|bytearray) -> bytes:
         length = len(bytestream)
         return length.to_bytes(2, 'little') + bytestream

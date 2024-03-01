@@ -1,6 +1,7 @@
 import m7_2_3
 import io
 import os
+
 def unpack_for_b_w(file_obj: io.BufferedReader, idx: int) -> tuple:
     if idx < 0: 
         file_obj.seek(idx, os.SEEK_END)

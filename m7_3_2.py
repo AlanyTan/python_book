@@ -1,4 +1,5 @@
 import m7_2_3
+
 def unpack_for_b_w(full_content: bytes, idx: int) -> tuple:
     length = int.from_bytes(full_content[idx:idx+2], 'little')
     idx_content = idx + 2
