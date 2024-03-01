@@ -26,7 +26,7 @@ def main(file_name: str) -> None:
         print("#", row)
         data_table.append(row)
     
-    print(f"# Locate Grade of #3 student: {data_table[3]['Grade']}")
+    print(f"# Locate Grade of #3 student: {data_table[2]['Grade']}")
         
     csv_file_obj.close()
 
@@ -41,4 +41,4 @@ if __name__ == '__main__':
 # {'ID': 2.0, 'Name': 'Bob', 'Age': 19.0, 'Grade': 70.0, 'Pass/Fail': 'True'}
 # {'ID': 3.0, 'Name': 'Carole', 'Age': 17.0, 'Grade': 75.0, 'Pass/Fail': 'True'}
 # {'ID': 4.0, 'Name': 'David', 'Age': 18.0, 'Grade': 85.5, 'Pass/Fail': 'True'}
-# Locate Grade of #3 student: 85.5,
+# Locate Grade of #3 student: 75.0,
