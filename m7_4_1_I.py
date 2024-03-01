@@ -11,7 +11,6 @@ def main(file_name: str) -> None:
     csv_writer.writerow([4, 'David', 18, 85.5, 'True'])
     csv_file_obj.close()
 
-
     csv_file_obj = open(file_name, "r", newline='', encoding='utf-8')
     csv_reader = csv.reader(csv_file_obj, dialect='excel')
     print(f"# open csv for {csv_file_obj.mode}, use {type(csv_reader)=}")
