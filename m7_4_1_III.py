@@ -31,7 +31,7 @@ def main(file_name: str) -> None:
         print("#", row)
         data_table.append(row)
     
-    print(f"# Locate Grade of #3 student: {data_table[2][3]}")
+    print(f"# Locate Grade of #3 student: {data_table[2+csv_has_header][3]}")
         
     csv_file_obj.close()
 
@@ -48,4 +48,4 @@ if __name__ == '__main__':
 # [2.0, 'Bob', 19.0, 70.0, 'True']
 # [3.0, 'Carole', 17.0, 75.0, 'True']
 # [4.0, 'David', 18.0, 85.5, 'True']
-# Locate Grade of #3 student: 70.0
+# Locate Grade of #3 student: 75.0
