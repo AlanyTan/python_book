@@ -3,18 +3,23 @@ import csv
 def main(file_name: str) -> None:
     csv_file_obj = open(file_name, "w", newline='', encoding='utf-8')
     fieldnames = ['ID', 'Name', 'Age', 'Grade', 'Pass/Fail']
-    csv_writer = csv.DictWriter(csv_file_obj, fieldnames, dialect='excel', quoting=csv.QUOTE_NONNUMERIC)
+    csv_writer = csv.DictWriter(csv_file_obj, fieldnames, dialect='excel', 
+                                quoting=csv.QUOTE_NONNUMERIC)
     print(f"# open csv for {csv_file_obj.mode}, use {type(csv_writer)=}")
     csv_writer.writeheader()
-    csv_writer.writerow({'ID':1, 'Name':'Alice', 'Age':18, 'Grade':80.5, 'Pass/Fail':str(True)})
-    csv_writer.writerow({'ID':2, 'Name':'Bob', 'Age':19, 'Grade':70, 'Pass/Fail':str(True)})
-    csv_writer.writerow({'ID':3, 'Name':'Carole', 'Age':17, 'Grade':75, 'Pass/Fail':str(True)})
-    csv_writer.writerow({'ID':4, 'Name':'David', 'Age':18, 'Grade':85.5, 'Pass/Fail':str(True)})
+    csv_writer.writerow({'ID':1, 'Name':'Alice', 'Age':18, 'Grade':80.5, 
+                         'Pass/Fail':str(True)})
+    csv_writer.writerow({'ID':2, 'Name':'Bob', 'Age':19, 'Grade':70, 
+                         'Pass/Fail':str(True)})
+    csv_writer.writerow({'ID':3, 'Name':'Carole', 'Age':17, 'Grade':75, 
+                         'Pass/Fail':str(True)})
+    csv_writer.writerow({'ID':4, 'Name':'David', 'Age':18, 'Grade':85.5, 
+                         'Pass/Fail':str(True)})
     csv_file_obj.close()
 
-
     csv_file_obj = open(file_name, "r", newline='', encoding='utf-8')
-    csv_reader = csv.DictReader(csv_file_obj, dialect='excel', quoting=csv.QUOTE_NONNUMERIC)
+    csv_reader = csv.DictReader(csv_file_obj, dialect='excel', 
+                                quoting=csv.QUOTE_NONNUMERIC)
     print(f"# open csv for {csv_file_obj.mode}, use {type(csv_reader)=}")
     for row in csv_reader:
         print("#", row)
