@@ -1,21 +1,20 @@
-print ("#", not True, not False)
-# False True
+print ("# not True is:", not True, ", not False is:", not False)
+# not True is: False , not False is: True
 
-print ("#", not None, not "anything")
-# True False
+print ("# not None is:", not None, ", not 'anything' is:", not "anything")
+# not None is: True , not 'anything' is: False
 
 numerator = 10
-denominator = 5
+denominator = 2
 
-if denominator == 0 or numerator % denominator:
-    print("# Not divisible")
-else:
-    print("# Divisible")
-# Divisible
+divisible = denominator and not numerator % denominator and "Divisible"
+divisible = divisible or "Not Divisible"
+print("#", numerator, "/", denominator, "is", divisible)
+# 10 / 2 is Divisible
 
 denominator = 0
-if denominator and not numerator % denominator:
-    print("# Divisible")
-else:
-    print("# Not divisible")
-# Not divisible
+
+divisible = denominator and not numerator % denominator and "Divisible"
+divisible = divisible or "Not Divisible"
+print("#", numerator, "/", denominator, "is", divisible)
+# 10 / 0 is Not Divisible
