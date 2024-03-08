@@ -1,22 +1,22 @@
-string="AbCdEfGhIjKlMn"
+string="AaBbCcDdEeFfGg"
   
 print("#", string[::2])
-# ACEGIKM
+# ABCDEFG
 
 print("#", string[-13:12:3])
-# bEhK
+# aCdF
 
-print("#", string[2:1])
-#
+print("#", string[2:5:4])
+# B
 
 print("#", string[::-1])
-# nMlKjIhGfEdCbA
+# gGfFeEdDcCbBaA
 
 print("#", string[-1:1:-2])
-# nljhfd
+# gfedcb
 
 print("#", string[-2::-2])
-# MKIGECA
+# GFEDCBA
 
 print("#", string[1:-1:-1])
 #
