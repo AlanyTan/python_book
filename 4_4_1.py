@@ -1,4 +1,4 @@
-def f(x: float|int) -> None:
+def f(x: float|int) -> float:
     """
     Calculate the area of a circle with a radius of x.
 
