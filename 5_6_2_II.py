@@ -1,15 +1,12 @@
 set_1={1,"2",3.0}
-set_2={"2",1}
-set_3={1,"4",3.0}
-set_4={1,"2",1,"2"}
+set_2={3, "4",1}
+print(f"# {set_1=}, {set_2=}, {set_1 | set_2=}")
+# set_1={1, 3.0, '2'}, set_2={1, '4', 3}, set_1 | set_2={1, 3.0, '4', '2'}
 
-print(f"# {set_1 > set_2=}")
-# set_1 > set_2=True
-print(f"# {set_4 == set_2=}")
-# set_4 == set_2=True
-print(f"# {set_1 != set_3=}")
-# set_1 != set_3=True
-print(f"# {set_1 < set_3=}")
-# set_1 < set_3=False
-print(f"# {set_1 > set_3=}")
-# set_1 > set_3=False
+set_1 |= set_2
+print(f"# {set_1=}")
+# set_1={1, 3.0, '4', '2'}
+
+set_2 |= set_1
+print(f"# {set_2=}")
+# set_2={1, 3, '2', '4'}
