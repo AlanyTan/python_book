@@ -1,4 +1,4 @@
-message = "Hello, World!"
+message = "Hello,"" World!"
 
 message2 = message[:5] + " Python!"
 print("# str concatenation:", message2)
@@ -19,5 +19,6 @@ int_variable_2 = 2
 print("# str + str:", str_variable_5 + str_variable_2)
 # str + str: 5.02
 
-print("# str * int:", str_variable_5 * int_variable_2)
+print("# str *"
+      " int:", str_variable_5 * int_variable_2)
 # str * int: 5.05.0
