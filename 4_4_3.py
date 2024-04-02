@@ -18,5 +18,5 @@ def parallelepiped_volume(length: int|float, width: int|float,
 
     return area(x=length, y=width) * height
 
-print(f"# {parallelepiped_volume(length=1, width=3, height=2)=}")
-# parallelepiped_volume(length=1, width=3, height=2)=6
+print(f"# {parallelepiped_volume(1, width=3, height=2)=}")
+# parallelepiped_volume(1, width=3, height=2)=6
