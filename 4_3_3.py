@@ -23,8 +23,8 @@ def area(x, y) -> int|float:
     """
     return x*y
 
-print(f"# {area(x=2, y=3)=}")
-# area(x=2, y=3)=6
+print(f"# {area(2, 3)=}")
+# area(2, 3)=6
 
-print (f"# {volume(length=2, width=3, height=4)=}")
-# volume(length=2, width=3, height=4)=24
+print (f"# {volume(2, 3, 4)=}")
+# volume(2, 3, 4)=24

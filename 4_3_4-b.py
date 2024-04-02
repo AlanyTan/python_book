@@ -17,5 +17,5 @@ def fibonacci_iterative(n) -> int:
         b = c
     return b
 
-print(f"# {fibonacci_iterative(n=10)=}")
+print(f"# {fibonacci_iterative(10)=}")
 # fibonacci_iterative(10)=55
