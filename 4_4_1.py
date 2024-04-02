@@ -1,10 +1,12 @@
-def f(x: float|int) -> float:
-    """
-    Calculate the area of a circle with a radius of x.
+def circle_area(r: float|int) -> float:
+    """Calculate the area of a circle with a given radius.
 
     Args:
-      x:  the radius of the circle, an int or a float
+        r : The radius of the circle.
+
+    Returns:
+        The area of the circle.
     """
     PI = 3.14159
-    circumference = 2 * PI * x 
+    circumference = 2 * PI * r
     return circumference
