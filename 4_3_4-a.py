@@ -6,7 +6,7 @@ def fibonacci(n) -> int:
 
     Returns:
         int: The nth Fibonacci number.
-"""
+    """
     if n <= 1:
         return n
     else:
