@@ -1,16 +1,17 @@
-def f(x) -> float:
-    """Calculates the circumference of a circle given its radius.
+def circumference(r: int|float)->float:
+    """Calculate the circumference of a circle with a radius of r.
 
     Args:
-        x (float): The radius of the circle.
+        r: The radius of the circle.
 
     Returns:
-        float: The circumference of the circle.
+        A number representing the circumference of the circle.
     """
     PI = 3.14159
-    circumference = 2*PI*x
+    circumference = 2 * PI * r
     return circumference
 
+
 radius = 2
-print(f"# {f(radius)=}")
-# f(radius)=12.56636
+print(f"# {circumference(radius)=}")
+# circumference(radius)=12.56636
