@@ -1,6 +1,5 @@
 def f(x)->float:
-    """
-    Calculate the circumference of a circle with a radius of x.
+    """Calculate the circumference of a circle with a radius of x.
 
     Args:
         x:  int | float

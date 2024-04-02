@@ -1,5 +1,7 @@
 def parallelepiped_volume(length, width, height) -> int|float:
-    """Calculate volumn of a rectangular prism
+    """Calculate volumn of a parallellepiped (a shape with six sides, 
+        each side is a parallelogram, each side is the same shape as
+        its opposite.)
     
     Args:
         length: int:float
