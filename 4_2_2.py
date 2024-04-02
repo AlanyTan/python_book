@@ -1,7 +1,7 @@
 def circle_area(r: int|float) -> float:
     PI = 3.14159
-    circumference = 2*PI*r
-    return circumference
+    area = PI * r**2
+    return area
 
 def rectangle_area(length: int|float, width: int|float) -> int|float:
     return length * width
