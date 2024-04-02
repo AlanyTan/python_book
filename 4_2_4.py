@@ -5,7 +5,7 @@ def circumference(r: int|float)->float:
         r: The radius of the circle.
 
     Returns:
-        float: The circumference of the circle.
+        A number representing the circumference of the circle.
     """
     PI = 3.14159
     circumference = 2 * PI * r
