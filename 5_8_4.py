@@ -56,28 +56,28 @@ def schedule_matches(groups: dict, fields_available: dict,
                             else (guest_team, home_team)
                 match_count = [m[0] for m in match_schedule.keys()].count(match_)
                 if match_count >= (
-                   round_robin_rounds / (2 - round_robin_rounds % 2)):
+                   round_robin_rounds / (2 - round_robin_rounds % 2))
                     # these two teams had already matched.
-                    continue
-          
-                if field[0] in team_schedule.get(guest_team):
+                   or field[0] in team_schedule.get(guest_team):
                     # there is a conflict of schedule for the guest team
                     continue
-                else:
-                    match_schedule[(match_, match_count+1, home_group)] = field
-                    team_schedule[home_team].append(field[0])
-                    team_schedule[guest_team].append(field[0])
-                    current_round_paired.append(home_team)
-                    current_round_paired.append(guest_team)
-                    # we had a match, no need to check the rest of the group
-                    sorted_guest_group = []
-                    # this field had been used by this match, 
-                    field = None
+
+                match_schedule[(match_, match_count+1, home_group)] = field
+                team_schedule[home_team].append(field[0])
+                team_schedule[guest_team].append(field[0])
+                current_round_paired.append(home_team)
+                current_round_paired.append(guest_team)
+                # we had a match, no need to check the rest of the group
+                sorted_guest_group = []
+                # this field had been used by this match, 
+                field = None
 
         if not current_round_paired:
             # no teams can use this field, skip this field for now...
             field = None
+            
     return match_schedule
+
 
 match_schedule = schedule_matches(groups, fields_available, round_robin_rounds)
 
