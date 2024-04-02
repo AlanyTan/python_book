@@ -1,11 +1,11 @@
-def fibonacci_iterative(n) -> int:
+def fibonacci_iterative(n: int) -> int:
     """Calculates the nth Fibonacci number using an iterative approach.
 
     Args:
-        n (int): The index of the Fibonacci number to calculate.
+        n: The index of the Fibonacci number to calculate.
 
     Returns:
-        int: The nth Fibonacci number.
+        The nth Fibonacci number.
     """
     if n <= 1:
         return n

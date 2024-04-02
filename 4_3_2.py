@@ -1,9 +1,9 @@
-def print_rectangle_area(length, width) -> None:
-    """Prints the area of a rectangle.
+def print_rectangle_area(length: int|float, width: int|float) -> None:
+    """Prints the area of a rectangle, no return value.
 
     Args:
-        length (int or float): The length of the rectangle.
-        width (int or float): The width of the rectangle.
+        length: The length of the rectangle.
+        width: The width of the rectangle.
 
     Returns:
         None

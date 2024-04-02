@@ -1,27 +1,29 @@
-def volume(length, width, height) -> int|float:
+def volume(length: int|float, width: int|float,
+           height: int|float) -> int|float:
     """Calculates the volume of a rectangular prism.
 
     Args:
-        length (int or float): The length of the rectangular prism.
-        width (int or float): The width of the rectangular prism.
-        height (int or float): The height of the rectangular prism.
+        length: The length of the rectangular prism.
+        width: The width of the rectangular prism.
+        height: The height of the rectangular prism.
 
     Returns:
-        int or float: The volume of the rectangular prism.
+        The volume of the rectangular prism.
     """
-    return area(x=length, y=width) * height
+    return area(length, width) * height
 
-def area(x, y) -> int|float:
+def area(length: int|float, width: int|float) -> int|float:
     """Calculates the area of a rectangle.
 
     Args:
-        x (int|float): The length of the rectangle.
-        y (int|float): The width of the rectangle.
+        length: The length of the rectangle.
+        width: The width of the rectangle.
 
     Returns:
-        int|float: The area of the rectangle.
+        The area of the rectangle.
     """
-    return x*y
+    return length*width
+
 
 print(f"# {area(2, 3)=}")
 # area(2, 3)=6
