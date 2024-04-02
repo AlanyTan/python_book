@@ -1,4 +1,12 @@
 def fibonacci_iterative(n) -> int:
+    """Calculates the nth Fibonacci number using an iterative approach.
+
+    Args:
+        n (int): The index of the Fibonacci number to calculate.
+
+    Returns:
+        int: The nth Fibonacci number.
+    """
     if n <= 1:
         return n
     a = 0
@@ -9,5 +17,5 @@ def fibonacci_iterative(n) -> int:
         b = c
     return b
 
-print(f"# {fibonacci_iterative(10)=}")
+print(f"# {fibonacci_iterative(n=10)=}")
 # fibonacci_iterative(10)=55

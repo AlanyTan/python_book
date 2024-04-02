@@ -2,12 +2,12 @@ def volume(length, width, height) -> int|float:
     """Calculates the volume of a rectangular prism.
 
     Args:
-        length (int|float): The length of the rectangular prism.
-        width (int|float): The width of the rectangular prism.
-        height (int|float): The height of the rectangular prism.
+        length (int or float): The length of the rectangular prism.
+        width (int or float): The width of the rectangular prism.
+        height (int or float): The height of the rectangular prism.
 
     Returns:
-        int|float: The volume of the rectangular prism.
+        int or float: The volume of the rectangular prism.
     """
     return area(x=length, y=width) * height
 

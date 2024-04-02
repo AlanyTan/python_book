@@ -2,8 +2,8 @@ def print_rectangle_area(length, width) -> None:
     """Prints the area of a rectangle.
 
     Args:
-        length (int): The length of the rectangle.
-        width (int): The width of the rectangle.
+        length (int or float): The length of the rectangle.
+        width (int or float): The width of the rectangle.
 
     Returns:
         None
