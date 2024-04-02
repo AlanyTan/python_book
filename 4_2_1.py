@@ -3,8 +3,8 @@ def circle_area(x) -> float:
     circumference = 2 * PI * x 
     return circumference
 
-def rectangle_area() -> int|float:
-     return length * width
- 
+def rectangle_area(length, width) -> int|float:
+    return length * width
+
 def print_rectangle_area(length,width) -> None:
     print(f"area of the rectangle is:{length * width}")
