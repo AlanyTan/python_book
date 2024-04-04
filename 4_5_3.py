@@ -7,8 +7,6 @@ def func_parent_scope(arg_p: str) -> str:
     Returns:
         the incoming argument arg_p repeated
     """
-    global_var = 'in func_parent'
-    print(f"# -func_parent, {global_var_alias=}, {global_var=}")
     def func_child_scope(arg_c: int) -> int:
         global global_var
         print(f"# -=func_child, {global_var is global_var_alias=}, {global_var=}")
@@ -16,6 +14,8 @@ def func_parent_scope(arg_p: str) -> str:
         print(f"# -=func_child, {global_var_alias=}, {global_var=}")
         return arg_c
 
+    global_var = 'in func_parent'
+    print(f"# -func_parent, {global_var_alias=}, {global_var=}")
     return_from_func_child = func_child_scope(2)
     print(f"# -func_parent, {global_var_alias=}, {global_var=}")
     return arg_p * return_from_func_child
