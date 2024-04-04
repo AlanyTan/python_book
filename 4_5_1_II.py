@@ -21,3 +21,6 @@ print(f"# in main, var exist: {'var' in dir()}, {var is var_alias=}, {var=}")
 print(f"# in main, {func_local_scope(var)=}")
 # -in func_local, var is var_alias=False, var='local scope', var_alias='main scope'
 # in main, func_local_scope(var)='main scope'
+
+print(f"# in main, var exist: {'var' in dir()}, {var is var_alias=}, {var=}")
+# in main, var exist: True, var is var_alias=True, var='main scope'
