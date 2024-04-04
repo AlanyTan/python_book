@@ -28,9 +28,9 @@ def func_parent_scope(arg_p: str) -> str:
     func_child_scope(0)
     print(f"# -func_parent, {enclosing_var is enc_var_alias=}, {enclosing_var=}")
     print(f"# -func_parent, {shadow_var is shd_var_alias=}, {shadow_var=}")
-    return arg_p[:3]
+    return arg_p
 
-print(f"# func returned:", func_parent_scope("anything"))
+print(f"# func returned:", func_parent_scope("from main"))
 # -func_parent, enclosing_var is enc_var_alias=True, enclosing_var='encv'
 # -func_parent, shadow_var is shd_var_alias=True, shadow_var='shdv'
 #  -=func_child, enclosing_var is enc_var_alias=True, enclosing_var='encv'
@@ -38,4 +38,4 @@ print(f"# func returned:", func_parent_scope("anything"))
 #  -=func_child, shadow_var is shd_var_alias=False
 # -func_parent, enclosing_var is enc_var_alias=False, enclosing_var='enclosing_var from child'
 # -func_parent, shadow_var is shd_var_alias=True, shadow_var='shdv'
-# func returned: any
+# func returned: from main
