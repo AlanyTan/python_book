@@ -1,18 +1,25 @@
-def func_shadow_name() -> None:
+def func_shadow_buildins() -> None:
+    """Demonstrate what should be avoided:
+    shadowing of buildin function and variable.
+
+    Args:
+        None.
+
+    Returns:
+        None
+    """
     def len(v) -> str:
         return "len() has been shadowed."
 
-    def abs(v) -> None:
-        print(f"# printed from func_shadow_name's\n#   shadowed abs({v=})")
+    __file__ = 'shadowed filename.'
+    print(f"# -=in func_shadow_buildins: {len('abc')=}, {__file__=}")
 
-    abs(len('abc'))
 
-func_shadow_name()
-# printed from func_shadow_name's
-#   shadowed abs(v='len() hse been shadowed.')
+print(f"# in main before, {len('abc')=}, {__file__=}")
+# in main before, len('abc')=3, __file__='/home/alan/Documents/Python.book/4_5_4.py'
 
-print(f"# calling abs() outside of func_shadow_name(): {abs(-10)=}")
-# calling abs() outside of func_shadow_name(): abs(-10)=10
+func_shadow_buildins()
+# -=in func_shadow_buildins: len('abc')='len() has been shadowed.', __file__='shadowed filename.'
 
-print(f"# calling len() outside of func_shadow_name(): {len('abc')=}")
-# calling len() outside of func_shadow_name(): len('abc')=3
+print(f"# in main after, {len('abc')=}, {__file__=}")
+# in main after, len('abc')=3, __file__='/home/alan/Documents/Python.book/4_5_4.py'
