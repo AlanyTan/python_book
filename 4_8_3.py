@@ -1,4 +1,6 @@
-def counter(arg_1:int, arg_2:int = None, step:int = 1):
+from collections.abc import Generator
+
+def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int, int]:
     if arg_2 is None:
         current = 0
         stop = arg_1

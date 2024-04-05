@@ -1,9 +1,16 @@
-def counter():
-    print(f"# first yield.")
+from collections.abc import Generator
+
+def counter() -> Generator[int]:
+    """Demo generator function.
+
+    Yields:
+        sequence number starts from 1 ends at 3.
+    """
+    print(f"# generator yielding the first...")
     yield 1
-    print(f"# second yield.")
+    print(f"# generator yielding the second...")
     yield 2
-    print(f"# third yield.")
+    print(f"# generator yielding the third...")
     yield 3
 
 seq_nos = counter()
@@ -13,9 +20,9 @@ for seq_no in seq_nos:
     print(f"#main received:{seq_no}")
     
 #seq_nos is a <class 'generator'>
-# first yield.
+# generator yielding the first...
 #main received:1
-# second yield.
+# generator yielding the second...
 #main received:2
-# third yield.
+# generator yielding the third...
 #main received:3
