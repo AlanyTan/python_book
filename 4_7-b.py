@@ -1,8 +1,4 @@
-numbers=range(-5,5)
-result= map(lambda x: x**2,numbers)
-str_result = ""
-for item in result:
-    str_result += f"{item} "
+numbers=range(10,100)
+result= filter(lambda x: x%2 * x%3 * x%5 * x%7, numbers)
 
-print(f"# ^2 of each number: {(str_result)}")
-# ^2 of each number: 25 16 9 4 1 0 1 4 9 16
+print(f"# 2-digit prime numbers: {sorted(result)}")
