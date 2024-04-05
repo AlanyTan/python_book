@@ -32,8 +32,8 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int, int]:
             current = sendback - step
         current += step
         
-regular = counter(100)
-senior = counter(50)
+regular = counter(999)
+senior = counter(99)
     
 while (user_input := input("# Enter age, 'exit' to quit:")) != 'exit':
     match user_input:
