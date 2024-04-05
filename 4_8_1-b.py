@@ -13,15 +13,17 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int]:
         a the current counter number
     """
     if arg_2 is None:
-        current = 0
+        start = 0
         stop = arg_1
     else:
-        current = arg_1
+        start = arg_1
         stop = arg_2
         
-    sign = 1 if current < stop else -1
+    sign = 1 if start < stop else -1
     if step*sign < 0:
         current = stop - step 
+    else:
+        current = start
     
     while current * sign < stop * sign:
         print(f"# -in generator {current=}")
@@ -43,4 +45,3 @@ for i in counter_gen:
 # main received:-8
 # -in generator current=-9
 # main received:-9
-
