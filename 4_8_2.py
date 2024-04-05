@@ -27,8 +27,8 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int]:
         yield current
         current += step
         
-regular = counter(100)
-senior = counter(50)
+regular = counter(999)
+senior = counter(99)
     
 while (user_input := input("# =Enter age, 'exit' to quit:")) != 'exit':
     if user_input.isnumeric() and int(user_input) >= 65:

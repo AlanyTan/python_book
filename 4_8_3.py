@@ -1,6 +1,20 @@
 from collections.abc import Generator
 
 def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int, int]:
+    """A counter generator with start, stop, step parameters.
+
+    Args:
+        arg_1: if used by itself, is before which the counter should stop
+            if used with arg_2, is where the counter should start.
+        arg_2: if provided, is before which the counter should stop.
+        step: the step size between each yield.
+    
+    Yields:
+        a the current counter number.
+    
+    Sends:
+        set next count to this number.
+    """
     if arg_2 is None:
         current = 0
         stop = arg_1
