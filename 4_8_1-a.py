@@ -15,11 +15,10 @@ def counter() -> Generator[int]:
 
 seq_nos = counter()
 print(f"#seq_nos is a {type(seq_nos)}")
+#seq_nos is a <class 'generator'>
 
 for seq_no in seq_nos:
     print(f"#main received:{seq_no}")
-    
-#seq_nos is a <class 'generator'>
 # generator yielding the first...
 #main received:1
 # generator yielding the second...
