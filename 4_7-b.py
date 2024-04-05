@@ -1,4 +1,5 @@
-numbers=range(10,100)
-result= filter(lambda x: x%2 * x%3 * x%5 * x%7, numbers)
+numbers=range(10)
+result= sorted(numbers, key=lambda x: 1/(x+1) + x%2)
 
-print(f"# 2-digit prime numbers: {sorted(result)}")
+print(f"# 2-digit prime numbers: {result}")
+# 2-digit prime numbers: [8, 6, 4, 2, 0, 9, 7, 5, 3, 1]
