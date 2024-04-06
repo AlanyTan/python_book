@@ -1,5 +1,6 @@
-#save this as m6_2_3_III_ii.py
-from m6_2_3_II_package import circle, rectangle as rect
+"""Main script to demo from package import module"""
+"""save this as m6_3_3_II.py"""
+from m6_3_package import circle, rectangle as rect
 radius = 3
 
 print(f"# area of {radius=} is {circle.area(radius)}")

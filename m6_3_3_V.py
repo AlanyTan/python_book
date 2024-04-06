@@ -1,5 +1,5 @@
 #save this as m6_2_3_III_v.py
-import m6_2_3_II_package as geometry
+import m6_3_package as geometry
 
 radius = 3
 
