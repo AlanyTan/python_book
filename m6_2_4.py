@@ -12,9 +12,9 @@ print(f"# {'global_var' in dir()=}")
 print(f"# {'check_global_var' in dir()=}, {check_global_var()=}")
 # 'check_global_var' in dir()=True, check_global_var()='value set in m6_2_scope'
 
-print(f"# {'len' in dir()=}, {'m6_2_scope_len' in dir()=},"
+print(f"# {'len' in __builtins__=}, {'len' in dir()=}, {'m6_2_scope_len' in dir()=},"
       f" {m6_2_scope_len(1.2)=}")
-# 'len' in dir()=False, 'm6_2_scope_len' in dir()=True, m6_2_scope_len(1.2)='LEN1.2'
+# 'len' in __builtins__=True, 'len' in dir()=False, 'm6_2_scope_len' in dir()=True, m6_2_scope_len(1.2)='LEN1.2'
 
 def import_in_func() -> None:
       """Demo import can be done inside a function"""
