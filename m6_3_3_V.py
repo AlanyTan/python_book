@@ -1,4 +1,5 @@
-#save this as m6_2_3_III_v.py
+"""Main script to demo import package"""
+"""save this as m6_3_3_V.py"""
 import m6_3_package as geometry
 
 radius = 3
