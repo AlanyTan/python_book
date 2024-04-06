@@ -1,5 +1,5 @@
 #save this as m6_2_2_III.py
-import m6_2_2_II_circle as circle
+import m6_1_circle as circle
 print(f"# module set PI to: {circle.PI}")
 # module set PI to: 3.14159265
 
@@ -12,4 +12,4 @@ print(f"# circumference of {radius=} is"
       f" {circle.circumference(radius)}")
 # circumference of radius=3 is 18.849555900000002
 
-print(m6_2_2_II_circle.area(4))
+print(circle.area(4))
