@@ -12,3 +12,13 @@ def circumference (r):
 
 def area (r):
     return r**2 * PI
+
+def main():
+    #if run directly, test both functions
+    r=2
+    print(f"testing r={r} circumference is {circumference(r)}" )
+    print(f"testing r={r} area is {area(r)}")
+
+
+if __name__ == "__main__":
+    main()
