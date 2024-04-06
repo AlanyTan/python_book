@@ -1,4 +1,8 @@
-#save this as m6_1_2_II.py
+"""
+Main script demonstrating importing a module.
+"""
+"""save this as m6_1_3.py"""
+
 import m6_1_circle
 print(f"# module set PI to: {m6_1_circle.PI}")
 # module set PI to: 3.14159265

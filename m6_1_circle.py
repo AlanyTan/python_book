@@ -1,9 +1,9 @@
-"""Demonstrate definition and import of modules.
+"""Demo module definition to be imported by other modules.
 
 Includes functions to calculate the circumference and area of 
 a circle. PI is defined internally as a constant.
 """
-"""save this as m6_1_2_II_circle.py"""
+"""save this as m6_1_circle.py"""
 PI = 3.14159265
 
 def circumference (r: int|float) -> float:
