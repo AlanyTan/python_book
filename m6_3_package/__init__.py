@@ -17,3 +17,7 @@ Usage:
 
 For more details on each module, refer to the module docstring.
 """
+
+from . import circle, rectangle
+
+__all__ = ["circle", "rectangle"]
