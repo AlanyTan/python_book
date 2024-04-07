@@ -1,4 +1,17 @@
 def main(file_name: str) -> None:
+    """Main func demo file creation, open for read and close.
+
+    Will first open file_name for write, create if not yet exist, 
+    truncate the file if already exist. Then close it.
+    Next, open file_name for read, then close it.
+    
+    
+    Args:
+        file_name: string representing file name to create and open.
+
+    Returns: 
+        None
+    """
     file_w = open(file_name,'w', encoding='utf-8')
     print(f"# {type(file_w)=}, {file_w.closed=}")
     file_w.close()
