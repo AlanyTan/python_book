@@ -1,4 +1,4 @@
-str variable text content.
+text content containing 2 & True
 2
-A string liternal.
 True
+A string liternal.
