@@ -1,4 +1,4 @@
-Saving text: str variable text content
+Saving text: text content containing 2 & True
 Saving number: 2
 Saving boolean: True
 into file /home/user/Documents/Python.book/m7_2_1.data.txt

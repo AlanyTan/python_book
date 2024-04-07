@@ -14,7 +14,7 @@ def main(file_name: str) -> None:
     """
     int_info = 2
     bool_info = True
-    text_info = "str variable text content"
+    text_info = "text content containing 2 & True"
     file_obj = open(file_name, 'w+', encoding='utf-8')
     print("Saving text:", text_info, file=file_obj)
     print("Saving number:", int_info, file=file_obj)
