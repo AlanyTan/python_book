@@ -3,8 +3,8 @@ def main(file_name: str) -> None:
 
     Will first open file_name for write, create if not yet exist, 
     truncate the file if already exist. Then close it.
-    Next, open file_name for read, then close it.
-    
+    Next, open file_name for read. Then close it.
+    Will print out file type and closed state.
     
     Args:
         file_name: string representing file name to create and open.
