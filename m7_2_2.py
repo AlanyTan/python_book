@@ -2,7 +2,7 @@ def main(file_name: str) -> None:
     """Main func demo writelines() into text file.
 
     Will first prepare a list of strings.
-    The open file_name for write (default t|b so text), 
+    Then open file_name for write (default t|b so text), 
     create if not yet exist, truncate the file if already exist.
     Next, writelines() the list into the opened file_obj.
     Last, close the file_obj.
