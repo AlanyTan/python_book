@@ -5,7 +5,7 @@ and then write a binary file.
 """
 BYTES_FOR_INT = 4
 
-def pack_for_b_w(bytestream: bytes|bytearray) -> bytes:
+def pack_for_b_write(bytestream: bytes|bytearray) -> bytes:
     """Func to add length of bytes in front of the bytestream itself.
 
     This function can be used to convert a bytestream to a structure 
@@ -50,12 +50,12 @@ def main(files: list[str]) -> None:
         file_obj = open(file_name, "w+" + open_mode, encoding=encoding_type)
         if open_mode == 'b':
             print("# .write() str to bin file returned:",
-                  file_obj.write(pack_for_b_w(bytes(text_info, 'utf-8'))))
+                  file_obj.write(pack_for_b_write(bytes(text_info, 'utf-8'))))
             print("# .write() int to bin file returned:",
-                  file_obj.write(pack_for_b_w(
+                  file_obj.write(pack_for_b_write(
                             int_info.to_bytes(BYTES_FOR_INT,'little'))))
             print("# .write() bool to bin file returned:",
-                  file_obj.write(pack_for_b_w(bytearray([bool_info]))))
+                  file_obj.write(pack_for_b_write(bytearray([bool_info]))))
         else:
             print("# .write() str to text file returned:",
                   file_obj.write(text_info+newline))
