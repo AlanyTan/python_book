@@ -31,11 +31,8 @@ def pack_for_b_w(bytestream: bytes|bytearray) -> bytes:
 def main(files: list[str]) -> None:
     """Main func demo write() into text file both text and binary.
 
-    Will first prepare an int, a bool, a text.
-    Then open first file as text 
-    create if not yet exist, truncate the file if already exist.
-    Next, writelines() the list into the opened file_obj.
-    Last, close the file_obj.
+    Will write an int, a bool, a text to the files given by files
+    and print the length written. 
     
     Args:
         file_names: a list of string representing filenames and type of text/binary.

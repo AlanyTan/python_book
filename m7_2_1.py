@@ -1,10 +1,8 @@
 def main(file_name: str) -> None:
     """Main func demo print() into text file.
 
-    Will first open file_name for write (default t|b so text), 
-    create if not yet exist, truncate the file if already exist.
-    Next, print text, number, boolean into the opened file_obj.
-    Last, close the file_obj.
+    Will print an int, a bool, a str variable and a str literal to
+    a text file opened using file_name given.
     
     Args:
         file_name: string representing file name to create and open.
