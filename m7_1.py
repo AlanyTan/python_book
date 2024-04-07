@@ -24,7 +24,7 @@ def main(file_name: str) -> None:
 
 if __name__ == "__main__":
     base_name = __file__[:-3]
-    file_name = base_name + ".data.txt"
+    file_name = base_name + ".data"
     main(file_name)
 
 # type(file_w)=<class '_io.TextIOWrapper'>, file_w.closed=False
