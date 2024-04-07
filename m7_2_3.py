@@ -81,4 +81,3 @@ if __name__ == "__main__":
 # .write() str to bin file returned: 22
 # .write() int to bin file returned: 8
 # .write() bool to bin file returned: 5
-    
