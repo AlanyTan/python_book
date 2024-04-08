@@ -12,7 +12,7 @@ Note:
 """
 from m7_3_1_I import creat_input_file
 
-SKIP_WORD = ['skip']
+SKIP_WORDS = ['skip']
 
 def parse_line(line:str ) -> list:
     """Parse a line based on logic in section 3.4
@@ -30,7 +30,7 @@ def parse_line(line:str ) -> list:
     """
     result = []
     line = line.strip('\n')
-    if line := '' if line in SKIP_WORD else line:
+    if line := '' if line in SKIP_WORDS else line:
         result.append(f"# You entered: {line}")
         
     for letter in line:

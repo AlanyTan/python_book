@@ -2,6 +2,9 @@
 
 main() function will use .write() write to text file first,
 and then write a binary file.
+
+Usage:
+    python -m m7_2_3
 """
 BYTES_FOR_INT = 4
 
@@ -29,9 +32,9 @@ def pack_for_b_write(bytestream: bytes|bytearray) -> bytes:
     return length.to_bytes(BYTES_FOR_INT, 'little') + bytestream
 
 def main(files: list[str]) -> None:
-    """Main func demo write() into text file both text and binary.
+    """Main func demo write() into both text and binary files.
 
-    Will write an int, a bool, a text to the files given by files
+    Will write a text an int, a bool to the files given by files
     and print the length written. 
     
     Args:

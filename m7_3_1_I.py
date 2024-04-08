@@ -47,11 +47,11 @@ def main(file_name: str) -> None:
     file_r = open(file_name, 'r', encoding='utf-8')
     count = 0
     break_again = False
-    while content := file_r.readline():
+    while line := file_r.readline():
     # the above while can be replaced by a for loop with exact same effect
-    # for content in file_r:
-        content = content.strip("\n")
-        if content := '' if content == SKIP_WORD else content:
+    # for line in file_r:
+        line = line.strip("\n")
+        if content := '' if line == SKIP_WORD else line:
             print(f"# You entered: {content}")
             count += 1
             
@@ -62,12 +62,12 @@ def main(file_name: str) -> None:
                     break
                 case '!':
                     print(f"#!!Reached exclaimation mark, aboar the whole thing!")          
-                    break_again = True
+                    content = SKIP_WORD
                     break
                 case _:
                     print(f"#   {letter}'s ASCII code is {ord(letter)}")
         
-        if break_again:
+        if content == SKIP_WORD:
             break
 
     print(f"## You entered {count} strings in total")
