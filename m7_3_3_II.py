@@ -65,9 +65,9 @@ def main(files: list[str]) -> None:
             while (read_bin_tuple := unpack_b_read(file_obj,
                                                     file_pointers[-1]))[0]:
                 bytes_read = read_bin_tuple[0]
+                data_items.append(bytes_read)
                 file_pointers.append(read_bin_tuple[1])
                 print(f"# {file_pointers[-1]=}")
-                data_items.append(bytes_read)
 
             text_info_bytes, _ = unpack_b_read(file_obj, file_pointers[0])
             data_items.append(str(text_info_bytes,'utf-8'))
@@ -76,9 +76,9 @@ def main(files: list[str]) -> None:
             lines = []
             file_pointers = [0]
             while line := file_obj.readline():
+                lines.append(line)
                 file_pointers.append(file_obj.tell())
                 print(f"# {file_pointers[-1]=}")          
-                lines.append(line)
                 
             file_obj.seek(file_pointers[0])
             line = file_obj.readline()
