@@ -67,15 +67,13 @@ def main(file_name: str) -> None:
     csv_file_obj.close()
 
     csv_file_obj = open(file_name, "r", newline='', encoding='utf-8')
-    csv_reader = csv.DictReader(csv_file_obj, dialect='excel', 
-                                quoting=csv.QUOTE_NONNUMERIC)
     data_table = dict_read_csv(csv_file_obj)
+    csv_file_obj.close()
     for row in data_table:
         print("#", row)
     
     print(f"# Locate Grade of #3 student: {data_table[2]['Grade']}")
-        
-    csv_file_obj.close()
+
 
 if __name__ == '__main__':
     base_name = __file__[:-3]

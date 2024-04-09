@@ -1,20 +1,22 @@
+"""Demo csv.Sniffer() ability to guess csv dialect.
+
+Usage:
+    python -m m7_4_1_IV
+
+Note:
+    depends on m7_4_1_II, which in turn depends on m7_4_1_I.
+"""
 import csv
+import m7_4_1_II
 
 def main(file_name: str) -> None:
+    """main func showing csv.Sniffer() guess header and dialect.
+    
+    Args:
+        file_name: string representing filename to use.
+    """
     csv_file_obj = open(file_name, "w", newline='', encoding='utf-8')
-    fieldnames = ['ID', 'Name', 'Age', 'Grade', 'Pass/Fail']
-    csv_writer = csv.DictWriter(csv_file_obj, fieldnames, dialect='excel', 
-                                quoting=csv.QUOTE_NONNUMERIC)
-    print(f"# open csv for {csv_file_obj.mode}, use {type(csv_writer)=}")
-    csv_writer.writeheader()
-    csv_writer.writerow({'ID':1, 'Name':'Alice', 'Age':18, 'Grade':80.5, 
-                         'Pass/Fail':str(True)})
-    csv_writer.writerow({'ID':2, 'Name':'Bob', 'Age':19, 'Grade':70, 
-                         'Pass/Fail':str(True)})
-    csv_writer.writerow({'ID':3, 'Name':'Carole', 'Age':17, 'Grade':75, 
-                         'Pass/Fail':str(True)})
-    csv_writer.writerow({'ID':4, 'Name':'David', 'Age':18, 'Grade':85.5, 
-                         'Pass/Fail':str(True)})
+    m7_4_1_II.write_csv(csv_file_obj)
     csv_file_obj.close()
 
     csv_file_obj = open(file_name, "r", newline='', encoding='utf-8')
