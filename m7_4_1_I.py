@@ -36,7 +36,8 @@ def convert_to_csv(obj: any = None) -> str:
     
     Returns:
         a string representation of obj in which newline is the seperation of rows
-        and DELIMATOR is used as seperator of cells."""
+        and DELIMATOR is used as seperator of cells.
+    """
     if obj is None:
         obj = SAMPLE_DATA
     cs_list = []
@@ -120,4 +121,3 @@ if __name__ == '__main__':
 # [2, 'Yusuf, Bob', 19, 70, True]
 # [3, 'Xanders, Carole', 17, 55, False]
 # [4, 'West, David', 18, 85.5, True]
-    
