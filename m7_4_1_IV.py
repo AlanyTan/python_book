@@ -4,10 +4,10 @@ Usage:
     python -m m7_4_1_IV
 
 Note:
-    depends on m7_4_1_II, which in turn depends on m7_4_1_I.
+    depends on m7_4_1_III, which in turn depends on m7_4_1_I.
 """
 import csv
-import m7_4_1_II
+import m7_4_1_III
 
 def main(file_name: str) -> None:
     """main func showing csv.Sniffer() guess header and dialect.
@@ -16,7 +16,7 @@ def main(file_name: str) -> None:
         file_name: string representing filename to use.
     """
     csv_file_obj = open(file_name, "w", newline='', encoding='utf-8')
-    m7_4_1_II.write_csv(csv_file_obj)
+    m7_4_1_III.dict_write_csv(csv_file_obj)
     csv_file_obj.close()
 
     csv_file_obj = open(file_name, "r", newline='', encoding='utf-8')
