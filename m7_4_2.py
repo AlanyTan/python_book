@@ -20,9 +20,9 @@ def main(file_name: str) -> None:
     json_file_obj.close()
 
     json_file_obj = open(file_name, "r", encoding='utf-8')
-    stu_rec_dic = json.load(json_file_obj)
+    stu_rec_list = json.load(json_file_obj)
     json_file_obj.close()
-    for stu_rec in stu_rec_dic:
+    for stu_rec in stu_rec_list:
         print(f"# {type(stu_rec)=}: {stu_rec}")
 
 if __name__ == '__main__':
