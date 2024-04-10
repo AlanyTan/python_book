@@ -54,7 +54,7 @@ def main(list_of_numbers_to_try: list[int]) -> None:
         
     
 if __name__ == "__main__":
-    denominators_to_try = [ 0, 1, '7.1.2', 5]
+    denominators_to_try = [ 0, 1, '8.1.2', 5]
     main(denominators_to_try)
 
 # Trying 0...
@@ -64,7 +64,7 @@ if __name__ == "__main__":
 #  got the result.
 # safe_divide(a, b)=4
 # Trying 7.1.2...
-#  ValueError ("could not convert string to float: '7.1.2'",) on line 25
+#  ValueError ("could not convert string to float: '8.1.2'",) on line 25
 # safe_divide(a, b)=None
 # Trying 5...
 #  got the result.

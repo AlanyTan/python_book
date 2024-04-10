@@ -21,9 +21,7 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
     try:
         num = float(numerator)
         denom = float(denominator)
-        result = num / denom
-        print(f"#  got the result.")
-            
+        result = num / denom            
     except ZeroDivisionError as err:
         print(f"#  Error {err.args}!")
     except ValueError as err:
@@ -33,6 +31,7 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
     except:
         print(f"#  A rare unknown error has occurred, skipping divide") 
     else:
+        print(f"#  got the result.")
         if (isinstance(numerator, int) and isinstance(denominator, int)
             and not numerator % denominator):
             result = int(result)
@@ -63,9 +62,8 @@ if __name__ == "__main__":
 #  got the result.
 # safe_divide(a, b)=4
 #Trying 7.1.2...
-#  ValueError ("could not convert string to float: '7.1.2'",) on line 6
+#  ValueError ("could not convert string to float: '7.1.2'",) on line 23
 # safe_divide(a, b)=None
 #Trying 5...
 #  got the result.
 # safe_divide(a, b)=0.8
-

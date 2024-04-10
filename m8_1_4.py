@@ -28,6 +28,8 @@ def safe_read_file(fname: str) -> str:
         if file:
             file.close()
         print(f"#  in finally block: File closed.")
+    
+    print(f"#  func safe_read_file ended with errors.")
 
 def main(fnames: list[str]) -> None:
     for fname in fnames:
@@ -35,14 +37,15 @@ def main(fnames: list[str]) -> None:
         print(f"# 1st line of text in file:{safe_read_file(fname)}")
 
 if __name__ == "__main__":
-    fnames = [__file__, "example.txt"]
+    fnames = [__file__, "donot.exist"]
     main(fnames)
     
 # Trying /home/alan/Documents/Python.book/m8_1_4.py...
 #  in else block finished reading file properly.
 #  in finally block: File closed.
-# 1st line of text in file:"""Demo try-except-finally structure"""
-# Trying example.txt...
+# 1st line of text in file:"""Demo try-except-else-finally structure"""
+# Trying donot.exist...
 #  in exept block, the file example.txt was not found.
 #  in finally block: File closed.
+#  func safe_read_file ended with errors.
 # 1st line of text in file:None
