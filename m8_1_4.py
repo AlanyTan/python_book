@@ -1,33 +1,48 @@
+"""Demo try-except-else-finally structure"""
 def safe_read_file(fname: str) -> str:
+    """open the given filename, read it's first line, and return it. 
+    
+    It tries to open the given filename, and read the first line, 
+    if run into exception, will report the error, otherwise, report
+    the read is finished properly.
+    
+    Args:
+        fname: string representing the file name to open.
+    
+    Returns:
+        the first line of the file as a stirng.
+    """
     try:
         file = None
         file = open(fname, "r")
         data = file.read()
         texts = data.split("\n")
-        return texts[0]
     except FileNotFoundError:
-        print(f"# The file {fname} was not found.")
+        print(f"#  in exept block, the file {fname} was not found.")
     except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+        print(f"  An unexpected error occurred: {e}")
+    else:
+        print(f"#  in else block finished reading file properly.")
+        return texts[0]
     finally:
         if file:
             file.close()
-        print(f"# finally block: File closed.")
+        print(f"#  in finally block: File closed.")
 
 def main(fnames: list[str]) -> None:
     for fname in fnames:
-        print(f"#Trying {fname}...")
-        print(f"#1st line of text in file:{safe_read_file(fname)}")
+        print(f"# Trying {fname}...")
+        print(f"# 1st line of text in file:{safe_read_file(fname)}")
 
 if __name__ == "__main__":
     fnames = [__file__, "example.txt"]
     main(fnames)
     
-#Trying C:/Users/me/MyDocuments/python_book/8_1_4.py...
-# finally block: File closed.
-#1st line of text in file:def safe_read_file(fname: str) -> str:
-#Trying example.txt...
-# The file example.txt was not found.
-# finally block: File closed.
-#1st line of text in file:None
-
+# Trying /home/alan/Documents/Python.book/m8_1_4.py...
+#  in else block finished reading file properly.
+#  in finally block: File closed.
+# 1st line of text in file:"""Demo try-except-finally structure"""
+# Trying example.txt...
+#  in exept block, the file example.txt was not found.
+#  in finally block: File closed.
+# 1st line of text in file:None
