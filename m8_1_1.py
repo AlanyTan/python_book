@@ -20,18 +20,18 @@ def safe_divide(numerator: float, denominator: float) -> float:
         numerator = float(numerator)
         denominator = float(denominator)
         result = numerator / denominator
-        print(f"#   got the result.")
+        print(f"#   got {result=}.")
     except:
         print("#Error cannot divide!")
         
     return result
 
 def main() -> None:
-    """main func demo seding 0 as denominator to save_divide."""
+    """main func demo seding 0 as denominator to safe_divide."""
     a = 4
     b = 0
     print(f"# {safe_divide(a, b)=}")
-    print(f"# program continues..")
+    print("# program continues..")
     
 if __name__ == "__main__":
     main()

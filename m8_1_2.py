@@ -24,11 +24,11 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
         num = float(numerator)
         denom = float(denominator)
         result = num / denom
-        print(f"#  got the result.")
+        print(f"#  got {result=}.")
         if (isinstance(numerator, int) and isinstance(denominator, int)
             and not numerator % denominator):
             result = int(result)
-            
+
     except ZeroDivisionError as err:
         print(f"#  Error {err.args}!")
     except ValueError as err:
@@ -36,23 +36,23 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
     except Exception as err:
         print(f"#  Error {str(err)}")
     except:
-        print(f"#  A rare unknown error has occurred, skipping divide") 
-        
+        print("#  A rare unknown error has occurred, skipping divide")
+
     return result
 
 def main(list_of_numbers_to_try: list[int]) -> None:
-    """main func demo sending different denominators to save_divide.
+    """main func demo sending different denominators to safe_divide.
     
     Args:
         list_of_numbers_to_try: a list containing numbers to be used
-        as denominator when trying to call save_divide.
+        as denominator when trying to call safe_divide.
     """
     a = 4
     for b in list_of_numbers_to_try:
         print(f"# Trying {b}...")
         print(f"# {safe_divide(a, b)=}")
-        
-    
+
+
 if __name__ == "__main__":
     denominators_to_try = [ 0, 1, '8.1.2', 5]
     main(denominators_to_try)

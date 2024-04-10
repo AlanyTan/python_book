@@ -36,8 +36,8 @@ def main(fnames: list[str]) -> None:
         print(f"#1st line of text in file:{safe_read_file(fname)}")
 
 if __name__ == "__main__":
-    fnames = [__file__, "example.txt"]
-    main(fnames)
+    file_names = [__file__, "example.txt"]
+    main(file_names)
     
 #Trying C:\Users\alan\OneDrive\Documents\python_book\8_1_4.py...
 #1st line of text in file:def safe_read_file(fname: str) -> str:

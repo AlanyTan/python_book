@@ -24,14 +24,14 @@ def safe_read_file(fname: str) -> str:
         except Exception as e:
             print(f"   An unexpected error occurred: {e}")
         else:
-            print(f"#   in else block finished reading file properly.")
+            print("#   in else block finished reading file properly.")
             return texts[0]
         finally:
             file.close()
-            print(f"#   in finally block: File closed.")
+            print("#   in finally block: File closed.")
         
-    except:
-        print(f"#  file can't be closed, maybe it was never opened?")
+    except Exception as e:
+        print(f"#  closing file run into exception,{e}, maybe it was never opened?")
 
 def main(fnames: list[str]) -> None:
     """main func demo sending different denominators to save_divide.
@@ -46,8 +46,8 @@ def main(fnames: list[str]) -> None:
         print(f"# 1st line of text in file:{safe_read_file(fname)}")
 
 if __name__ == "__main__":
-    fnames = [__file__, "example.txt"]
-    main(fnames)
+    file_names = [__file__, "example.txt"]
+    main(file_names)
     
 # Trying /home/alan/Documents/Python.book/m8_1_5.py...
 #   in else block finished reading file properly.

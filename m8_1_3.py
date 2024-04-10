@@ -28,10 +28,8 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
         print(f"#  ValueError {err.args} on line {err.__traceback__.tb_lineno}")
     except Exception as err:
         print(f"#  Error {str(err)}")
-    except:
-        print(f"#  A rare unknown error has occurred, skipping divide") 
     else:
-        print(f"#  got the result.")
+        print("#  got the result.")
         if (isinstance(numerator, int) and isinstance(denominator, int)
             and not numerator % denominator):
             result = int(result)
@@ -39,11 +37,11 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
     return result
 
 def main(list_of_numbers_to_try: list[int]) -> None:
-    """main func demo sending different denominators to save_divide.
+    """main func demo sending different denominators to safe_divide.
     
     Args:
         list_of_numbers_to_try: a list containing numbers to be used
-        as denominator when trying to call save_divide.
+        as denominator when trying to call safe_divide.
     """
     a = 4
     for b in list_of_numbers_to_try:

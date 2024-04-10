@@ -3,9 +3,9 @@ from contextlib import contextmanager
 
 @contextmanager
 def opening(filename):
-   """making opening a context-capable resource that can be used in with."""
-   f = open(filename)
-   try:
-       yield f
-   finally:
-       f.close()
+    """making opening a context-capable resource that can be used in with."""
+    f = open(filename)
+    try:
+        yield f
+    finally:
+        f.close()
