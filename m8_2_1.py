@@ -1,4 +1,19 @@
+"""Demo with structure inside try-except."""
 def safe_read_file(fname: str) -> str:
+    """open the given filename, read it's first line and return it.
+    
+    It tries to open the given filename, and read the first line
+    if run into exceptions, will report the error, otherwise report 
+    the read is finished. With will not try to close the file if open
+    failed, so there will not be print message asking user if the file
+    has ever been opened.
+
+    Args:
+        fname: string representing the file name to open.
+
+    Returns:
+        the first line of the file as string.
+    """
     try:
         with open(fname, "r") as file:
             data = file.readline()
@@ -10,6 +25,12 @@ def safe_read_file(fname: str) -> str:
         print(f"An unexpected error occurred: {e}")
 
 def main(fnames: list[str]) -> None:
+    """main func demo sending different denominators to save_divide.
+    
+    Args:
+        list_of_numbers_to_try: a list containing numbers to be used
+        as denominator when trying to call save_divide.
+    """
     for fname in fnames:
         print(f"#Trying {fname}...")
         print(f"#1st line of text in file:{safe_read_file(fname)}")

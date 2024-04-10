@@ -4,7 +4,9 @@ def safe_read_file(fname: str) -> str:
     
     It tries to open the given filename, and read the first line, 
     if run into exception, will report the error, otherwise, report
-    the read is finished properly.
+    the read is finished properly. 
+    If run into exceptions during closing of the file, it reports 
+    the closing error, and ask if the file was ever open.
     
     Args:
         fname: string representing the file name to open.
@@ -32,6 +34,13 @@ def safe_read_file(fname: str) -> str:
         print(f"#  file can't be closed, maybe it was never opened?")
 
 def main(fnames: list[str]) -> None:
+    """main func demo sending different denominators to save_divide.
+    
+    Args:
+        list_of_numbers_to_try: a list containing numbers to be used
+        as denominator when trying to call save_divide.
+    """
+
     for fname in fnames:
         print(f"# Trying {fname}...")
         print(f"# 1st line of text in file:{safe_read_file(fname)}")
