@@ -24,7 +24,7 @@ def safe_divide(numerator: float, denominator: float) -> float|int:
         try:
             if isinstance(denominator, str) and denominator.lower() == 'zero':
                 raise ZeroDivisionError(f"Raised by {denominator=}, it equals 0")
-                
+
             if denominator == '0':
                 print(f"# intentionally trigger IndexError by calling {denominator[3]}")
 
@@ -49,16 +49,18 @@ def safe_divide(numerator: float, denominator: float) -> float|int:
             if (isinstance(numerator, int) and isinstance(denominator, int)
                 and not numerator % denominator):
                 result = int(result)
-                print(f"# intentionally trigger IndexError by calling {denominator[1]}")
+                print(f"# intentionally trigger TypeError by calling {denominator[1]}")
 
     except TypeError as err:
         print(f"#  -Caught {err.__class__.__name__}:{err.args};"
               f" Originally triggered by {repr(err.__cause__)}")
-    except Exception as err:
+    except IndexError as err:
         note_text = f"with Added Notes {err.__notes__}" if hasattr(err, '__notes__') else ''
         print(f"#  Error {repr(err)}, on line"
               f" {err.__traceback__.tb_lineno} {note_text}"
               f" Originally triggered by {repr(err.__cause__)}")
+    except Exception as err:
+        print(f"# !!Unexpected Error {repr(err)}")
 
     return result
 
