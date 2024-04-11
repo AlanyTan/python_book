@@ -22,7 +22,7 @@ def safe_read_file(fname: str) -> str:
         print(f"  An unexpected error occurred: {e}")
     else:
         print("#  in else block finished reading file properly.")
-        return data
+        return data.strip()
     finally:
         if file:
             file.close()

@@ -31,10 +31,10 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int, int]:
         if sendback is not None:
             current = sendback - step
         current += step
-        
+
 regular = counter(999)
 senior = counter(99)
-    
+
 while (user_input := input("# Enter age, 'exit' to quit:")) != 'exit':
     match user_input:
         case str(x) if x.isnumeric() and int(x) > 65:

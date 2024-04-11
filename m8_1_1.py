@@ -23,7 +23,7 @@ def safe_divide(numerator: float, denominator: float) -> float:
         print(f"#   got {result=}.")
     except:
         print("#Error cannot divide!")
-        
+
     return result
 
 def main() -> None:
@@ -32,7 +32,7 @@ def main() -> None:
     b = 0
     print(f"# {safe_divide(a, b)=}")
     print("# program continues..")
-    
+
 if __name__ == "__main__":
     main()
 

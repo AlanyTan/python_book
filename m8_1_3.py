@@ -33,7 +33,7 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
         if (isinstance(numerator, int) and isinstance(denominator, int)
             and not numerator % denominator):
             result = int(result)
-        
+
     return result
 
 def main(list_of_numbers_to_try: list[int]) -> None:
@@ -47,8 +47,8 @@ def main(list_of_numbers_to_try: list[int]) -> None:
     for b in list_of_numbers_to_try:
         print(f"#Trying {b}...")
         print(f"# {safe_divide(a, b)=}")
-        
-    
+
+
 if __name__ == "__main__":
     denominators_to_try = [ 0, 1, '7.1.2', 5]
     main(denominators_to_try)
