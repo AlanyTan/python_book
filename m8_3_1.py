@@ -34,11 +34,10 @@ def safe_divide(numerator: float, denominator: float) -> float|int:
 
         except ZeroDivisionError as err:
             print(f"#   -=Caught {err.__class__.__name__}:{err.args}!")
-        except ValueError  as err:
+        except ValueError as err:
             print(f"#   -=Caught {err.__class__.__name__}:{err.args} on line"
                   f"{err.__traceback__.tb_lineno}, will raise TypeError")
-            raise TypeError(f"Originally triggered by {err.args}@line#"
-                            f"{err.__traceback__.tb_lineno}") from err
+            raise TypeError("Re-Raise ValueError as TypeError") from err
         except Exception as err:
             print(f"#   -=Caught {err.__class__.__name__}:{err.args} when"
                   f" {denominator=} on line {err.__traceback__.tb_lineno}")
@@ -78,8 +77,9 @@ def main(list_of_numbers_to_try: list[int]) -> None:
 
     print("#program continues..")
 
+
 if __name__ == "__main__":
-    denominators_to_try = [ 'zero', 0, '8.3.1', 1, '0', 5]
+    denominators_to_try = ['zero', 0, '8.3.1', 1, '0', 5]
     main(denominators_to_try)
 
 #Trying zero...
@@ -90,7 +90,7 @@ if __name__ == "__main__":
 # safe_divide(a, b)=None
 #Trying 8.3.1...
 #   -=Caught ValueError:("could not convert string to float: '8.3.1'",) on line32, will raise TypeError
-#  -Caught TypeError:('Originally triggered by ("could not convert string to float: \'8.3.1\'",)@line#32',); Originally triggered by ValueError("could not convert string to float: '8.3.1'")
+#  -Caught TypeError:('Reraise ValueError as TypeError',); Originally triggered by ValueError("could not convert string to float: '8.3.1'")
 # safe_divide(a, b)=None
 #Trying 1...
 #  got division result=4.0
