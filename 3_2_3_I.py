@@ -2,7 +2,6 @@ day_of_week = 6
 match day_of_week:
     case 0|6|"Sunday"|"Saturday"|"Weekend":
         print(f"# It's Weekend!")
-        # It's Weekend!
     case 0:
         print(f"# It's Sunday, The week starts .")
     case 1|"Monday":
@@ -19,3 +18,4 @@ match day_of_week:
         print(f"# It's Saturday, one more day of weekend.")
     case _:
         print(f"# Error: {day_of_week} cannot be recognized as a day of week.")
+# It's Weekend!

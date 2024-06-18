@@ -21,8 +21,3 @@ print(f"# {string_escape_slash in ascii_string=}")
 
 print(f"# {string_unicode in ascii_string=}")
 # string_unicode in ascii_string=False
-
-print("#", 42, '42', ascii(42), ascii('42'))
-# 42 42 42 '42'
-print(f"# {42=}, {'42'=}, {ascii(42)=}, {ascii('42')=}")
-# 42=42, '42'='42', ascii(42)='42', ascii('42')="'42'"

@@ -4,17 +4,15 @@ print ("# not True is:", not True, ", not False is:", not False)
 print ("# not None is:", not None, ", not 'anything' is:", not "anything")
 # not None is: True , not 'anything' is: False
 
-numerator = 10
-denominator = 2
-
-divisible = denominator and not numerator % denominator and "Divisible"
+dividend = 10
+divisor = 2
+divisible = divisor and not dividend % divisor and "Divisible"
 divisible = divisible or "Not Divisible"
-print("#", numerator, "/", denominator, "is", divisible)
+print("#", dividend, "/", divisor, "is", divisible)
 # 10 / 2 is Divisible
 
-denominator = 0
-
-divisible = denominator and not numerator % denominator and "Divisible"
+divisor = 0
+divisible = divisor and not dividend % divisor and "Divisible"
 divisible = divisible or "Not Divisible"
-print("#", numerator, "/", denominator, "is", divisible)
+print("#", dividend, "/", divisor, "is", divisible)
 # 10 / 0 is Not Divisible

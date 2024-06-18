@@ -1,15 +1,10 @@
-string_1 = "\nabcde\"\t\"fghij\nklmno\' \'pqrst\n"
-print("'''"+ string_1 + "'''")
-'''
-abcde"	"fghij
-klmno' 'pqrst
-'''
-
-rstring_1 = r"\nabcde\"\t\"fghij\nklmno\' \'pqrst\n"
-print("'''\nstring literal \"" + rstring_1 + "\" is actually: " +
+string_1 = "abcde\"\t\"fghij\nklmno\' \'pqrst\n"
+rstring_1 = r"abcde\"\t\"fghij\nklmno\' \'pqrst\n"
+print("'''string literal \n\"" + rstring_1 + "\"\n   is actually:\n" +
       string_1 + "'''")
-'''
-string literal "\nabcde\"\t\"fghij\nklmno\' \'pqrst\n" is actually: 
+'''string literal 
+"abcde\"\t\"fghij\nklmno\' \'pqrst\n"
+   is actually:
 abcde"	"fghij
 klmno' 'pqrst
 '''

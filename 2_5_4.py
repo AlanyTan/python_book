@@ -1,22 +1,22 @@
-string_big = "ABCD"
-string_small = "abcd"
+string_capital = "ABCD"
+string_lower = "abcd"
 string_underscore = "_ABCD_EFGH"
 string_space = "abcd efgh"
 
-print("#", string_big == string_underscore[1:5])
+print("#", string_capital == string_underscore[1:5])
 # True
 
-print("#", string_small != string_space[:4])
+print("#", string_lower != string_space[:4])
 # False
 
-print("#", string_big >= string_small)
+print("#", string_capital >= string_lower)
 # False
 
-print("#", string_small < string_space)
+print("#", string_lower < string_space)
 # True
 
-print("#", string_small in string_space)
-# True
-
-print("#", string_big not in string_underscore)
+print("#", string_lower in string_underscore)
 # False
+
+print("#", string_capital not in string_space)
+# True
