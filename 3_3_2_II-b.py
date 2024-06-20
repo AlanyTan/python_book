@@ -1,8 +1,8 @@
-N=5
+n=5
 factorial=1
 i = 0
-while (i := i + 1) <= N:
+while (i := i + 1) <= n:
     factorial *= i
 
-print (f"# factorial of {N} is {factorial}")
+print (f"# factorial of {n} is {factorial}")
 # factorial of 5 is 120

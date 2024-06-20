@@ -4,8 +4,6 @@ while (user_input := input("#==Enter 'exit' to stop:")) != 'exit':
     if content := '' if user_input == SKIP_WORD else user_input:
         print(f"# You entered: {content}")
         count_total += 1
-    else:
-        continue
         
     for letter in content:
         match letter:
@@ -19,7 +17,7 @@ while (user_input := input("#==Enter 'exit' to stop:")) != 'exit':
             case _:
                 print(f"#   {letter}'s ASCII code is {ord(letter)}")
     else:
-        count_regular += 1
+        count_regular += bool(content)
 
     if content == 'exit':
         break
