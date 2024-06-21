@@ -21,7 +21,7 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int]:
         
     sign = 1 if start < stop else -1
     if step*sign < 0:
-        current = stop - step 
+        current = stop
     else:
         current = start
     
