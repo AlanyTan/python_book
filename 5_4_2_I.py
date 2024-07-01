@@ -1,18 +1,14 @@
-list_example=[1,2,"3","four",5.0, ['a', 'b']]
-print(f"#1st is {list_example[0]}")
-#1st is 1
+rectangle_tuple_1 = (3, 4, 5)
+length, width, height = rectangle_tuple_1
+print(f"# {length=}, {width=}, {height=}")
+# length=3, width=4, height=5
 
-print(f"#last is {list_example[-1]}")
-#last is ['a', 'b']
+employee_tuple_1 = 1, "John Sam", "Male", "1990/09/09", "11010920000101111",\
+    "2020/01"
+emp_id, name, sex, dob, *rest = employee_tuple_1
 
-print(f"#2nd to 4th (inclusive) are {list_example[1:4]}")
-#2nd to 4th are [2, '3', 'four']
+print(f"# {emp_id=}, {name=}, {sex=}, {dob=}")
+# emp_id=1, name='John Sam', sex='Male', dob='1990/09/09', hire_year='11010920000101111'
 
-print(f"#first 3 are {list_example[:3]}")
-#first 3 are [1, 2, '3']
-
-print(f"#last 3 are {list_example[-3:]}")
-#last 3 are ['four', 5.0, ['a', 'b']]
-
-print(f"#every other items are {list_example[::2]}")
-#every other items are [1, '3', 5.0]
+print(f"# {rest=}")
+# rest=['11010920000101111', '2020/01']

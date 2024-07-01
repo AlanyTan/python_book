@@ -1,10 +1,10 @@
-ba_1 = bytearray(4)
+ba_1 = bytearray(b'\tabcd\n')
 print(f"# {ba_1=}")
-# ba_1=bytearray(b'\x00\x00\x00\x00')
+# ba_1=bytearray(b'\tabcd\n')
 
-ba_2 = bytearray(b'\tabcd\n')
+ba_2 = bytearray(4)
 print(f"# {ba_2=}")
-# ba_2=bytearray(b'\tabcd\n')
+# ba_2=bytearray(b'\x00\x00\x00\x00')
 
 ba_3 = bytearray([0, 1, 2, 3, 4, 5])
 print(f"# {ba_3=}")

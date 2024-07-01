@@ -1,4 +1,11 @@
-def greatest_common_divisor(first_number,*tuple_of_rest):
+def greatest_common_divisor(first_number: int,*tuple_of_rest: tuple) -> int:
+    """recursively calculate GCD for any number of numbers
+    Args:
+        any number of numbers
+
+    Returns:
+        GCD 
+    """
     if tuple_of_rest:
         partial_result = greatest_common_divisor(*tuple_of_rest)
         numerator = first_number

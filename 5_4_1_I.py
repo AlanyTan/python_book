@@ -1,9 +1,29 @@
-list_example=[1,2,"3","four",5.0, 1]
-for item in list_example:
-    print (f"# there is a: {item}")
-# there is a: 1
-# there is a: 2
-# there is a: 3
-# there is a: four
-# there is a: 5.0
-# there is a: 1
+rectangle_tuple_1 = (3, 4, 5)
+print(f"# {rectangle_tuple_1=}")
+# rectangle_tuple_1=(3, 4, 5)
+
+employee_tuple_1 = 1, "John Sam", "Male", "1990/09/09", "11010920000101111",\
+                 "2020/01"
+print(f"# {employee_tuple_1=}")
+# employee_tuple_1=(1, 'John Sam', 'Male', '1990/09/09', '11010920000101111', '2020/01')
+
+single_item_tuple = 'abc',
+print(f"# {single_item_tuple=}")
+# single_item_tuple=('abc',)
+
+def func_return_packing(rect: tuple) -> tuple:
+    """Take 1 args as tuple(length, width, depth) and calculate surface are and volume
+    Args:
+        length:
+        width:
+        depth:
+
+    Returns:
+        a tuple (surface_area, volume)
+    """
+    return 2*(rect[0]*rect[1] + rect[1]*rect[2] + rect[0]*rect[2]), \
+           rect[0]*rect[1]*rect[2]
+
+return_tuple = func_return_packing((3,4,5))
+print(f"# {return_tuple=}")
+# return_tuple=(94, 60)

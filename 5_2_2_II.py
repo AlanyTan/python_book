@@ -1,23 +1,19 @@
-def test_var_is(arg_1: int, arg_2: bytearray) -> bool:
-    print(f"# - {arg_1 is int_1=}, {arg_2 is ba_1=}")
-    arg_1 += 1
-    arg_2 += b'array'
-    print(f"# - {arg_1 is int_1=}, {arg_2 is ba_1=}")
+string_2 = string_1 = "ABCD"
+string_1 = string_1 + 'XYZ'
+print(f"# {string_1=}, {string_2=}")
+# string_1='ABCDEFG', string_2='ABCD'
 
-int_1 = 1
-int_2 = int_1
+string_2 = string_1 = "ABCD"
+string_1 += "EFG"
+print(f"# {string_1=}, {string_2=}")
+# string_1='ABCDEFG', string_2='ABCD'
 
-ba_1 = bytearray(b'byte')
-ba_2 = ba_1
+byte_arr_2 = byte_arr_1 = bytearray(b'ABCD')
+byte_arr_1 = byte_arr_1 + b'EFG'
+print(f"# {byte_arr_1=}, {byte_arr_2=}")
+# byte_arr_1=bytearray(b'ABCDEFG'), byte_arr_2=bytearray(b'ABCD')
 
-test_var_is(int_1, ba_1)
-# - arg_1 is int_1=True, arg_2 is ba_1=True
-# - arg_1 is int_1=False, arg_2 is ba_1=True
-
-print(f"# {int_1 is int_2=}, {ba_1 is ba_2=}")
-# int_1 is int_2=True, ba_1 is ba_2=True
-
-int_1 *= 2
-ba_1 *= 2
-print(f"# {int_1 is int_2=}, {ba_1 is ba_2=}, {ba_2=}")
-# int_1 is int_2=False, ba_1 is ba_2=True, ba_2=bytearray(b'bytearraybytearray')
+byte_arr_2 = byte_arr_1 = bytearray(b'ABCD')
+byte_arr_1 += b'EFG'
+print(f"# {byte_arr_1=}, {byte_arr_2=}")
+# byte_arr_1=bytearray(b'ABCDEFG'), byte_arr_2=bytearray(b'ABCDEFG')

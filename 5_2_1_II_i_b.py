@@ -1,9 +1,9 @@
-def func_demo_unpacking(arg1: str, arg2: str, arg3: str) -> None:
-    print(f"# received {arg1=}, {arg2=}, {arg3=}")
-    
-str_1 = "ab"
-print(f"# the string is: {str_1}")
-# the string is: abc
+str_1="ABCDEF"
 
-func_demo_unpacking(*str_1,arg3='z')
-# received arg1='a', arg2='b', arg3='z'
+a,b,c,d,e,f=str_1
+print(f"# {a=}, {b=}, {c=}, {d=}, {e=}, {f=}")
+# a='A', b='B', c='C', d='D', e='E', f='F'
+
+a,b,*rest,e,f=str_1
+print(f"# {a=}, {b=}, {rest=}, {e=}, {f=}")
+# a='A', b='B', rest=['C', 'D'], e='E', f='F'
