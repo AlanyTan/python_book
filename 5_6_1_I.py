@@ -1,3 +1,3 @@
-set_example={1,2,"3","four",5.0, 1}
-print (f"# set deduplicates to: {set_example}")
-# set deduplicates to: {1, 2, 5.0, '3', 'four'}
+dict_example = {"brand":"VW", "model":"Jetta", "milage":0, "milage":200000}
+print (f"# dictionary: {dict_example}")
+# dictionary: {'brand': 'VW', 'model': 'Jetta', 'milage': 200000}
