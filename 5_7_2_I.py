@@ -1,9 +1,14 @@
-list_1 = ['one', 'two', 'three']
-range_1 = range(3)
-dict_1 = dict(zip(list_1,range_1))
-print(f"# {dict_1['one']=}")
-# dict_1['one']=0
+print(f"# {len('abcdefghijklmnopqrstuvwxyz')=}")
+# len('abcdefghijklmnopqrstuvwxyz')=26
 
-dict_1[4] = [0,1,2,3]
-print(f"# {dict_1=}")
-# dict_1={'one': 0, 'two': 1, 'three': 2, 4: [0, 1, 2, 3]}
+print(f"# {len(range(10))=}")
+# len(range(10))=10
+
+print(f"# {len([x for x in range(100) if not (x%2 + x%3)])=}")
+# len([x for x in range(100) if not (x%2 + x%3)])=17
+
+print(f"# {len({x**2 for x in range(-100,101)})=}")
+# len({x**2 for x in range(-100,101)})=101
+
+print(f"# {len(dict([('one',0), ('two', 1)], two=1, three=2))=}")
+# len(dict([('one',0), ('two', 1)], two=1, three=2))=3

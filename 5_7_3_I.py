@@ -1,12 +1,12 @@
-list_1 = ['one', 'two', 'three']
-range_1 = range(3)
-dict_1 = dict(zip(list_1,range_1))
-key_1, key_2, key_3 = dict_1
-print(f"# {key_1=},{key_2=},{key_3=}.\
-  {dict_1[key_1]=}. {dict_1[key_2]=}. {dict_1[key_3]=}")
-# key_1='one',key_2='two',key_3='three'.     dict_1[key_1]=0. dict_1[key_2]=1. dict_1[key_3]=2
+numbers = [x / 10 for x in range(11)]
+filter_by_round = filter(round, numbers)
+print(f"# {list(filter_by_round)=}")
+# list(filter_by_round)=[0.6, 0.7, 0.8, 0.9, 1.0]
 
-key_1, *rest = dict_1
-print(f"# {key_1=}, {rest=}.\
-  {dict_1[key_1]=}, {dict_1[rest[0]]=}, {dict_1[rest[1]]=}")
-# key_1='one', rest=['two', 'three']. dict_1[key_1]=0, dict_1[rest[0]]=1, dict_1[rest[1]]=2
+filter_by_value = filter(lambda x: pow(x, 2)>0.36, numbers)
+print(f"# {list(filter_by_value)=}")
+# list(filter_by_value)=[0.7, 0.8, 0.9, 1.0]
+
+dict_1 = {k+1: k for k in range(5)}
+print(f"# {dict(filter(lambda x: x[1]%2, dict_1.items()))=}")
+# dict(filter(lambda x: x[1]%2, dict_1.items()))={2: 1, 4: 3}

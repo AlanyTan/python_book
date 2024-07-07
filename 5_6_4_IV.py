@@ -5,11 +5,10 @@ print(f"# {dict_0=}")
 list_1 = ['one', 'two', 'three']
 range_1 = range(3)
 
-dict_1 = {list_1[x]: x for x in range_1}
+dict_1 = {list_1[x]: x+1 for x in range_1}
 print(f"# {dict_1=}")
-# dict_1={'one': 0, 'two': 1, 'three': 2}
-
+# dict_1={'one': 1, 'two': 2, 'three': 3}
 
 dict_1_flip = {value: key for key, value in dict_1.items()}
 print(f"# {dict_1_flip=}")
-# dict_1_flip={0: 'one', 1: 'two', 2: 'three'}
+# dict_1_flip={1: 'one', 2: 'two', 3: 'three'}

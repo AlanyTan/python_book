@@ -47,7 +47,8 @@ def schedule_matches(groups: dict, fields_available: dict,
             sorted_guest_group = sorted(
                 filter(lambda x: x!= home_team and x not in current_round_paired,
                        groups[home_group][::-1]),
-                key=lambda x: (len(team_schedule[x]), max(team_schedule[x],[''])))
+                key=lambda x: (len(team_schedule[x]),
+                               max(team_schedule[x],[''])))
             while sorted_guest_group:
                 guest_team = sorted_guest_group.pop(0)
                 

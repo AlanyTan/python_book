@@ -1,13 +1,7 @@
-list_1 = ['one', 'two', 'three']
-dict_1 = dict(zip(list_1,range(3)))
-dict_2 = dict(zip(list_1,range(3)))
+list_str = ['abc', 'bca', 'cab', 'acb']
+print(f"# {list_str=}")
+# list_str=['abc', 'bca', 'cab', 'acb']
 
-print(f"#  {dict_1 is dict_2=}")
-#  dict_1 is dict_2=False
-
-print(f"#  {dict_1 == dict_2=}")
-#  dict_1 == dict_2=True
-
-dict_1['one'] = 'zero'
-print(f"#  {dict_1 == dict_2=}")
-#  dict_1 == dict_2=False
+list_str_reversed = list(reversed(list_str))
+print(f"# {list_str_reversed=}")
+# list_str_reversed=['acb', 'cab', 'bca', 'abc']
