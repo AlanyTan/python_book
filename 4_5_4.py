@@ -9,17 +9,16 @@ def func_shadow_buildins() -> None:
         None
     """
     def len(v) -> str:
-        return "len() has been shadowed."
+        return f"len({v}) has been shadowed."
 
-    __file__ = 'shadowed filename.'
-    print(f"# -=in func_shadow_buildins: {len('abc')=}, {__file__=}")
+    print(f"# -=in func_shadow_buildins: {len('abc')=}")
 
 
-print(f"# in main before, {len('abc')=}, {__file__=}")
-# in main before, len('abc')=3, __file__='/home/user/Documents/Python.book/4_5_4.py'
+print(f"# in main before, {len('abc')=}")
+# in main before, len('abc')=3
 
 func_shadow_buildins()
-# -=in func_shadow_buildins: len('abc')='len() has been shadowed.', __file__='shadowed filename.'
+# -=in func_shadow_buildins: len('abc')='len(abc) has been shadowed.'
 
-print(f"# in main after, {len('abc')=}, {__file__=}")
-# in main after, len('abc')=3, __file__='/home/user/Documents/Python.book/4_5_4.py'
+print(f"# in main after, {len('abc')=}")
+# in main after, len('abc')=3
