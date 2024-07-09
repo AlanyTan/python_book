@@ -32,7 +32,7 @@ import m6_3_package.m6_3_2_geometry.circle
 #   in m6_3_2_package/m6_3_2_geometry/__init__.py ['CONST_1', 'circle', 'rectangle']
 import m6_3_package.m6_3_2_geometry.rectangle as rect
 print("#=3.root level dir(m6_3_package)", [d for d in dir(m6_3_package) if not d.startswith('__')])
-#=root level dir(m6_3_package) ['func_in_init', 'm6_3_2_geometry']
+#=root level dir(m6_3_package) ['func_in_init', 'm6_3_2_geometry', 'module_1']
 print("#==3.package level dir(.m6_3_2_geometry)", 
       [d for d in dir(m6_3_package.m6_3_2_geometry) if not d.startswith('__')])
 #==package level dir(.m6_3_2_geometry) ['CONST_1', 'circle', 'rectangle']
