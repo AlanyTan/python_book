@@ -1,6 +1,6 @@
 """Main script to demo import package.module"""
 """save this as m6_3_3_I.py"""
-import m6_3_package.circle, m6_3_package.rectangle as rect
+import m6_3_package.circle, m6_3_package.m6_3_2_geometry.rectangle as rect
 
 radius = 3
 

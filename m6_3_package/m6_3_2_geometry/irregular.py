@@ -1,13 +1,14 @@
 """Part of demo of package structure, calculate circle area and circumference.
 
-Being module within m6_3_package, includes two unfinished simple functions
-to calculate the area and perimeter of an irregular shape.
+Functions:
+    area(): not yet implemented
+    perimeter(): not yet implemented
 
 Note:
     intentionally left unfinished, used to demo import all can
     omit some packages.
 """
-"""save this as m6_3_package/irregular.py"""
+"""save this as m6_3_package/m6_3_2_geometry/irregular.py"""
 
 def area() -> None:
     """irregular shape's area

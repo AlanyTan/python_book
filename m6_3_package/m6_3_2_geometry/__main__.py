@@ -1,11 +1,11 @@
 """Test functions within this package
 
 Usage:
-    python -m m6_3_package
+    python -m m6_3_package.m6_3_2_geometry
 """
-"""save this as m6_3_package/__main__.py"""
 
-from . import circle, rectangle
+from . import rectangle
+from . import circle
 def main():
     print (f"testing circle {circle.area(3)}")
     print (f"testing circle {circle.circumference(3)}")

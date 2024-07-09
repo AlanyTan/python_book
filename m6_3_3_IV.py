@@ -1,7 +1,7 @@
 """Main script to demo from package.module import func"""
 """save this as m6_3_3_IV.py"""
 from m6_3_package.circle import area as circle_area
-from m6_3_package.rectangle import perimeter
+from m6_3_package.m6_3_2_geometry.rectangle import perimeter
 
 radius = 3
 
