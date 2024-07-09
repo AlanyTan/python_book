@@ -16,7 +16,8 @@ Usage:
     >>> rect_perimeter = rectangle.perimeter(2,3)
 """
 CONST_1='defined in sub package __init__.py'
-print("in m6_3_2_geometry/__init__.py", [d for d in dir() if not d.startswith("__")])
+print("in m6_3_2_package/m6_3_2_geometry/__init__.py", 
+      [d for d in dir() if not d.startswith("__")])
 def func_in_init() -> str:
     """func defined in sub package __init__.py"""
     return ("inside sub package __init__.py func_in_init()")

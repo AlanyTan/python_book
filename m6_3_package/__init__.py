@@ -14,5 +14,5 @@ Usage:
 
 For more details on each module, refer to the module docstring.
 """
-
+print("in m6_3_package __init__.py")
 __all__ = ["module_1", "m6_3_2_geometry"]
