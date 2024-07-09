@@ -1,5 +1,6 @@
 """Main script to demo from package import *"""
 """save this as m6_3_3_III.py"""
+
 from m6_3_package import *
 #  in m6_3_package __init__.py
 #  in m_package module_1.py ['var_mod_1']
@@ -9,6 +10,9 @@ print("#=root level dir()", [d for d in dir() if not d.startswith('__')])
 
 print("# ", module_1.func_in_mod_1())
 #  inside module_1 func_in_mod_1
+
+print("#", m6_3_2_geometry.CONST_1)
+# defined in sub package __init__.py
 
 print("#=root_level_local_namespace globals:"
         , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
