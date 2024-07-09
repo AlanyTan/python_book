@@ -1,8 +1,8 @@
 """Main script to demo import package"""
 """save this as m6_3_3_I.py"""
+
 import m6_3_package
 #  in m6_3_package __init__.py
-
 print("#=1.root level globals:"
         , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
         , sep='\n# ')
