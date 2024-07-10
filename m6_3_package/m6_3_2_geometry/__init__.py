@@ -15,7 +15,8 @@ Usage:
     >>> from m6_3_2_geometry import rectangle
     >>> rect_perimeter = rectangle.perimeter(2,3)
 """
-from . import circle, rectangle
+from . import circle
+from .rectangle import perimeter
 
 CONST_1='defined in sub package __init__.py'
 
