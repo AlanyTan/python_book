@@ -29,17 +29,17 @@ def import_in_func() -> None:
 
 import_in_func()
 #==first level globals:
-#  ('circle', <module 'm6_1_circle' from 'C:\\Users\\alan\\OneDrive\\Documents\\python_book\\m6_1_circle.py'>)
+#  ('circle', <module 'm6_1_circle' from 'C:\\Users\\user\\Documents\\python_book\\m6_1_circle.py'>)
 #  ('CONST_1', 'Module Constant')
 #  ('import_in_func', <function import_in_func at 0x0000024AB2C1E5C0>)
 #==first level locals:
 #  ('local_ns_func', <function local_ns_func at 0x0000024AB2C77240>)
-#: executed local_ns_func
+#: m6_2_4_module.local_ns_func() - demo from m6_2_4_module import local_ns_func
 
 print("#=root level locals:"
           , *[(k, v) for k, v in locals().items() if not k.startswith('__')]
           , sep='\n#  ')
 #=root level locals:
-#  ('circle', <module 'm6_1_circle' from 'C:\\Users\\alan\\OneDrive\\Documents\\python_book\\m6_1_circle.py'>)
+#  ('circle', <module 'm6_1_circle' from 'C:\\Users\\user\\Documents\\python_book\\m6_1_circle.py'>)
 #  ('CONST_1', 'Module Constant')
 #  ('import_in_func', <function import_in_func at 0x0000024AB2C1E5C0>)

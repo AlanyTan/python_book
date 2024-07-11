@@ -22,9 +22,6 @@ def SFA(msg: str = '') -> None:
     """
     """Here is the SFA local namespace
     The following objects exist in this namespace:
-    Modules:
-        M1
-        M2
     Functions:
         SFA1
         SFA2

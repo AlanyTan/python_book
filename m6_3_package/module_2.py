@@ -1,7 +1,8 @@
-"""Module 2 inside subpackage"""
+"""Module 2 inside m6_3_package"""
 var_mod_2 = 2
-print("#  in m_package module_2.py", [d for d in dir() if not d.startswith("__")])
+print("#  m6_3_package/module_2.py root level statements"
+      , [d for d in dir() if not d.startswith("__")])
 
 def func_in_mod_2()-> str:
-    """func defined in module 2 under sub packagem"""
-    return "inside module_2 func_in_mod_2"
+    """func defined in module_2 under m6_3_package"""
+    return func_in_mod_2.__doc__

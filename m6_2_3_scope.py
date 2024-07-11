@@ -6,6 +6,8 @@ within the program import this module.
 """save this as m6_2_3_scope.py"""
 
 global_var = 'value set in m6_2_3_scope'
+"""The following print() is for educational purpose only.
+    It is not recommended to have print() at root level of a module file"""
 print(f"# at module global scope, {globals() == locals()=}")
 
 def module_level_local_namespace() -> None:

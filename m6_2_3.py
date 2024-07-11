@@ -4,6 +4,7 @@ Main script demonstrating dir() and globals().
 """save this as m6_2_3.py"""
 
 import m6_2_3_scope
+# at module global scope, globals() == locals()=True
 
 def first_level_local_namespace() -> None:
     """Demo func #1 for locals()"""
@@ -48,14 +49,14 @@ print(f"#=root level dir(m6_2_3_scope): "
 first_level_local_namespace()
 # at local scope, globals() == locals()=False
 #==first level globals:
-#  ('m6_2_3_scope', <module 'm6_2_3_scope' from 'C:\\Users\\alan\\OneDrive\\Documents\\python_book\\m6_2_3_scope.py'>)
+#  ('m6_2_3_scope', <module 'm6_2_3_scope' from 'C:\\Users\\user\\Documents\\python_book\\m6_2_3_scope.py'>)
 #  ('first_level_local_namespace', <function first_level_local_namespace at 0x000002787164E5C0>)
 #==first level locals:
 #  ('first_level_var', 0)
 #  ('second_level_local_namespace', <function first_level_local_namespace.<locals>.second_level_local_namespace at 0x00000278716A74C0>)
 #==first_level_local_namespace dir()=['first_level_var', 'second_level_local_namespace']
 #===second level globals:
-#   ('m6_2_3_scope', <module 'm6_2_3_scope' from 'C:\\Users\\alan\\OneDrive\\Documents\\python_book\\m6_2_3_scope.py'>)
+#   ('m6_2_3_scope', <module 'm6_2_3_scope' from 'C:\\Users\\user\\Documents\\python_book\\m6_2_3_scope.py'>)
 #   ('first_level_local_namespace', <function first_level_local_namespace at 0x000002787164E5C0>)
 #===second level locals:
 #   ('second_level_var', 1)

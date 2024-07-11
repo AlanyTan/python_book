@@ -7,5 +7,6 @@ import m6_1_circle as circle
 CONST_1 = "Module Constant"
 
 def local_ns_func() -> str:
-    """demo func be imported into """
-    return "executed local_ns_func"
+    """m6_2_4_module.local_ns_func() - demo from {} import {}"""
+    return local_ns_func.__doc__.format(local_ns_func.__module__
+                                        ,local_ns_func.__name__) 

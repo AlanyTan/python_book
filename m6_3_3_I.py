@@ -7,7 +7,7 @@ print("#=1.root level globals:"
         , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
         , sep='\n# ')
 #=1.root level globals:
-# ('m6_3_package', <module 'm6_3_package' from '/workspaces/python-book/m6_3_package/__init__.py'>)
+# ('m6_3_package', <module 'm6_3_package' from 'C:\\Users\\user\\Documents\\python_book\\m6_3_package\\__init__.py'>)
 print("#=1.root level dir(m6_3_package)"
       , [d for d in dir(m6_3_package) if not d.startswith('__')])
 #=1.root level dir(m6_3_package) ['func_in_init']
@@ -20,8 +20,8 @@ print("#=2.root level globals:"
         , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
         , sep='\n# ')
 #=2.root level globals:
-# ('m6_3_package', <module 'm6_3_package' from '/workspaces/python-book/m6_3_package/__init__.py'>)
-# ('mod_1', <module 'm6_3_package.module_1' from '/workspaces/python-book/m6_3_package/module_1.py'>)
+# ('m6_3_package', <module 'm6_3_package' from 'C:\\Users\\user\\Documents\\python_book\\m6_3_package\\__init__.py'>)
+# ('mod_1', <module 'm6_3_package.module_1' from 'C:\\Users\\user\\Documents\\python_book\\m6_3_package\\module_1.py'>)
 print("#=2.root level dir(m6_3_package)"
       , [d for d in dir(m6_3_package) if not d.startswith('__')])
 #=root level dir(m6_3_package) ['func_in_init', 'module_1']
