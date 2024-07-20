@@ -1,3 +1,4 @@
+"""print() info into textfile"""
 def main(file_name: str) -> None:
     """Main func demo print() into text file.
 

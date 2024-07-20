@@ -24,7 +24,7 @@ def safe_divide(numerator: int|float, denominator: int|float) -> float|int:
         num = float(numerator)
         denom = float(denominator)
         result = num / denom
-        print(f"#  got {result=}.")
+        print(f"#   calculated {numerator}/{denominator} = {result}.")
         if (isinstance(numerator, int) and isinstance(denominator, int)
             and not numerator % denominator):
             result = int(result)
@@ -61,11 +61,11 @@ if __name__ == "__main__":
 #  Error ('float division by zero',)!
 # safe_divide(a, b)=None
 # Trying 1...
-#  got the result.
+#   calculated 4/1 = 4.0.
 # safe_divide(a, b)=4
-# Trying 7.1.2...
+# Trying 8.1.2...
 #  ValueError ("could not convert string to float: '8.1.2'",) on line 25
 # safe_divide(a, b)=None
 # Trying 5...
-#  got the result.
+#   calculated 4/5 = 0.8.
 # safe_divide(a, b)=0.8

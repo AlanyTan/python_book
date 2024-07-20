@@ -1,3 +1,4 @@
+"""main module demo file operations"""
 def main(file_name: str) -> None:
     """Main func demo file creation, open for read and close.
 

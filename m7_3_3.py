@@ -10,7 +10,7 @@ Note:
     This module will create a test file under the current directory, 
     so please make sure you have write permission in the current dir.
 """
-from m7_3_1_I import creat_input_file
+from m7_3_2 import creat_input_file
 
 SKIP_WORDS = ['skip']
 
@@ -31,22 +31,22 @@ def parse_line(line:str ) -> list:
     result = []
     line = line.strip('\n')
     if line := '' if line in SKIP_WORDS else line:
-        result.append(f"# You entered: {line}")
+        result.append(f"# Read: {line}")
         
     for letter in line:
         match letter:
             case '.':
-                result.append(f"#..Reached period, abort rest.")
+                result.append("#..Reached period, ignore the rest.")
                 break
             case '!':
-                result.append(f"#!!Reached exclaimation mark, aboar the whole thing!")          
+                result.append("#!!Reached exclaimation mark, abort processing!")
                 break
             case _:
                 result.append(f"#   {letter}'s ASCII code is {ord(letter)}")
     return result
 
 def main(file_name: str) -> None:
-    """Demo using .readlines() read full content from file.
+    """Demo using .readlines() read full content from file and batch process it using map().
     
     This function demonstrate using .readlines() to read file lines into
     a list, and use list, map, generator to process the content, but 
@@ -59,13 +59,15 @@ def main(file_name: str) -> None:
         None
     """
     file_r = open(file_name, 'r', encoding='utf-8')
-    contents = file_r.readlines()
-    exclaimation_marks = [i for i, s in enumerate(contents) if '!' in s]
-    if exclaimation_marks:
-        contents[exclaimation_marks[0]+1:]=[]
-    result = map(lambda line: map(print, parse_line(line)), contents)
+    count = 0
+    for result in map(parse_line, file_r.readlines()):
+        if result:
+            print(*result, sep='\n')
+            count += 1
+        if "#!!Reached exclaimation mark, abort processing!" in result:
+            break
 
-    print(f"## You entered {sum(1 for item in result if list(item))} strings in total")
+    print(f"## Processed {count} strings in total")
     file_r.close()
 
 if __name__ == "__main__":
@@ -74,13 +76,13 @@ if __name__ == "__main__":
     if creat_input_file((file_name)):
         main(file_name)
 
-# You entered: abc.dev
+# Read: abc.dev
 #   a's ASCII code is 97
 #   b's ASCII code is 98
 #   c's ASCII code is 99
 #..Reached period, abort rest.
-# You entered: 123
+# Read: 123
 #   1's ASCII code is 49
 #   2's ASCII code is 50
 #   3's ASCII code is 51
-## You entered 2 strings in total
+## Processed 2 strings in total

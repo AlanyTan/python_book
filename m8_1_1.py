@@ -17,10 +17,10 @@ def safe_divide(numerator: float, denominator: float) -> float:
     """
     result = None
     try:
-        numerator = float(numerator)
-        denominator = float(denominator)
-        result = numerator / denominator
-        print(f"#   got {result=}.")
+        num = float(numerator)
+        denom = float(denominator)
+        result = num / denom
+        print(f"#   calculated {numerator}/{denominator} = {result}.")
     except:
         print("#Error cannot divide!")
 
@@ -28,14 +28,17 @@ def safe_divide(numerator: float, denominator: float) -> float:
 
 def main() -> None:
     """main func demo seding 0 as denominator to safe_divide."""
-    a = 4
+    a = '4'
     b = 0
+    print(f"# {safe_divide(a, a)=}")
     print(f"# {safe_divide(a, b)=}")
     print("# program continues..")
 
 if __name__ == "__main__":
     main()
 
+#   calculated 4/4 = 1.0.
+# safe_divide(a, a)=1.0
 #Error cannot divide!
 # safe_divide(a, b)=None
 # program continues..

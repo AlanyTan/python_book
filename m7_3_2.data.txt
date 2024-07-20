@@ -1,3 +1,4 @@
-Python程序设计
-2
-False
+abc.dev
+
+skip
+123

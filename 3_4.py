@@ -11,7 +11,7 @@ while (user_input := input("#==Enter 'exit' to stop:")) != 'exit':
                 print(f"# Reached '{period}', skip rest.")
                 break
             case '!' as exclaimation:
-                print(f"# Reached '{exclaimation}', aboar the whole thing!")          
+                print(f"# Reached '{exclaimation}', abort the whole thing!")          
                 content = 'exit'
                 break
             case _:

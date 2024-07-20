@@ -1,93 +1,93 @@
-"""Demo .read() method and compare its behavior on text/binary files.
+"""Module demonstrate using .readline() replacing input().
 
-main() function will use .read() read from text file first,
-and then read from binary file.
+This module keeps the main program logic as section 3.4 but replaces
+input() with .readline() so it takes input from a text file.
 
-Usage:
+Usage: 
     python -m m7_3_2
 
-Note: 
-    Will first call m7_2_3.main() to create the text and binary file.
-
-Dependencies:
-    m7_2_3
+Note:
+    This module will create a test file under the current directory, 
+    so please make sure you have write permission in the current dir.
 """
-import m7_2_3
 
-def unpack_for_b_read(full_content: bytes, idx: int) -> tuple:
-    """Func to read content based on the length in the content.
+SKIP_WORD = 'skip'
+EXAMPLE_CONTENT = ["abc.dev\n",
+        "\n",
+        "skip\n",
+        "123\n",
+    ]
 
-    This function extracts the next object in the full_content from 
-    the given idx position.
+def creat_input_file(file_name: str, file_content: list = None) -> bool:
+    """Create file with given file_name and write prepared content to it.
 
-    Args:
-        full_content: a bytes contain the the full content of the bin file.
-        idx: the index from whereto start parsing the full_content.
+    Args: 
+        file_name: the name of the file to create and write into.
+        file_content: list of str representing the content to be written, optional
 
     Returns:
-        a tuple of (bytes, total_length_processed), the bytes is the actual
-        object that was extracted out of the full_content, the total_length 
-        was the length of the object plus the BYTES_FOR_INT bytes used to store
-        the prefix where the length of this object is saved.
-
-    Note:
-        this function is the opposite of the pack_for_b_write function 
-        in the m7_2_3 package.
+        True, if the creation and writing were successful.    
     """
-    idx_content = idx + m7_2_3.BYTES_FOR_INT
-    length = int.from_bytes(full_content[idx:idx_content], 'little')
-    byte_chunk = full_content[idx_content:idx_content+length]
-    return byte_chunk, length+m7_2_3.BYTES_FOR_INT
+    content = file_content if file_content else EXAMPLE_CONTENT
+    file_w = open(file_name, 'w+', encoding='utf-8')
+    file_w.writelines(content)
+    file_w.close()
+    return True
 
-def main(files: list[str]) -> None:
-    """Main func demo read() from both text and binary files.
-
-    Will read a text, an int, a bool, from the files given by files
-    and print the length read. 
+def main(file_name: str) -> None:
+    """Demo using .readline() read from file to replace input()
+    
+    This function demonstrate replacing input() with .readline() but 
+    keep all other aspects of the program logic intact.
     
     Args:
-        file_names: a list of tuple representing filenames and type of text/binary.
-
-    Returns: 
+        file_name: the name of the text file to use.
+        
+    Returns:
         None
     """
-    for file_name, open_mode, encoding_type in files:
-        file_obj = open(file_name, "r" + open_mode, encoding=encoding_type)
-        contents = file_obj.read()
-        print(f"# {type(contents)=}")
-        if open_mode == 'b':
-            idx = 0
-            text_info_bytes, length = unpack_for_b_read(contents, idx)
-            text_info = str(text_info_bytes, 'utf-8')
-            idx += length
+    file_r = open(file_name, 'r', encoding='utf-8')
+    count = 0
+    break_again = False
+    while line := file_r.readline():
+    # the above while can be replaced by a for loop with exact same effect
+    # for line in file_r:
+        line = line.strip("\n")
+        if content := '' if line == SKIP_WORD else line:
+            print(f"# Read: {content}")
+            count += 1
+            
+        for letter in content:
+            match letter:
+                case '.':
+                    print("#..Reached period, ignore the rest.")
+                    break
+                case '!':
+                    print("#!!Reached exclaimation mark, abort the whole thing!")          
+                    content = SKIP_WORD
+                    break
+                case _:
+                    print(f"#   {letter}'s ASCII code is {ord(letter)}")
+        
+        if content == SKIP_WORD:
+            break
 
-            int_info_bytes, length = unpack_for_b_read(contents, idx)
-            int_info = int.from_bytes(int_info_bytes,'little')
-            idx += length
+    print(f"## Read {count} strings in total")
+    file_r.close()
 
-            bool_info_bytes, length = unpack_for_b_read(contents, idx)
-            bool_info = bool(int.from_bytes(bool_info_bytes,'little'))
-            print("# Read text:", repr(text_info), ", number:", int_info, 
-                ", and boolean:", bool_info)
-        else:
-            lines = contents.split('\n')
-            text_info = lines[0]
-            int_info = int(lines[1])
-            bool_info = bool(lines[2] == "True")
-            file_obj.close()
-            print("# Read text:", text_info, ", number:", int_info, 
-                ", and boolean:", bool_info)
-
-    file_obj.close()
-    
-if __name__ == '__main__':
+if __name__ == "__main__":
     base_name = __file__[:-3]
-    files = [(base_name + ".data.txt", "t", 'utf-8'),
-             (base_name + ".data.bin", "b", None)]
-    m7_2_3.main(files)
-    main(files)
+    file_name = base_name + ".data.txt"
+    if creat_input_file(file_name):
+        main(file_name)
 
-# type(contents)=<class 'str'>
-# Read text: Python程序设计 , number: 2 , and boolean: False
-# type(contents)=<class 'bytes'>
-# Read text: 'Python程序设计' , number: 2 , and boolean: False
+# Read: abc.dev
+#   a's ASCII code is 97
+#   b's ASCII code is 98
+#   c's ASCII code is 99
+#..Reached period, abort rest.
+# Read: 123
+#   1's ASCII code is 49
+#   2's ASCII code is 50
+#   3's ASCII code is 51
+## Read 2 strings in total

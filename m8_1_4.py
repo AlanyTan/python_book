@@ -26,7 +26,9 @@ def safe_read_file(fname: str) -> str:
     finally:
         if file:
             file.close()
-        print("#  in finally block: File closed.")
+            print("#  in finally block: File closed.")
+        else:
+            print("#  in finally block, File was never opened.")
 
     print("#  func safe_read_file ended with errors.")
 
@@ -44,12 +46,12 @@ if __name__ == "__main__":
     file_names = [__file__, "donot.exist"]
     main(file_names)
     
-# Trying /home/alan/Documents/Python.book/m8_1_4.py...
+# Trying C:\Users\alan\OneDrive\Documents\python_book\m8_1_4.py...
 #  in else block finished reading file properly.
 #  in finally block: File closed.
 # 1st line of text in file:"""Demo try-except-else-finally structure"""
 # Trying donot.exist...
-#  in exept block, the file example.txt was not found.
-#  in finally block: File closed.
+#  in exept block, the file donot.exist was not found.
+#  in finally block, File was never opened.
 #  func safe_read_file ended with errors.
 # 1st line of text in file:None
