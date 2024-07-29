@@ -12,5 +12,5 @@ def fibonacci(n: int) -> int:
     else:
         return fibonacci(n-1) + fibonacci(n-2)
 
-print(f"# {fibonacci(10)=}")
+print(f"# {fibonacci(100)=}")
 # fibonacci(10)=55
