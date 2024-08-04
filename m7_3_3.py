@@ -4,12 +4,18 @@ This module realize the same functionality as m7_3_1_I, but replace sequential l
 processing with .readlines() and list, and generators.
 
 Usage: 
-    python -m m7_3_1_II
+    python -m m7_3_3
 
 Note:
     This module will create a test file under the current directory, 
     so please make sure you have write permission in the current dir.
 """
+
+import logging
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
+                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logger = logging.getLogger(__name__)
+
 from m7_3_2 import creat_input_file
 
 SKIP_WORDS = ['skip']
@@ -28,6 +34,7 @@ def parse_line(line:str ) -> list:
     Returns:
         A list of str, each shows the char and its ASCII code.
     """
+    logger.debug(f"parsing line {line=}")
     result = []
     line = line.strip('\n')
     if line := '' if line in SKIP_WORDS else line:
@@ -59,6 +66,7 @@ def main(file_name: str) -> None:
         None
     """
     file_r = open(file_name, 'r', encoding='utf-8')
+    logger.debug(f"input file {file_name.split('\\')[-1]} opened for reading.")
     count = 0
     for result in map(parse_line, file_r.readlines()):
         if result:
@@ -74,13 +82,20 @@ if __name__ == "__main__":
     base_name = __file__[:-3]
     file_name = base_name + ".data.txt"
     if creat_input_file((file_name)):
+        logger.debug(f"input file {file_name.split('\\')[-1]} created.")
         main(file_name)
 
-# Read: abc.dev
+#DEBUG - __main__(m7_3_3.py:85) - input file m7_3_3.data.txt created.
+#DEBUG - __main__(m7_3_3.py:69) - input file m7_3_3.data.txt opened for reading.
+#DEBUG - __main__(m7_3_3.py:37) - parsing line line='abc.def\n'
+# Read: abc.def
 #   a's ASCII code is 97
 #   b's ASCII code is 98
 #   c's ASCII code is 99
-#..Reached period, abort rest.
+#..Reached period, ignore the rest.
+#DEBUG - __main__(m7_3_3.py:37) - parsing line line='\n'
+#DEBUG - __main__(m7_3_3.py:37) - parsing line line='skip\n'
+#DEBUG - __main__(m7_3_3.py:37) - parsing line line='123\n'
 # Read: 123
 #   1's ASCII code is 49
 #   2's ASCII code is 50

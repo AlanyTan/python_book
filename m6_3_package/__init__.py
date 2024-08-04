@@ -14,13 +14,16 @@ Usage:
 
 For more details on each module, refer to the module docstring.
 """
+
+import logging
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
+                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logger = logging.getLogger("m6_3_package")
+
 """Be caurious of using special variable __all__"""
 __all__ = ["module_1", "m6_3_2_geometry"]
 
-"""the following statments are for educational purpose only,
-    non-initialization related and side-effect prone functions like print()
-    are not recommended in __init__.py"""
-print("#  in m6_3_package __init__.py")
+logger.debug("m6_3_package/__init__.py Initializing package")
 def func_in_init() -> str:
     """demo function inside __init__.py"""
     return "in func_in_init of m6_3_package"

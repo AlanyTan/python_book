@@ -3,13 +3,22 @@
 The generator yields the next number in the sequence each time it is called.
 If the caller throws an exception, the generator will repeat the previous yield.
 
-The main function takes user input and uses the counter generators to generate sequence numbers.
-The user can enter an age, and the function will generate a sequence number from either regular or senior generator based on the age.
-The user can also enter commands to set the current count or to trigger an error in the generator.
+The main function takes user input and uses the counter generators to
+    generate sequence numbers.
+The user can enter an age, and the function will generate a sequence number
+    from either regular or senior generator based on the age.
+The user can also enter commands to set the current count or to trigger an
+    error in the generator.
 
 Usage:
     python m8_3_2.py
 """
+
+import logging
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
+                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logger = logging.getLogger(__name__)
+
 def counter(arg_1:int, arg_2:int = None, step:int = 1):
     """A counter generator with start, stop, step parameters.
 
@@ -46,7 +55,7 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1):
             if sendback is not None:
                 current = sendback - step
         except Exception as e:
-            print(f"#  Generator received Exception <{e}> from caller.")
+            logger.debug(f"Generator received Exception <{e}> from caller.")
 
         else:
             current += step
@@ -83,9 +92,9 @@ def main() -> None:
                 new_number = int(x[5:])
                 seq_number = f"R{regular.send(new_number):03d}"
             case x if x.startswith("ErrS"):
-                seq_number = f"S{senior.throw(Exception('I lost previous number')):02d}"
+                seq_number = f"S{senior.throw(Exception('lost previous#')):02d}"
             case x if x.startswith("ErrR"):
-                seq_number = f"R{regular.throw(Exception('I lost previous number')):03d}"
+                seq_number = f"R{regular.throw(Exception('lost previous#')):03d}"
             case _:
                 print(f"###Err un-cased input: {user_input}")
 
@@ -100,15 +109,12 @@ if __name__ == "__main__":
 # Enter age, 'exit' to quit:79
 #Main: sequence nubmer is: S01
 # Enter age, 'exit' to quit:ErrR
-#  Generator received Exception <I lost previous number> from caller.
-#Main: sequence nubmer is: R000
-# Enter age, 'exit' to quit:ErrR
-#  Generator received Exception <I lost previous number> from caller.
+#DEBUG - __main__(m8_3_2.py:58) - Generator received Exception <lost previous #> from caller.
 #Main: sequence nubmer is: R000
 # Enter age, 'exit' to quit:70
 #Main: sequence nubmer is: S02
 # Enter age, 'exit' to quit:ErrS
-#  Generator received Exception <I lost previous number> from caller.
+#DEBUG - __main__(m8_3_2.py:58) - Generator received Exception <lost previous #> from caller.
 #Main: sequence nubmer is: S02
 # Enter age, 'exit' to quit:80
 #Main: sequence nubmer is: S03

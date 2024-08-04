@@ -4,8 +4,14 @@ main() function will use .write() write to text file first,
 and then write a binary file.
 
 Usage:
-    python -m m7_2_3
+    python -m m7_2_2
 """
+
+import logging
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
+                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logger = logging.getLogger(__name__)
+
 BYTES_FOR_INT = 4
 
 def pack_for_b_write(bytestream: bytes|bytearray) -> bytes:
@@ -52,9 +58,12 @@ def write_to_file(file_name: str, open_mode: str = None
     text_info = "Python程序设计"
     bool_info = False
 
+    file_name_no_path = file_name.split('\\')[-1]
+    logger.debug(f"write_to_file() called with {file_name_no_path}, {open_mode=} ")
 
     file_obj = open(file_name, "w+" + open_mode, encoding=encoding_type)
     if open_mode == 'b':
+        logger.debug(f"open_mode=='b', processing data as binary.")
         print("# .write() str to bin file returned:",
               file_obj.write(pack_for_b_write(bytes(text_info, 'utf-8'))))
         print("# .write() int to bin file returned:",
@@ -63,13 +72,14 @@ def write_to_file(file_name: str, open_mode: str = None
         print("# .write() bool to bin file returned:",
               file_obj.write(pack_for_b_write(bytearray([bool_info]))))
     else:
+        logger.debug(f"open_mod!='b', processing data as text.")
         print("# .write() str to text file returned:",
               file_obj.write(text_info+NEWLINE))
         print("# .write() int to text file returned:",
               file_obj.write(str(int_info)+NEWLINE))
         print("# .write() bool to text file returned:",
               file_obj.write(str(bool_info)+NEWLINE))
-
+    logger.debug(f"file {file_name_no_path} closed.")
     file_obj.close()
 
 def main(base_name: str) -> None:
@@ -81,9 +91,15 @@ if __name__ == "__main__":
     base_name = __file__[:-3]
     main(base_name)
 
+#DEBUG - __main__(m7_2_2.py:62) - write_to_file() called with m7_2_2.data.txt, open_mode='t' 
+#DEBUG - __main__(m7_2_2.py:75) - open_mod!='b', processing data as text.
 # .write() str to text file returned: 11
 # .write() int to text file returned: 2
 # .write() bool to text file returned: 6
+#DEBUG - __main__(m7_2_2.py:82) - file m7_2_2.data.txt closed.
+#DEBUG - __main__(m7_2_2.py:62) - write_to_file() called with m7_2_2.data.bin, open_mode='b' 
+#DEBUG - __main__(m7_2_2.py:66) - open_mode=='b', processing data as binary.
 # .write() str to bin file returned: 22
 # .write() int to bin file returned: 8
 # .write() bool to bin file returned: 5
+#DEBUG - __main__(m7_2_2.py:82) - file m7_2_2.data.bin closed.

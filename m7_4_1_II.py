@@ -12,6 +12,11 @@ Note:
 """
 import csv
 import io
+import logging
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
+                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logger = logging.getLogger(__name__)
+
 from m7_4_1_I import SAMPLE_DATA
 
 def write_csv(file_obj: io.BufferedReader, content_obj: any = None) -> None:
@@ -24,9 +29,10 @@ def write_csv(file_obj: io.BufferedReader, content_obj: any = None) -> None:
     Returns:
         None.    
     """
+    logger.debug(f"write_csv() called with: {file_obj.name.split('\\')[-1]}"
+                 f"({file_obj.mode}), {repr(content_obj):.80s}...")
     csv_writer = csv.writer(file_obj, dialect='excel', quoting=csv.QUOTE_NONNUMERIC)
-    print(f"# open csv for {file_obj.mode}, use {type(csv_writer)=} to write into it.")
-    for row in content_obj if content_obj else SAMPLE_DATA:
+    for row in content_obj:
         csv_writer.writerow([str(item) if isinstance(item, bool) else item for item in row])
 
 def read_csv(file_obj: io.BufferedReader) -> list[list]:
@@ -38,11 +44,13 @@ def read_csv(file_obj: io.BufferedReader) -> list[list]:
     Returns:
         a list of lists contain the csv file content.
     """
+    logger.debug(f"read_csv() called with: {file_obj.name.split('\\')[-1]}"
+                 f"({file_obj.mode})")
     list_of_list = []
     csv_reader = csv.reader(file_obj, dialect='excel', quoting=csv.QUOTE_NONNUMERIC)
-    print(f"# open csv for {file_obj.mode}, use {type(csv_reader)=} to read from it.")
     for row in csv_reader:
         list_of_list.append(row)
+    logger.debug(f"read_csv will return {repr(list_of_list):.80s}...")
     return list_of_list
 
 def main(file_name: str) -> None:
@@ -67,11 +75,11 @@ if __name__ == '__main__':
     file_name = (base_name + ".data.csv")
     main(file_name)
 
-# open csv for w, use type(csv_writer)=<class '_csv.writer'> to write into it.
-# open csv for r, use type(csv_reader)=<class '_csv.reader'> to read from it.
+#DEBUG - __main__(m7_4_1_II.py:32) - write_csv() called with: m7_4_1_II.data.csv(w), [['ID', 'Name', 'Age', 'Grade', 'Pass/Fail'], [1, 'Zhang, Alice', 18, 80.5, True...
+#DEBUG - __main__(m7_4_1_II.py:47) - read_csv() called with: m7_4_1_II.data.csv(r)
+#DEBUG - __main__(m7_4_1_II.py:53) - read_csv will return [['ID', 'Name', 'Age', 'Grade', 'Pass/Fail'], [1.0, 'Zhang, Alice', 18.0, 80.5, ...
 # ['ID', 'Name', 'Age', 'Grade', 'Pass/Fail']
 # [1.0, 'Zhang, Alice', 18.0, 80.5, 'True']
 # [2.0, 'Yusuf, Bob', 19.0, 70.0, 'True']
 # [3.0, 'Xanders, Carole', 17.0, 55.0, 'False']
 # [4.0, 'West, David', 18.0, 85.5, 'True']
-    
