@@ -7,7 +7,6 @@ Classes:
     DMV: Department of Motor Vehicle - centralized 
 """
 from m9_2_2 import Vehicle, LicensePlate, Engine
-from datetime import datetime
 import logging
 logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
@@ -23,7 +22,7 @@ class DMV:
     def __new__(cls, *args, **kwargs):
         """ensure only one instance of DMV will ever exist"""
         if cls._instance is None:
-            cls._instance = super(DMV, cls).__new__(cls)
+            cls._instance = super().__new__(cls)
         return cls._instance
 
     def __init__(self, init_plate_number: str | None = None):
@@ -43,6 +42,7 @@ class DMV:
         self._initialized = True
 
     def issue(self):
+        """issue a new plate number based on increment from last plate number"""
         def next_allowed_char(current_char):
             cur_idx = self._allowed_license_chars.index(current_char)
             if cur_idx + 1 >= len(self._allowed_license_chars):
@@ -108,26 +108,26 @@ def main():
 if __name__ == "__main__":
     main()
 
-# DEBUG - DMV(m9_4_1.py:42) - DMV initialized with ['012ZZ9'].
-# DEBUG - DMV(m9_4_1.py:36) - DMV singleton was already initialized.
+# DEBUG - DMV(m9_4_1.py:41) - DMV initialized with ['012ZZ9'].
+# DEBUG - DMV(m9_4_1.py:35) - DMV singleton was already initialized.
 # dmv1 and dmv2 are the same: True, DMV's current list of plate numbers['012ZZ9']
 # DEBUG - Car(m9_4_1.py:74) - .__init__()
-# DEBUG - Car(m9_2_2.py:31) - .__init__()
-# DEBUG - Engine(m9_2_2.py:124) - .__init__()
+# DEBUG - Car(m9_2_2.py:32) - .__init__()
+# DEBUG - Engine(m9_2_2.py:125) - .__init__()
 # DEBUG - Car(m9_4_1.py:79) - Initialized a car with 4 wheels, and a a 2.0 liter 4 cylinder None engine.
 # created car with a 2.0 liter 4 cylinder None engine., current license plate is None
-# DEBUG - DMV(m9_4_1.py:36) - DMV singleton was already initialized.
+# DEBUG - DMV(m9_4_1.py:35) - DMV singleton was already initialized.
 # DEBUG - DMV(m9_4_1.py:63) - issuing new plate: 013000
-# DEBUG - LicensePlate(m9_2_2.py:79) - .__init__()
+# DEBUG - LicensePlate(m9_2_2.py:80) - .__init__()
 # DEBUG - LicensePlate(m9_2_2.py:87) -  -LicensePlate.isvalid()
 # car_1 registered as:013000, car_1.license_plate.isvalid()=True
 # DEBUG - Car(m9_4_1.py:74) - .__init__()
-# DEBUG - Car(m9_2_2.py:31) - .__init__()
-# DEBUG - Engine(m9_2_2.py:124) - .__init__()
+# DEBUG - Car(m9_2_2.py:32) - .__init__()
+# DEBUG - Engine(m9_2_2.py:125) - .__init__()
 # DEBUG - Car(m9_4_1.py:79) - Initialized a car with 4 wheels, and a a 0 liter 0 cylinder Electric engine.
 # created car with a 0 liter 0 cylinder Electric engine., current license plate is None
-# DEBUG - DMV(m9_4_1.py:36) - DMV singleton was already initialized.
+# DEBUG - DMV(m9_4_1.py:35) - DMV singleton was already initialized.
 # DEBUG - DMV(m9_4_1.py:63) - issuing new plate: 013001
-# DEBUG - LicensePlate(m9_2_2.py:79) - .__init__()
+# DEBUG - LicensePlate(m9_2_2.py:80) - .__init__()
 # DEBUG - LicensePlate(m9_2_2.py:87) -  -LicensePlate.isvalid()
 # car_2 registered as:013001, car_2.license_plate.isvalid()=True
