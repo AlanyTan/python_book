@@ -164,13 +164,13 @@ def main():
 if __name__ == "__main__":
     main()
 
-# DEBUG - Car(m9_2_2.py:143) - .__init__()
-# DEBUG - Car(m9_2_2.py:31) - .__init__()
+# DEBUG - Car(m9_2_2.py:145) - .__init__()
+# DEBUG - Car(m9_2_2.py:32) - .__init__()
 # DEBUG - Engine(m9_2_2.py:125) - .__init__()
-# DEBUG - Car(m9_2_2.py:147) - Initialized a car with 4 wheels, and a a 2.0 liter 4 cylinder gasoline engine.
-# DEBUG - LicensePlate(m9_2_2.py:79) - .__init__()
+# DEBUG - Car(m9_2_2.py:149) - Initialized a car with 4 wheels, and a a 2.0 liter 4 cylinder None engine.
+# DEBUG - LicensePlate(m9_2_2.py:80) - .__init__()
 # DEBUG - LicensePlate(m9_2_2.py:87) -  -LicensePlate.isvalid()
-# a 2.0 liter 4 cylinder gasoline engine., car_1.license_plate.isvalid()=True
+# a 2.0 liter 4 cylinder None engine., car_1.license_plate.isvalid()=True
 # DEBUG - LicensePlate(m9_2_2.py:105) -  -LicensePlate.cancel(), cancelling ABC1234.
 # DEBUG - LicensePlate(m9_2_2.py:87) -  -LicensePlate.isvalid()
-# car_1.license_plate.isvalid()=False
+# car_1.license_plate._expiry_date.isoformat()='2099-12-31T00:00:00', car_1.license_plate.isvalid()=False
