@@ -10,14 +10,17 @@ import logging
 logging.basicConfig(level=logging.INFO, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger(__name__)
+
 from m9_2_1_I import Parallelogram
+
 
 @total_ordering
 class Rectangle(Parallelogram):
     """Rectangle class ingerited from Parallelogram
 
     All angels are always 90 degrees."""
-    def __init__(self, l: int|float, s: int|float):
+
+    def __init__(self, l: int | float, s: int | float):
         """initialize a Rectangle object
 
         Args:
@@ -27,7 +30,8 @@ class Rectangle(Parallelogram):
         self.logger = logging.getLogger(self.__class__.__name__)
         super().__init__(l, s, 90)
 
-    def height(self) -> int|float:
+    def height(self) -> int | float:
+        """overriding height method to return short_side directly."""
         return self.short_side
 
     def __repr__(self) -> str:
@@ -41,11 +45,12 @@ class Rectangle(Parallelogram):
     def __lt__(self, other) -> bool:
         """compare area of 2 Rectangle objects"""
         return self.area() < other.area()
-    
+
 
 class Square(Rectangle):
-    """Square, inherited from Rectangle AND Rhombus"""
-    def __init__(self, l: int|float):
+    """Square, inherited from Rectangle only"""
+
+    def __init__(self, l: int | float):
         """initialize a square object
 
         Args:
@@ -68,6 +73,7 @@ def main():
         print(f"# {sq_1} == {rect_2} >= {rect_1}: {sq_1 == rect_2 >= rect_1}")
     except ValueError as e:
         logger.error(f"{e} as line {e.__traceback__.tb_lineno}")
+
 
 if __name__ == "__main__":
     main()
