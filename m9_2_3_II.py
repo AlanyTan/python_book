@@ -9,11 +9,14 @@ import logging
 logging.basicConfig(level=logging.INFO, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger(__name__)
+
 from m9_2_1_I import Parallelogram
+
 
 class Rectangle(Parallelogram):
     """Rectangle, ingerited from Parallelogram all angels are 90 degrees."""
-    def __init__(self, l: int|float, s: int|float):
+
+    def __init__(self, l: int | float, s: int | float):
         """initialize a Rectangle object
 
         Args:
@@ -23,7 +26,7 @@ class Rectangle(Parallelogram):
         self.logger = logging.getLogger(self.__class__.__name__)
         super().__init__(l, s, 90)
 
-    def height(self) -> int|float:
+    def height(self) -> int | float:
         """Overriding height to just return short_side"""
         return self.short_side
 
@@ -38,13 +41,13 @@ class Rectangle(Parallelogram):
         ol = other.long_side
         os = other.short_side
         if sl == ol:
-            return Rectangle(sl, ss+os)
+            return Rectangle(sl, ss + os)
         elif sl == os:
-            return Rectangle(sl, ss+ol)
+            return Rectangle(sl, ss + ol)
         elif ss == ol:
-            return Rectangle(ss, sl+os)
+            return Rectangle(ss, sl + os)
         elif ss == os:
-            return Rectangle(ss, sl+ol)
+            return Rectangle(ss, sl + ol)
         else:
             self.logger.error(f"cannot add {self} and {other}, "
                               "no sides are equal")
@@ -54,7 +57,8 @@ class Rectangle(Parallelogram):
 
 class Square(Rectangle):
     """Square, inherited from Rectangle AND Rhombus"""
-    def __init__(self, l: int|float):
+
+    def __init__(self, l: int | float):
         """initialize a square object
 
         Args:
@@ -78,10 +82,11 @@ def main():
     except ValueError as e:
         logger.error(f"{e} as line {e.__traceback__.tb_lineno}")
 
+
 if __name__ == "__main__":
     main()
 
 # Rectangle(7, 3)
 # Rectangle(8, 7)
-#ERROR - Square(m9_2_3_I.py:49) - cannot add Square(3) and Rectangle(7, 5), no sides are equal
-#ERROR - __main__(m9_2_3_I.py:79) - none of the sides of Square(3) and Rectangle(7, 5) are equal, can't add. as line 77
+# ERROR - Square(m9_2_3_II.py:52) - cannot add Square(3) and Rectangle(7, 5), no sides are equal
+# ERROR - __main__(m9_2_3_II.py:83) - none of the sides of Square(3) and Rectangle(7, 5) are equal, can't add. as line 81
