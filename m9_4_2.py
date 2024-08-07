@@ -1,17 +1,17 @@
 """Demo Factory Method Pattern using Shaps
 
 Classes:
-    Vehicle: device with wheels that can move
-    Car: vehicle with engine and can be driven
-    LicensePlate: the license required for driving the vehicle on the road
-    DMV: Department of Motor Vehicle - centralized 
+    Triangle: simplified Triangle inherited from Polygon
+    Square: simplified Square inherited from Rectangle
+    ShapFactory: the Factory class that can create various shapes
+    Shape and offsprings: imported family of Shape and subclasses 
 """
 import logging
 logging.basicConfig(level=logging.INFO, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger(__name__)
 
-from m9_2_5 import Shape, Polygon, Quadrilateral, Rectangle
+from m9_2_5 import Shape, Polygon, Rectangle
 
 
 class Triangle(Polygon):
@@ -76,37 +76,49 @@ class Square(Rectangle):
 class ShapeFactory:
     """the factory class to generate different shapes"""
 
-    def create_shape(self, *args: tuple[int | float]) -> Shape:
+    _registered_shapes = []
+
+    def create_shape(self, *args: tuple[str | int | float]) -> Shape:
         """the Factory Method to construct and return shapes based on args"""
         self.logger = logging.getLogger(self.__class__.__name__)
         self.logger.setLevel(logging.DEBUG)
-        self.logger.debug(f"{args}")
+        self.logger.debug(f".create_shape{args}")
         type_, *rest = args
-        match type_:
-            case 'Triangle':
-                for i in range(3 - len(rest)):
-                    rest.append(1)
-                return Triangle(rest[0], rest[1], rest[2])
-            case 'Rectangle':
-                for i in range(2 - len(rest)):
-                    rest.append(1)
-                return Rectangle(rest[0], rest[1])
-            case 'Square':
-                for i in range(1 - len(rest)):
-                    rest.append(1)
-                return Square(rest[0])
-            case _:
-                raise ValueError(f"Not yet implemented: {len(args)}-sides.")
+        type_filtered = list(filter(
+            lambda x: x[0] == type_, self._registered_shapes))
+        if len(type_filtered) > 0:
+            registered_shape = type_filtered[0]
+            for i in range(registered_shape[2] - len(rest)):
+                rest.append(1)
+            return registered_shape[1](*rest[:registered_shape[2]])
+        else:
+            self.logger.error(f"'{type_}' is not a registered shape.")
+            raise ValueError(f"'{type_}' is not a registered shape.")
+
+    @classmethod
+    def register_shape_type(cls, name: str, class_: object, arg_no: int) -> None:
+        """register a shape for the Factory Method to create
+
+        Args:
+            name: the name of the shape
+            class_: the class itself
+            arg_no: the number of arguments this class requires
+        """
+        cls._registered_shapes.append((name, class_, arg_no))
 
 
 def main():
     """showing Shape, Quadrilater are abstract; Rectangle can be instantiated"""
-    shapes_to_create = [('Triangle', 2, 3, 4),
+    shape_creator = ShapeFactory()
+    ShapeFactory.register_shape_type('Triangle', Triangle, 3)
+    ShapeFactory.register_shape_type('Rectangle', Rectangle, 2)
+    ShapeFactory.register_shape_type('Square', Square, 1)
+    shapes_to_create = [('Triangle', 3, 4, 5),
                         ('Square', 5),
                         ('Rectangle', 8, 9),
-                        ('Triangle',)]
+                        ('Triangle',),
+                        ('Circle', 1)]
     shapes_created = []
-    shape_creator = ShapeFactory()
     try:
         for stc in shapes_to_create:
             shapes_created.append(shape_creator.create_shape(*stc))
@@ -114,19 +126,23 @@ def main():
     except ValueError as e:
         logger.error(f"{e} at line {e.__traceback__.tb_lineno}")
 
-    print(f"# the created list of shapes:[", *shapes_created, ']', sep='\n#  ')
+    print(f"# the created list of shapes:[", *map(
+        lambda x: (x, x.area()), shapes_created), ']', sep='\n#  ')
 
 
 if __name__ == "__main__":
     main()
 
-# DEBUG - ShapeFactory(m9_4_2.py:83) - ('Triangle', 2, 3, 4)
-# DEBUG - ShapeFactory(m9_4_2.py:83) - ('Square', 5)
-# DEBUG - ShapeFactory(m9_4_2.py:83) - ('Rectangle', 8, 9)
-# DEBUG - ShapeFactory(m9_4_2.py:83) - ('Triangle',)
+# DEBUG - ShapeFactory(m9_4_2.py:85) - .create_shape('Triangle', 2, 3, 4)
+# DEBUG - ShapeFactory(m9_4_2.py:85) - .create_shape('Square', 5)
+# DEBUG - ShapeFactory(m9_4_2.py:85) - .create_shape('Rectangle', 8, 9)
+# DEBUG - ShapeFactory(m9_4_2.py:85) - .create_shape('Triangle',)
+# DEBUG - ShapeFactory(m9_4_2.py:85) - .create_shape('Circle',)
+# ERROR - ShapeFactory(m9_4_2.py:95) - 'Circle' is not a registered shape.
+# ERROR - __main__(m9_4_2.py:127) - 'Circle' is not a registered shape. at line 124
 # the created list of shapes:[
-#  Triangle(2.0, 3.0, 4.0)
-#  Square(5, 5, 5, 5)
-#  Rectangle(8, 9, 8, 9)
-#  Triangle(1.0, 1.0, 1.0)
+#  (Triangle(3.0, 4.0, 5.0), 6.0)
+#  (Square(5, 5, 5, 5), 25)
+#  (Rectangle(8, 9, 8, 9), 72)
+#  (Triangle(1.0, 1.0, 1.0), 0.4330127018922193)
 #  ]

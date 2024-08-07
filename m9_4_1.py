@@ -1,10 +1,10 @@
 """Demo Singleton using Car, Vehicle, LicensePlate and DMV
 
 Classes:
-    Vehicle: device with wheels that can move
-    Car: vehicle with engine and can be driven
-    LicensePlate: the license required for driving the vehicle on the road
-    DMV: Department of Motor Vehicle - centralized 
+    DMV: the singleton class for regulator of Motor Vehicle
+    Car: enhanced with .register() method
+    Vehicle: needed because Car inherited from Vehicle
+    Engine: needed because Car has a composition attribute of engine 
 """
 from m9_2_2 import Vehicle, LicensePlate, Engine
 import logging
@@ -56,7 +56,7 @@ class DMV:
         for i in reversed(range(len(last_issued_plate_numbers))):
             next_plate_number = (next_plate_number[0:i] +
                                  next_allowed_char(last_issued_plate_numbers[i]) +
-                                 next_plate_number[i+1:])
+                                 next_plate_number[i + 1:])
             if next_plate_number[i] != '0':
                 break
         self.issued_plate_numbers.append(next_plate_number)
