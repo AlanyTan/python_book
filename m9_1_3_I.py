@@ -9,6 +9,7 @@ logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger(__name__)
 
+
 class Circle:
     """a better Circle class with attributes and constructor
 
@@ -16,10 +17,11 @@ class Circle:
         PI (float): Class attribute for the constant PI
         radius(float): instance attribute represents the radius of the circle
     """
-    
+
     PI = 3.14159265
     logger.debug(f"class Circle root level attribute {PI=}")
-    def __init__(self, r: int|float):
+
+    def __init__(self, r: int | float):
         """Initialize Circle object with given args
 
         Args:
@@ -33,7 +35,7 @@ class Circle:
                 "a circle's radius has to be >= 0")
         logger.debug(f"creating circle with {r=}...")
         self.radius = r
-        
+
     def circumference(self) -> float:
         """calculate circumference by 2*PI*self.radius"""
         logger.debug(" calculating Circle circumference...")
@@ -50,6 +52,7 @@ def main():
         circle_1 = Circle(1)
         print(f"# {circle_1.PI=}, {circle_1.radius=}")
         print(f"# {circle_1.circumference()=}")
+        print(f"# {circle_1.area()=}")
 
         circle_2 = Circle(2)
         Circle.PI = 3.14
@@ -62,12 +65,15 @@ def main():
 
 if __name__ == "__main__":
     main()
-#DEBUG - __main__(m9_1_3_I.py:21) - class Circle root level attribute PI=3.14159265
-#DEBUG - __main__(m9_1_3_I.py:34) - creating circle with r=1...
+
+# DEBUG - __main__(m9_1_3_I.py:22) - class Circle root level attribute PI=3.14159265
+# DEBUG - __main__(m9_1_3_I.py:36) - creating circle with r=1...
 # circle_1.PI=3.14159265, circle_1.radius=1
-#DEBUG - __main__(m9_1_3_I.py:39) -  calculating Circle circumference...
+# DEBUG - __main__(m9_1_3_I.py:41) -  calculating Circle circumference...
 # circle_1.circumference()=6.2831853
-#DEBUG - __main__(m9_1_3_I.py:34) - creating circle with r=2...
+# DEBUG - __main__(m9_1_3_I.py:46) -  calculating Circle area...
+# circle_1.area()=3.14159265
+# DEBUG - __main__(m9_1_3_I.py:36) - creating circle with r=2...
 # Circle.PI=3.14, circle_1.PI=3.14, circle_2.PI=3.14
-#ERROR - __main__(m9_1_3_I.py:29) -  class Circle init can't create circle with negative radius r=-1!
-#ERROR - __main__(m9_1_3_I.py:60) - can't create circle with negative r=-1!a circle's radius has to be >= 0 at line 58
+# ERROR - __main__(m9_1_3_I.py:31) -  class Circle init can't create circle with negative radius r=-1!
+# ERROR - __main__(m9_1_3_I.py:63) - can't create circle with negative r=-1!a circle's radius has to be >= 0 at line 61

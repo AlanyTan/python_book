@@ -40,10 +40,12 @@ class Rectangle(Parallelogram):
 
     def __eq__(self, other) -> bool:
         """compare area of 2 Rectangle objects"""
+        self.logger.info(f"__eq__ called.")
         return self.area() == other.area()
 
     def __lt__(self, other) -> bool:
         """compare area of 2 Rectangle objects"""
+        self.logger.info(f"__lt__ called to compare {self} and {other}.")
         return self.area() < other.area()
 
 
@@ -78,6 +80,10 @@ def main():
 if __name__ == "__main__":
     main()
 
+# INFO - Square(m9_2_3_III.py:43) - __eq__ called.
 # Square(4) == Rectangle(8, 2): True
+# INFO - Rectangle(m9_2_3_III.py:48) - __lt__ called to compare Rectangle(4, 3) and Rectangle(8, 2).
 # Rectangle(4, 3) > Rectangle(8, 2): False
+# INFO - Square(m9_2_3_III.py:43) - __eq__ called.
+# INFO - Rectangle(m9_2_3_III.py:48) - __lt__ called to compare Rectangle(8, 2) and Rectangle(4, 3).
 # Square(4) == Rectangle(8, 2) >= Rectangle(4, 3): True

@@ -29,6 +29,15 @@ class Shape(ABC):
 
 class Polygon(Shape):
     """-second abstract class, inherited from Shape, multiple straight sides"""
+    _logger = None
+
+    @property
+    def logger(self):
+        """logger: regular property return a logger named after the class"""
+        if self.__class__._logger is None:
+            self.__class__._logger = logging.getLogger(self.__class__.__name__)
+        return self.__class__._logger
+
     @property
     @abstractmethod
     def sides(self) -> tuple:
@@ -40,11 +49,6 @@ class Polygon(Shape):
     def no_of_sides(self) -> int:
         """abstract property # of sides in this polygon"""
         pass
-
-    @property
-    def logger(self):
-        """logger: regular property return a logger named after the class"""
-        return logging.getLogger(self.__class__.__name__)
 
     def perimeter(self) -> float:
         """override method return sum of length of all sides"""
@@ -110,8 +114,8 @@ def main():
 if __name__ == "__main__":
     main()
 
-# ERROR - __main__(m9_2_5.py:86) - Can't instantiate abstract class Shape without an implementation for abstract methods 'area', 'perimeter' at line 84
-# ERROR - __main__(m9_2_5.py:91) - Can't instantiate abstract class Quadrilateral without an implementation for abstract methods 'area', 'sides' at line 89
+# ERROR - __main__(m9_2_5.py:98) - Can't instantiate abstract class Shape without an implementation for abstract methods 'area', 'perimeter' at line 96
+# ERROR - __main__(m9_2_5.py:103) - Can't instantiate abstract class Quadrilateral without an implementation for abstract methods 'area', 'sides' at line 101
 # rect_1.sides=(1, 2, 1, 2), rect_1.area()=2
-# ERROR - Rectangle(m9_2_5.py:69) - given (1, 2, 3, 4) can't form a rectangle.
-# ERROR - __main__(m9_2_5.py:99) - (1, 2, 3, 4) do not meet rectangle sides requirement. at line 97
+# ERROR - Rectangle(m9_2_5.py:81) - given (1, 2, 3, 4) can't form a rectangle.
+# ERROR - __main__(m9_2_5.py:111) - (1, 2, 3, 4) do not meet rectangle sides requirement. at line 109
