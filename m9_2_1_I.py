@@ -97,9 +97,10 @@ class Parallelogram:
             logger.error(f"Parallelogram obtuse_angle setter:"
                          "invalid angle {oa=}!")
             raise ValueError(f"Provided {oa=} is invalid, "
-                             f"obtuse anglA3le should be between 90 and 180 degrees")
+                             f"obtuse angle should be between 90 and 180 degrees")
 
-    def __init__(self, l: int | float, s: int | float, aa: int | float, oa: int | float = None):
+    def __init__(self, l: int | float, s: int | float,
+                 aa: int | float, oa: int | float = None):
         """Construct a parallogram object
 
         Args:
@@ -167,19 +168,18 @@ def main():
 if __name__ == "__main__":
     main()
 
-
 # DEBUG - __main__(m9_2_1_I.py:22) - defining class Parallelogram.
-# DEBUG - __main__(m9_2_1_I.py:141) - defining class Rectangle based on Parallelogram
-# DEBUG - __main__(m9_2_1_I.py:111) - Parallelogram.__init__()
+# DEBUG - __main__(m9_2_1_I.py:142) - defining class Rectangle based on Parallelogram
+# DEBUG - __main__(m9_2_1_I.py:112) - Parallelogram.__init__()
 # DEBUG - __main__(m9_2_1_I.py:42) - Parallelogram.long_side setter: called with l=4.
 # DEBUG - __main__(m9_2_1_I.py:63) - Parallelogram short_side setter: called with s=3.
 # DEBUG - __main__(m9_2_1_I.py:74) - Parallelogram acute_angle setter: called with aa=30.
-# DEBUG - __main__(m9_2_1_I.py:129) - - Parallelogram.height()
+# DEBUG - __main__(m9_2_1_I.py:130) - - Parallelogram.height()
 # para_1.area()=5.999999999999999
-# DEBUG - __main__(m9_2_1_I.py:145) - -Rectangle.__init__()
-# DEBUG - __main__(m9_2_1_I.py:111) - Parallelogram.__init__()
+# DEBUG - __main__(m9_2_1_I.py:146) - -Rectangle.__init__()
+# DEBUG - __main__(m9_2_1_I.py:112) - Parallelogram.__init__()
 # DEBUG - __main__(m9_2_1_I.py:42) - Parallelogram.long_side setter: called with l=4.
 # DEBUG - __main__(m9_2_1_I.py:63) - Parallelogram short_side setter: called with s=3.
 # DEBUG - __main__(m9_2_1_I.py:74) - Parallelogram acute_angle setter: called with aa=90.
-# DEBUG - __main__(m9_2_1_I.py:149) - -Rectangle.height()
+# DEBUG - __main__(m9_2_1_I.py:150) - -Rectangle.height()
 # rect_1.area()=12
