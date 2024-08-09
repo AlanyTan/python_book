@@ -40,41 +40,44 @@ class Student(Academics):
 
     def __repr__(self) -> str:
         """return text representation of the Student object"""
-        return f"{self.__class__.__name__}({self.name}, {self.grade})"
+        return f"{self.__class__.__name__}('{self.name}', {self.grade})"
 
 
 class Composite(Academics):
-    def __init__(self):
+    """The collection class that will call advance and graduate for all children"""
+
+    def __init__(self, *args):
         """construct Coposite class to be a container of children"""
-        self._children = []
+        self.children = []
+        self.children.extend(args)
 
     def add(self, child: Academics):
         """adding childre that are derived from Academics to the list"""
-        self._children.append(child)
+        self.children.append(child)
 
     def remove(self, child):
         """remove a student from the list, log warning if not found"""
         try:
-            self._children.remove(child)
+            self.children.remove(child)
         except Exception as e:
             self.logger.warning(
                 f"cannot remove {child}, it may not exist. {e}")
 
     def advance(self):
         """move all childre to next grade level by calling their advance()"""
-        for child in self._children:
+        for child in self.children:
             child.advance()
 
     def graduate(self):
         """set all children to graduated by calling their graduate()"""
-        for child in self._children:
+        for child in self.children:
             child.graduate()
 
     def __repr__(self):
         """recursively use text to represent self"""
         results = []
-        for child in self._children:
-            results.append(f"{child}")
+        for child in self.children:
+            results.append(f"{repr(child)}")
         return f"{self.__class__.__name__}({','.join(results)})"
 
 
@@ -86,20 +89,21 @@ def main():
     famous_class.add(student_1)
     famous_class.add(student_2)
     famous_class.add(student_3)
-    student_4 = Student("David Smith", 5)
-    student_5 = Student("Edward Jones", 5)
-    unheard_class = Composite()
-    unheard_class.add(student_4)
-    unheard_class.add(student_5)
-    school = Composite()
-    school.add(famous_class)
-    school.add(unheard_class)
-    print(school)
+
+    school = Composite(famous_class, Composite(
+        Student("David Smith", 5), Student("Edward Jones", 5)))
+    unheard_class = school.children[1]
+
+    print("#", school)
     school.advance()
-    print(school)
+    print("#", school)
     unheard_class.graduate()
-    print(f"# {student_4.graduated=}, {student_1.graduated=}")
+    print(f"# {unheard_class.children[0].graduated=}, {student_1.graduated=}")
 
 
 if __name__ == "__main__":
     main()
+
+# Composite(Composite(Student('Albert Einstein', 1),Student('Benjamin Franklin', 1),Student('Charles Darwin', 1)),Composite(Student('David Smith', 5),Student('Edward Jones', 5)))
+# Composite(Composite(Student('Albert Einstein', 2),Student('Benjamin Franklin', 2),Student('Charles Darwin', 2)),Composite(Student('David Smith', 6),Student('Edward Jones', 6)))
+# unheard_class.children[0].graduated=True, student_1.graduated=False

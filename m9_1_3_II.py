@@ -10,6 +10,7 @@ logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger(__name__)
 
+
 class Circle:
     """improved circle class to introduce properties
 
@@ -18,23 +19,24 @@ class Circle:
     """
     PI = 3.14159265
     logger.debug(f"class Circle being defined.")
-    
+
     @property
-    def radius(self) -> int|float:
+    def radius(self) -> int | float:
         """float|int: the radius of the circle, should be >= 0"""
         return self._radius
 
     @radius.setter
-    def radius(self, r: int|float) -> None:
+    def radius(self, r: int | float) -> None:
         if r < 0:
-            logger.error(" class Circle radius property can't be negative {r=}")
+            logger.error(
+                " class Circle radius property can't be negative {r=}")
             raise ValueError(
                 f"can't assign circle with negative {r=}!"
                 "a circle's radius has to be >= 0")
         logger.debug(f" class Circle radius property setter called with {r=}")
         self._radius = r
-        
-    def __init__(self, r: int|float):
+
+    def __init__(self, r: int | float):
         """Initialize a Circle object
 
         Args:
@@ -42,11 +44,11 @@ class Circle:
         """
         logger.debug(f"Circle.__init__() construct a Circle object with {r=}")
         self.radius = r
-        
+
     def circumference(self) -> float:
         """returns the circumference of this circle"""
         return 2 * self.PI * self.radius
-    
+
     def area(self) -> float:
         """return the area of this circle"""
         return self.PI * self.radius ** 2
@@ -55,17 +57,17 @@ class Circle:
 class Polygon:
     """Multi-sides shape class to demo mutable properties"""
     logger.debug(f"class Polygon being defined.")
-    
+
     @property
     def sides(self) -> list:
         """iterable: each element is a number representing length of a side"""
         return self._sides[:]
 
     @sides.setter
-    def sides(self, s: list[int|float]) -> None:
+    def sides(self, s: list[int | float]) -> None:
         longest_side = max(s)
-        sum_of_all_sides = sum(s) 
-        if longest_side  <= sum_of_all_sides - longest_side:
+        sum_of_all_sides = sum(s)
+        if longest_side <= sum_of_all_sides - longest_side:
             self._sides = list(s)
             logger.debug(f"Polygon.sides setter called with {s=}")
         else:
@@ -83,7 +85,7 @@ class Polygon:
         logger.debug(f"Polygon.__init__() constructing with {sides=}")
         self.sides = sides
 
-    def add_side(self, length: int|float, idx: int = None) -> None:
+    def add_side(self, length: int | float, idx: int = None) -> None:
         """add a new side to Polygon
 
         Args:
@@ -112,8 +114,8 @@ class Polygon:
             temp_calc = half_perimeter
             for s in self.sides:
                 temp_calc *= (half_perimeter - s)
-                
-            return (temp_calc) ** (1/2)
+
+            return (temp_calc) ** (1 / 2)
         else:
             logger.error(f"cannot calculate area of a polygon with "
                          f"{len(self.sides)} sides: {self.sides}")
@@ -124,7 +126,7 @@ class Polygon:
         """If there are 3 sides, 3 angles"""
         return len(self.sides) == 3
 
-    
+
 def main():
     try:
         circle_1 = Circle(1)
@@ -152,21 +154,21 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-#DEBUG - __main__(m9_1_3_II.py:20) - class Circle being defined.
-#DEBUG - __main__(m9_1_3_II.py:57) - class Polygon being defined.
-#DEBUG - __main__(m9_1_3_II.py:43) - Circle.__init__() construct a Circle object with r=1
-#DEBUG - __main__(m9_1_3_II.py:34) -  class Circle radius property setter called with r=1
+
+# DEBUG - __main__(m9_1_3_II.py:21) - class Circle being defined.
+# DEBUG - __main__(m9_1_3_II.py:59) - class Polygon being defined.
+# DEBUG - __main__(m9_1_3_II.py:45) - Circle.__init__() construct a Circle object with r=1
+# DEBUG - __main__(m9_1_3_II.py:36) -  class Circle radius property setter called with r=1
 # circle_1.PI=3.14159265, circle_1.radius=1, circle_1.area()=3.14159265
-#DEBUG - __main__(m9_1_3_II.py:43) - Circle.__init__() construct a Circle object with r=2
-#DEBUG - __main__(m9_1_3_II.py:34) -  class Circle radius property setter called with r=2
-#DEBUG - __main__(m9_1_3_II.py:34) -  class Circle radius property setter called with r=3
+# DEBUG - __main__(m9_1_3_II.py:45) - Circle.__init__() construct a Circle object with r=2
+# DEBUG - __main__(m9_1_3_II.py:36) -  class Circle radius property setter called with r=2
+# DEBUG - __main__(m9_1_3_II.py:36) -  class Circle radius property setter called with r=3
 # circle_1.radius=3, circle_2.radius=2, circle_3.radius=3
-#DEBUG - __main__(m9_1_3_II.py:83) - Polygon.__init__() constructing with sides=(3, 4, 5)
-#DEBUG - __main__(m9_1_3_II.py:70) - Polygon.sides setter called with s=(3, 4, 5)
+# DEBUG - __main__(m9_1_3_II.py:85) - Polygon.__init__() constructing with sides=(3, 4, 5)
+# DEBUG - __main__(m9_1_3_II.py:72) - Polygon.sides setter called with s=(3, 4, 5)
 # poly_1.sides=[3, 4, 5], poly_1.istriangle()=True, poly_1.area()=6.0
 # poly_1.sides=[3, 4, 5], poly_1.istriangle()=True
-#DEBUG - __main__(m9_1_3_II.py:95) - Adding length=6 at 3 to [3, 4, 5]
+# DEBUG - __main__(m9_1_3_II.py:97) - Adding length=6 at 3 to [3, 4, 5]
 # poly_1.sides=[3, 4, 5, 6], poly_1.istriangle()=False
-#ERROR - __main__(m9_1_3_II.py:72) - Invalid lenths s=[1, 2, 10, 3], max length 10 violates polygon inequality theorem!
-#ERROR - __main__(m9_1_3_II.py:150) - Invalid lenths [1, 2, 10, 3]! The sum of the shorter sides must >= the longest side. at line 147
+# ERROR - __main__(m9_1_3_II.py:74) - Invalid lenths s=[1, 2, 10, 3], max length 10 violates polygon inequality theorem!
+# ERROR - __main__(m9_1_3_II.py:152) - Invalid lenths [1, 2, 10, 3]! The sum of the shorter sides must >= the longest side. at line 149

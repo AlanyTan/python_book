@@ -78,6 +78,7 @@ class ShapeFactory:
 
     _registered_shapes = []
 
+    @classmethod
     def create_shape(self, *args: tuple[str | int | float]) -> Shape:
         """the Factory Method to construct and return shapes based on args"""
         self.logger = logging.getLogger(self.__class__.__name__)
@@ -109,7 +110,6 @@ class ShapeFactory:
 
 def main():
     """showing Shape, Quadrilater are abstract; Rectangle can be instantiated"""
-    shape_creator = ShapeFactory()
     ShapeFactory.register_shape_type('Triangle', Triangle, 3)
     ShapeFactory.register_shape_type('Rectangle', Rectangle, 2)
     ShapeFactory.register_shape_type('Square', Square, 1)
@@ -121,7 +121,7 @@ def main():
     shapes_created = []
     try:
         for stc in shapes_to_create:
-            shapes_created.append(shape_creator.create_shape(*stc))
+            shapes_created.append(ShapeFactory.create_shape(*stc))
 
     except ValueError as e:
         logger.error(f"{e} at line {e.__traceback__.tb_lineno}")

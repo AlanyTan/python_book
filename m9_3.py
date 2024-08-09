@@ -2,15 +2,17 @@
 
 import m9_2_5
 
+
 def main():
     print('"""')
     help(m9_2_5.Polygon)
     help(m9_2_5.Rectangle)
     print('"""')
 
+
 if __name__ == "__main__":
     main()
-    
+
 """
 Help on class Polygon in module m9_2_5:
 
@@ -24,6 +26,9 @@ class Polygon(Shape)
  |      builtins.object
  |
  |  Methods defined here:
+ |
+ |  __repr__(self) -> str
+ |      return the string representation of self
  |
  |  perimeter(self) -> float
  |      override method return sum of length of all sides
@@ -103,6 +108,9 @@ class Rectangle(Quadrilateral)
  |  ----------------------------------------------------------------------
  |  Methods inherited from Polygon:
  |
+ |  __repr__(self) -> str
+ |      return the string representation of self
+ |
  |  perimeter(self) -> float
  |      override method return sum of length of all sides
  |
@@ -120,5 +128,4 @@ class Rectangle(Quadrilateral)
  |
  |  __weakref__
  |      list of weak references to the object
-
 """
