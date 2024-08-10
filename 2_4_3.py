@@ -12,8 +12,12 @@ print("#", False == 0, False is 0)
 
 a = 1
 b = True
-print("#", b == a, b == a * 2, a*2 != 0)
-# True False True
+print("# b == a:", b == a, ", b is a:", b is a, ", b is True: ", b is True)
+# b == a: True , b is a: False , b is True:  True
 
-print("#", b * 2 is a * 2)
-# True
+print("# b * 2 == a * 2:", b * 2 is a * 2)
+# b * 2 == a * 2: True
+
+d = c = False
+print("# b + c > c + d:", b + c > d)
+# b + c > d: True
