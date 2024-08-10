@@ -1,7 +1,7 @@
-print ("# not True is:", not True, ", not False is:", not False)
+print("# not True is:", not True, ", not False is:", not False)
 # not True is: False , not False is: True
 
-print ("# not None is:", not None, ", not 'anything' is:", not "anything")
+print("# not None is:", not None, ", not 'anything' is:", not "anything")
 # not None is: True , not 'anything' is: False
 
 dividend = 10
