@@ -1,9 +1,15 @@
-# This will calculate 2**3 first, then 4*5, and last 8 + 20
-result1 = 2**3 + 4*5
-print("# result1=",result1)
-# result1=28
+result_1 = 2**3 + 4 * 5
+print("# 2**3 + 4 * 5 ==", result_1)
+# 2**3 + 4 * 5 == 28
 
-# This will calculate (3+4) first, then 2**7, and last 128 * 5.
-result2 = 2**(3+4) * 5
-print("# result2=",result2)
-# result2=640
+result_2 = 2**(3 + 4) * 5
+print("# 2**(3 + 4) * 5 ==", result_2)
+# 2**(3 + 4) * 5 == 640
+
+result_3 = 4 > 11 ^ 7 >> 2
+print("# 4 > 11 ^ 7 >> 2 ==", result_3)
+# 4 > 11 ^ 7 >> 2 == False
+
+result_4 = 4 > (11 ^ 7) >> 2
+print("# 4 > (11 ^ 7) >> 2 ==", result_4)
+# 4 > (11 ^ 7) >> 2 == True

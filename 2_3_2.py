@@ -11,7 +11,7 @@ print("#", x)
 
 x *= y
 print("#", x)
-#48
+# 48
 
 x /= y
 print("#", x)

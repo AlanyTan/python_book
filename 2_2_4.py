@@ -24,7 +24,7 @@ print("#", a, b)
 print("#", a is b)
 # False
 
-b=a=[3]
+b = a = [3]
 print("#", a, b)
 # [3] [3]
 print("#", a is b)

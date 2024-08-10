@@ -1,20 +1,20 @@
-print("#", type(42)) 
+print("#", type(42))
 # <class 'int'>
 
-print("#", type(3.14)) 
+print("#", type(3.14))
 # <class 'float'>
 
 print("#", type(3.14 + 1.41j))
 # <class 'complex'>
 
-print("#", type(True)) 
+print("#", type(True))
 # <class 'bool'>
 
 print("#", type(None))
 # <class 'NoneType'>
 
 my_string = "Hello, world!"
-print("#", type("Hello, world!")) 
+print("#", type("Hello, world!"))
 # <class 'str'>
 
 print("#", type(b'xDDx@@@@'))
