@@ -16,7 +16,6 @@ print(f"# {type(int_positive)} formatted to "
       f"{type(oct_str_fstr)} {oct_str_fstr}")
 # <class 'int'> formatted to <class 'str'> 0o52
 
-
 hex_str_n = hex(-int_positive)
 print(f"# {type(int_positive)} converted to {type(hex_str_n)} {hex_str_n}")
 # <class 'int'> converted to <class 'str'> -0x2a
