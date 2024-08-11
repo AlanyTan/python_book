@@ -1,4 +1,4 @@
-year=1900
+year = 1900
 if year % 4:
     leap_or_common = "common"
 elif year % 100:

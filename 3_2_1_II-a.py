@@ -7,7 +7,7 @@ else:
     print(f"# can calculate squareroot of {x}")
 # -1 is negative.
 # cannot calculate squareroot of -1.
-    
+
 y = 0
 if y:
     print(f"# {y} is not zero")

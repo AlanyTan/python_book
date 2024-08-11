@@ -1,24 +1,24 @@
 count = 0
-while (user_input := input("#==Enter 'exit' to stop): ")) != 'exit':
+while (user_input := input("# ==Enter 'exit' to stop): ")) != 'exit':
     print(f"# You entered: {user_input}")
-    if not user_input or user_input == 'skip' :
+    if not user_input or user_input == 'skip':
         continue
     count += 1
     for letter in user_input:
         print(f"#   {letter}'s ASCII code is {ord(letter)}")
 print(f"## You entered {count} strings in total")
 
-#==Enter 'exit' to stop): abc
+# ==Enter 'exit' to stop): abc
 # You entered: abc
 #   a's ASCII code is 97
 #   b's ASCII code is 98
 #   c's ASCII code is 99
-#==Enter 'exit' to stop):  
-# You entered:  
+# ==Enter 'exit' to stop):
+# You entered:
 #    's ASCII code is 32
-#==Enter 'exit' to stop): 
-# You entered: 
-#==Enter 'exit' to stop): skip
+# ==Enter 'exit' to stop):
+# You entered:
+# ==Enter 'exit' to stop): skip
 # You entered: skip
-#==Enter 'exit' to stop): exit
-## You entered 2 strings in total
+# ==Enter 'exit' to stop): exit
+# You entered 2 strings in total
