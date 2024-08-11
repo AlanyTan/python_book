@@ -4,7 +4,7 @@ message2 = message[:5] + " Python!"
 print("# str concatenation:", message2)
 # str concatenation: Hello Python!
 
-message3 = message * 3      
+message3 = message * 3
 print("# str multiplication:", message3)
 # str multiplication: Hello, World!Hello, World!Hello, World!
 
