@@ -1,5 +1,5 @@
-string="Hello World!"
-  
+string = "Hello World!"
+
 print("#", string[:5])
 # Hello
 

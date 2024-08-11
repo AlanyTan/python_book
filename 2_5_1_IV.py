@@ -1,5 +1,5 @@
-string="AaBbCcDdEeFfGg"
-  
+string = "AaBbCcDdEeFfGg"
+
 print("#", string[::2])
 # ABCDEFG
 

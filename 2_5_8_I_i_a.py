@@ -11,6 +11,6 @@ print(f"# length of variable: {len(alphabet)=}")
 print(f"# length of expression: {len(alphabet[:3] * 2)=}")
 # length of expression: len(alphabet[:3] * 2)=6
 
-print(f"# positive and negative indexing equal: {\
-      alphabet[len(alphabet)-1:0:-1] == alphabet[-1:-len(alphabet):-1]}")
+print(f"# positive and negative indexing equal: "
+      f"{alphabet[len(alphabet) - 1:0:-1] == alphabet[-1:-len(alphabet):-1]}")
 # positive and negative indexing equal: True

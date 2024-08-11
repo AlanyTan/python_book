@@ -4,7 +4,7 @@ print(f"# {type(int_1)} converted to {type(bytes_1)} {bytes_1}")
 # <class 'int'> converted to <class 'bytes'> b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00
 
 str_2 = 'Python程序设计'
-bytes_2 = bytes(str_2,'utf-8')
+bytes_2 = bytes(str_2, 'utf-8')
 print(f"# {type(bytes_2)} converted to {type(bytes_2)} {bytes_2}")
 # <class 'bytes'> converted to <class 'bytes'> b'Python\xe7\xa8\x8b\xe5\xba\x8f\xe8\xae\xbe\xe8\xae\xa1'
 
