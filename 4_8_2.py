@@ -6,10 +6,11 @@ def counter(arg_1: int, arg_2: int | None = None,
     """A counter generator with start, stop, step parameters.
 
     Args:
-        arg_1: if used by itself, is before which the counter should stop
-            if used with arg_2, is where the counter should start.
-        arg_2: if provided, is before which the counter should stop.
-        step: the step size between each yield.
+        arg_1: required, if used by itself, counter starts from 0 and stops 
+            before this number; if arg_2 is provided, starts from this number
+        arg_2: optional, if provided, counter starts from arg_1 and stops
+            before this number.
+        step: optional, the step size between each yield.
 
     Yields:
         a the current counter number
