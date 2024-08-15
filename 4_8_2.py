@@ -1,7 +1,8 @@
 from collections.abc import Generator
 
 
-def counter(arg_1: int, arg_2: int = None, step: int = 1) -> Generator[int]:
+def counter(arg_1: int, arg_2: int | None = None,
+            step: int = 1) -> Generator[int]:
     """A counter generator with start, stop, step parameters.
 
     Args:

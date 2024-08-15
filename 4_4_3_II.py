@@ -1,4 +1,4 @@
-def greet(desc: str, name: str = "World", seq: int = None) -> None:
+def greet(desc: str, name: str = "World", seq: int | None = None) -> None:
     """The function prints a greeting message based on the provided parameters.
 
     Args:

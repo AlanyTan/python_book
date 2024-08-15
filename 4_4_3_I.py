@@ -1,4 +1,4 @@
-def greet(description: str, name: str = "World", seq: int = None) -> None:
+def greet(desc: str, name: str = "World", seq: int | None = None) -> None:
     """Prints a greeting message based on the provided arguments.
 
     Args:
@@ -9,9 +9,9 @@ def greet(description: str, name: str = "World", seq: int = None) -> None:
              if omitted, will print 'lost tract' as the start of the greeting
     """
     if seq is None:
-        print(f"# lost track: Hello, {name}! (called {description})")
+        print(f"# lost track: Hello, {name}! (called {desc})")
     else:
-        print(f"# #{seq:d} call: Hello, {name}! (called {description})")
+        print(f"# #{seq:d} call: Hello, {name}! (called {desc})")
 
 
 greet("with optional arguments", "John", 1)

@@ -1,4 +1,5 @@
-def func_demo_args(a, b=None, c: int = 1, /, d: int = 4, *, e=None, f) -> None:
+def func_demo_args(a: str, b: str | None = None, c: int = 1, /,
+                   d: int = 4, *, e: str | None = None, f) -> None:
     """This function demonstrates the usage of different types of 
     function arguments in Python.
 
