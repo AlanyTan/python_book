@@ -11,8 +11,13 @@ Note:
     so please make sure you have write permission in the current dir.
 """
 
+import logging
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
+                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logger = logging.getLogger(__name__)
+
 SKIP_WORD = 'skip'
-EXAMPLE_CONTENT = ["abc.dev\n",
+EXAMPLE_CONTENT = ["abc.def\n",
         "\n",
         "skip\n",
         "123\n",
@@ -23,7 +28,7 @@ def creat_input_file(file_name: str, file_content: list = None) -> bool:
 
     Args: 
         file_name: the name of the file to create and write into.
-        file_content: list of str representing the content to be written, optional
+        file_content: option list[str] representing the content to be written
 
     Returns:
         True, if the creation and writing were successful.    
@@ -47,11 +52,13 @@ def main(file_name: str) -> None:
         None
     """
     file_r = open(file_name, 'r', encoding='utf-8')
+    logger.debug(f"input file {file_name.split('\\')[-1]} opened for reading.")
     count = 0
     break_again = False
     while line := file_r.readline():
     # the above while can be replaced by a for loop with exact same effect
     # for line in file_r:
+        logger.debug(f" raw data read: {line=}.")
         line = line.strip("\n")
         if content := '' if line == SKIP_WORD else line:
             print(f"# Read: {content}")
@@ -63,7 +70,7 @@ def main(file_name: str) -> None:
                     print("#..Reached period, ignore the rest.")
                     break
                 case '!':
-                    print("#!!Reached exclaimation mark, abort the whole thing!")          
+                    print("#!!Reached exclaimation mark, abort program!")
                     content = SKIP_WORD
                     break
                 case _:
@@ -79,13 +86,20 @@ if __name__ == "__main__":
     base_name = __file__[:-3]
     file_name = base_name + ".data.txt"
     if creat_input_file(file_name):
+        logger.debug(f"input file {file_name.split('\\')[-1]} created.")
         main(file_name)
 
-# Read: abc.dev
+#DEBUG - __main__(m7_3_2.py:89) - input file m7_3_2.data.txt created.
+#DEBUG - __main__(m7_3_2.py:55) - input file m7_3_2.data.txt opened for reading.
+#DEBUG - __main__(m7_3_2.py:61) -  raw data read: line='abc.def\n'.
+# Read: abc.def
 #   a's ASCII code is 97
 #   b's ASCII code is 98
 #   c's ASCII code is 99
-#..Reached period, abort rest.
+#..Reached period, ignore the rest.
+#DEBUG - __main__(m7_3_2.py:61) -  raw data read: line='\n'.
+#DEBUG - __main__(m7_3_2.py:61) -  raw data read: line='skip\n'.
+#DEBUG - __main__(m7_3_2.py:61) -  raw data read: line='123\n'.
 # Read: 123
 #   1's ASCII code is 49
 #   2's ASCII code is 50

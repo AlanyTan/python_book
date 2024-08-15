@@ -2,9 +2,10 @@
 """save this as m6_3_3_III.py"""
 
 from m6_3_package import *
-#  in m6_3_package __init__.py
-#   m6_3_package/module_1.py root level statements ['var_mod_1']
-#    in m6_3_2_package/m6_3_2_geometry/__init__.py ['CONST_1', 'circle', 'perimeter', 'rectangle']
+#DEBUG - m6_3_package(__init__.py:26) - m6_3_package/__init__.py Initializing package
+#DEBUG - m6_3_package(module_1.py:9) -    m6_3_package/module_1.py root level, ['logger', 'logging', 'var_mod_1']
+#DEBUG - m6_3_2_geometry(__init__.py:29) -     in m6_3_2_package/m6_3_2_geometry/__init__.py, ['CONST_1', 'circle', 'logger', 'logging', 'perimeter', 'rectangle']
+
 print("#=root level dir()", [d for d in dir() if not d.startswith('__')])
 #=root level dir() ['m6_3_2_geometry', 'module_1']
 

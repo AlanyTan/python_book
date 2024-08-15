@@ -12,6 +12,12 @@ Note:
     This module cannot handle nested quotation marks, escape characters,
     and ill formed float number (i.e. unquoted 1.1.1 will cause an error).
 """
+
+import logging
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
+                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logger = logging.getLogger(__name__)
+
 SAMPLE_DATA = [
     ['ID', 'Name', 'Age', 'Grade', 'Pass/Fail'],
     [1, 'Zhang, Alice', 18, 80.5, True],
@@ -21,6 +27,7 @@ SAMPLE_DATA = [
 ]
 QUOTE = "'"
 DELIMINATOR = ','
+NEWLINE = '\n'
 
 def convert_to_csv(obj: any = None) -> str:
     """convert a 2-d iterable object to string of csv.
@@ -38,13 +45,12 @@ def convert_to_csv(obj: any = None) -> str:
         a string representation of obj in which newline is the seperation of rows
         and DELIMATOR is used as seperator of cells.
     """
-    if obj is None:
-        obj = SAMPLE_DATA
+    logger.debug(f"convert_to_csv() is called with: {repr(obj):.80s}...")
     cs_list = []
     for row in obj:
         cs_list.append(DELIMINATOR.join(map(repr,row)))
 
-    return "\n".join(cs_list)+"\n"
+    return NEWLINE.join(cs_list)+NEWLINE
 
 def convert_from_csv(csv: str) -> list[list]:
     """convert a string representing csv to list of lists.
@@ -60,6 +66,7 @@ def convert_from_csv(csv: str) -> list[list]:
     Returns:
         a list of lists, outer list represent rows, inner list represent cells.
     """
+    logger.debug(f"convert_from_csv() called with: {repr(csv):.80s}")
     def str_to_obj(element: str) -> any:
         match element:
             case 'True'|'False':
@@ -68,7 +75,7 @@ def convert_from_csv(csv: str) -> list[list]:
                 return int(n)
             case s if s.startswith(QUOTE):
                 return element.strip(QUOTE)
-            case f if f[0].isdigit():
+            case f if f[0].isdigit() or f[0] in '+-':
                 return float(f)
 
     not_in_quote = True
@@ -83,7 +90,7 @@ def convert_from_csv(csv: str) -> list[list]:
             case dl if dl == DELIMINATOR and not_in_quote:
                 inner_list.append(str_to_obj(current_element))
                 current_element = ''
-            case "\n" as nl if not_in_quote:
+            case nl if nl == NEWLINE and not_in_quote:
                 inner_list.append(str_to_obj(current_element))
                 current_element = ''
                 list_of_list.append(inner_list)
@@ -102,20 +109,30 @@ def main(file_name: str) -> None:
 
     """
     csv_file_obj = open(file_name, "w", newline='', encoding='utf-8')
-    csv_file_obj.write(convert_to_csv())
+    chars_written = csv_file_obj.write(convert_to_csv(SAMPLE_DATA))
+    logger.debug(f"{chars_written} chars written ({csv_file_obj.mode}) "
+                 f"to {file_name.split('\\')[-1]}")
     csv_file_obj.close()
 
     csv_file_obj = open(file_name, "r", newline='', encoding='utf-8')
-    csv_content = convert_from_csv(csv_file_obj.read())
+    file_content = csv_file_obj.read()
+    logger.debug(f"{len(file_content)} chars read ({csv_file_obj.mode}) "
+                 f"from {file_name.split('\\')[-1]}")
+    csv_file_obj.close()
+    csv_content = convert_from_csv(file_content)
     for row in csv_content:
         print("#", row)
-    csv_file_obj.close()
+
 
 if __name__ == '__main__':
     base_name = __file__[:-3]
     file_name = (base_name + ".data.csv")
     main(file_name)
 
+#DEBUG - __main__(m7_4_1_I.py:47) - convert_to_csv() is called with: [['ID', 'Name', 'Age', 'Grade', 'Pass/Fail'], [1, 'Zhang, Alice', 18, 80.5, True...
+#DEBUG - __main__(m7_4_1_I.py:112) - 155 chars written (w) to m7_4_1_I.data.csv
+#DEBUG - __main__(m7_4_1_I.py:118) - 155 chars read (r) from m7_4_1_I.data.csv
+#DEBUG - __main__(m7_4_1_I.py:68) - convert_from_csv() called with: "'ID','Name','Age','Grade','Pass/Fail'\n1,'Zhang, Alice',18,80.5,True\n2,'Yusuf,
 # ['ID', 'Name', 'Age', 'Grade', 'Pass/Fail']
 # [1, 'Zhang, Alice', 18, 80.5, True]
 # [2, 'Yusuf, Bob', 19, 70, True]
