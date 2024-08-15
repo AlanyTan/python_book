@@ -3,12 +3,10 @@ def greet(desc: str, name: str = "World", seq: int = None) -> None:
 
     Args:
         description: required description of how the function was called.
-        name: the name of the person to greet, if omitted, will use value 'World'.
-        seq: the sequence number of the time greeted, if omitted, will print
-            'lost tract' as the start of the greeting
-
-    Returns:
-        None.
+        name: optional the name of the person to greet, 
+              if omitted, will use value 'World'.
+        seq: optional the sequence number of the time greeted, 
+             if omitted, will print 'lost tract' as the start of the greeting
     """
     if seq is None:
         print(f"# lost track: Hello, {name}! ({desc})")
