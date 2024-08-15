@@ -17,5 +17,6 @@ def fibonacci_iterative(n: int) -> int:
         b = c
     return b
 
+
 print(f"# {fibonacci_iterative(10000)=}")
 # fibonacci_iterative(10)=55

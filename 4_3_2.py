@@ -1,4 +1,4 @@
-def print_rectangle_area(length: int|float, width: int|float) -> None:
+def print_rectangle_area(length: int | float, width: int | float) -> None:
     """Prints the area of a rectangle, no return value.
 
     Args:
@@ -8,7 +8,8 @@ def print_rectangle_area(length: int|float, width: int|float) -> None:
     Returns:
         None
     """
-    print(f"# area of the rectangle is:{length*width}")
+    print(f"# area of the rectangle is:{length * width}")
+
 
 print_rectangle_area(2, 4)
 # area of the rectangle is:8

@@ -1,9 +1,9 @@
 def func_local_scope(arg_l: str) -> str:
     """Demonstrate variable's local scope
-    
+
     Args:
         arg_l: an argument used to demonstrate arguments are local scoped
-        
+
     Returns:
         A string that was the value of the local variable.
     """

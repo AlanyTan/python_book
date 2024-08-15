@@ -1,4 +1,4 @@
-def circumference(r: int|float)->float:
+def circumference(r: int | float) -> float:
     """Calculate the circumference of a circle with a radius of r.
 
     Args:

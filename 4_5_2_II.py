@@ -12,6 +12,7 @@ def func_parent_scope(arg_p: str) -> str:
     shd_var_alias = shadow_var
     enclosing_var = 'encv'
     enc_var_alias = enclosing_var
+
     def func_child_scope(arg_c: int) -> int:
         nonlocal enclosing_var
         print(f"#  -=func_child, {enclosing_var is enc_var_alias=}"
@@ -23,12 +24,15 @@ def func_parent_scope(arg_p: str) -> str:
         print(f"#  -=func_child, {shadow_var is shd_var_alias=}")
         return arg_c
 
-    print(f"# -func_parent, {enclosing_var is enc_var_alias=}, {enclosing_var=}")
+    print(
+        f"# -func_parent, {enclosing_var is enc_var_alias=}, {enclosing_var=}")
     print(f"# -func_parent, {shadow_var is shd_var_alias=}, {shadow_var=}")
     func_child_scope(0)
-    print(f"# -func_parent, {enclosing_var is enc_var_alias=}, {enclosing_var=}")
+    print(
+        f"# -func_parent, {enclosing_var is enc_var_alias=}, {enclosing_var=}")
     print(f"# -func_parent, {shadow_var is shd_var_alias=}, {shadow_var=}")
     return arg_p
+
 
 print(f"# func returned:", func_parent_scope("from main"))
 # -func_parent, enclosing_var is enc_var_alias=True, enclosing_var='encv'

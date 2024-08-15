@@ -1,5 +1,5 @@
-def volume(length: int|float, width: int|float,
-           height: int|float) -> int|float:
+def volume(length: int | float, width: int | float,
+           height: int | float) -> int | float:
     """Calculates the volume of a rectangular prism.
 
     Args:
@@ -12,7 +12,8 @@ def volume(length: int|float, width: int|float,
     """
     return area(length, width) * height
 
-def area(length: int|float, width: int|float) -> int|float:
+
+def area(length: int | float, width: int | float) -> int | float:
     """Calculates the area of a rectangle.
 
     Args:
@@ -22,11 +23,11 @@ def area(length: int|float, width: int|float) -> int|float:
     Returns:
         The area of the rectangle.
     """
-    return length*width
+    return length * width
 
 
 print(f"# {area(2, 3)=}")
 # area(2, 3)=6
 
-print (f"# {volume(2, 3, 4)=}")
+print(f"# {volume(2, 3, 4)=}")
 # volume(2, 3, 4)=24

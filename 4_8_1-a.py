@@ -1,5 +1,6 @@
 from collections.abc import Generator
 
+
 def counter() -> Generator[int]:
     """Demo generator function.
 
@@ -13,15 +14,17 @@ def counter() -> Generator[int]:
     print(f"# generator yielding the third...")
     yield 3
 
+
 seq_nos = counter()
 print(f"#seq_nos is a {type(seq_nos)}")
-#seq_nos is a <class 'generator'>
+# seq_nos is a <class 'generator'>
 
 for seq_no in seq_nos:
     print(f"#main received:{seq_no}")
 # generator yielding the first...
-#main received:1
+# main received:1
 # generator yielding the second...
-#main received:2
+# main received:2
 # generator yielding the third...
-#main received:3
+# main received:3
+[]

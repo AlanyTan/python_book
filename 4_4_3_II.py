@@ -6,7 +6,7 @@ def greet(desc: str, name: str = "World", seq: int = None) -> None:
         name: the name of the person to greet, if omitted, will use value 'World'.
         seq: the sequence number of the time greeted, if omitted, will print
             'lost tract' as the start of the greeting
-    
+
     Returns:
         None.
     """

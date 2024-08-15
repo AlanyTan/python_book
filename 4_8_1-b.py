@@ -1,6 +1,7 @@
 from collections.abc import Generator
 
-def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int]:
+
+def counter(arg_1: int, arg_2: int = None, step: int = 1) -> Generator[int]:
     """A counter generator with start, stop, step parameters.
 
     Args:
@@ -8,7 +9,7 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int]:
             if used with arg_2, is where the counter should start.
         arg_2: if provided, is before which the counter should stop.
         step: the step size between each yield.
-    
+
     Yields:
         a the current counter number
     """
@@ -18,20 +19,21 @@ def counter(arg_1:int, arg_2:int = None, step:int = 1) -> Generator[int]:
     else:
         start = arg_1
         stop = arg_2
-        
+
     sign = 1 if start < stop else -1
-    if step*sign < 0:
+    if step * sign < 0:
         current = stop
     else:
         current = start
-    
+
     while current * sign < stop * sign:
         print(f"# -in generator {current=}")
         yield current
         current += step
 
+
 counter_gen = counter(-5, -10, -1)
-    
+
 for i in counter_gen:
     print(f"# main received:{i}")
 
