@@ -31,8 +31,8 @@ def counter(arg_1: int, arg_2: int | None = None,
         current += step
 
 
-regular = counter(999)
-senior = counter(99)
+regular = counter(1, 999)
+senior = counter(1, 99)
 
 while (user_input := input("# =Enter age, 'exit' to quit:")) != 'exit':
     if user_input.isnumeric() and int(user_input) >= 65:
@@ -42,13 +42,13 @@ while (user_input := input("# =Enter age, 'exit' to quit:")) != 'exit':
     print(f"# Main: sequence nubmer is: {seq_number}")
 
 # =Enter age, 'exit' to quit:50
-# Main: sequence nubmer is: R000
-# =Enter age, 'exit' to quit:60
 # Main: sequence nubmer is: R001
-# =Enter age, 'exit' to quit:70
-# Main: sequence nubmer is: S00
-# =Enter age, 'exit' to quit:80
-# Main: sequence nubmer is: S01
-# =Enter age, 'exit' to quit:40
+# =Enter age, 'exit' to quit:60
 # Main: sequence nubmer is: R002
+# =Enter age, 'exit' to quit:70
+# Main: sequence nubmer is: S01
+# =Enter age, 'exit' to quit:80
+# Main: sequence nubmer is: S02
+# =Enter age, 'exit' to quit:40
+# Main: sequence nubmer is: R003
 # =Enter age, 'exit' to quit:exit

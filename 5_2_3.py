@@ -1,9 +1,11 @@
 def test_var_is(arg_1: int, arg_2: bytearray) -> bool:
+
     print(f"# - {arg_1 is int_1=}; {arg_2 is ba_1=}")
     arg_1 += 1
     arg_2 += b'array'
     print(f"# - {arg_1=}; {arg_2=}")
     print(f"# - {arg_1 is int_1=}; {arg_2 is ba_1=}")
+
 
 int_1 = 1
 int_2 = int_1

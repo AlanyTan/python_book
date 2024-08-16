@@ -1,6 +1,6 @@
 str_1 = "ABCD"
 byte_arr_1 = bytearray(b'EFGH')
-list_1 = [1, '2.0', (3.0+4j)]
+list_1 = [1, '2.0', (3.0 + 4j)]
 
 print("# ", str_1)
 #  ABCD
@@ -21,6 +21,9 @@ print(str_template.format(*byte_arr_1))
 
 print("# ", list_1)
 #  [1, '2.0', (3+4j)]
+print("# ", *list_1)
+#  1 2.0 (3+4j)
+
 list_3 = [*list_1, *str_1, *byte_arr_1]
 print(f"# {list_3=}")
 # list_3=[1, '2.0', (3+4j), 'A', 'B', 'C', 'D', 69, 70, 71, 72]

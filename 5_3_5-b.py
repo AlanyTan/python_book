@@ -1,7 +1,7 @@
-result=[]
+result = []
 for x in range(10, 100):
-    if x%2 and x%3 and x%5 and x%7:
-        if  (x%10 + x//10 == 10) :
+    if x % 2 and x % 3 and x % 5 and x % 7:
+        if (x % 10 + x // 10 == 10):
             result.append(float(x))
         else:
             result.append(x)

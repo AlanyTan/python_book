@@ -37,8 +37,8 @@ def counter(arg_1: int, arg_2: int | None = None,
             current = sendback
 
 
-regular = counter(999)
-senior = counter(99)
+regular = counter(1, 999)
+senior = counter(1, 99)
 
 while (user_input := input("# Enter age, 'exit' to quit:")) != 'exit':
     match user_input:
@@ -58,13 +58,13 @@ while (user_input := input("# Enter age, 'exit' to quit:")) != 'exit':
     print(f"#Main: sequence nubmer is: {seq_number}")
 
 # Enter age, 'exit' to quit:50
-# Main: sequence nubmer is: R000
+# Main: sequence nubmer is: R001
 # Enter age, 'exit' to quit:70
-# Main: sequence nubmer is: S00
+# Main: sequence nubmer is: S01
 # Enter age, 'exit' to quit:SetR 32
 # Main: sequence nubmer is: R032
 # Enter age, 'exit' to quit:72
-# Main: sequence nubmer is: S01
+# Main: sequence nubmer is: S02
 # Enter age, 'exit' to quit:40
 # Main: sequence nubmer is: R033
 # Enter age, 'exit' to quit:exit

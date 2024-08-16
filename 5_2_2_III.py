@@ -8,7 +8,7 @@ print(f"# byte_arr_1.append(x): {byte_arr_1}")
 print(f"# byte_arr_1.pop(): {byte_arr_1.pop()}, {byte_arr_1=}")
 # byte_arr_1.pop(): 68, byte_arr_1=bytearray(b'abc')
 
-byte_arr_1.insert(2,x)
+byte_arr_1.insert(2, x)
 print(f"# byte_arr_1.insert(2,x): {byte_arr_1}")
 # byte_arr_1.insert(2,x): bytearray(b'abDc')
 

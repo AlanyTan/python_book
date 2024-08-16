@@ -17,3 +17,7 @@ byte_arr_2 = byte_arr_1 = bytearray(b'ABCD')
 byte_arr_1 += b'EFG'
 print(f"# {byte_arr_1=}, {byte_arr_2=}")
 # byte_arr_1=bytearray(b'ABCDEFG'), byte_arr_2=bytearray(b'ABCDEFG')
+
+byte_arr_1 *= 2
+print(f"# {byte_arr_1=}, {byte_arr_2=}")
+# byte_arr_1=bytearray(b'ABCDEFGABCDEFG'), byte_arr_2=bytearray(b'ABCDEFGABCDEFG')

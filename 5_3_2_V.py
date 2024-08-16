@@ -9,5 +9,5 @@ print(f"# count of \"3\": {list_example.count('3')}")
 print(f"# which item matches \"3\": {list_example.index('3')}")
 # which item matches "3": 2
 
-print(f"# after 2nd position, which item matches 1: {list_example.index(1,1)}")
-# after 2nd position, which item matches 1: 5
+print(f"# after 1st item, which item matches 1: {list_example.index(1, 1)}")
+# after 1st item, which item matches 1: 5

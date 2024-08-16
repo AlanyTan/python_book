@@ -1,6 +1,6 @@
 str_1 = "ABCD"
 byte_arr_1 = bytearray(b'EFGH')
-list_1 = [1, '2.0', (3.0+4j)]
+list_1 = [1, '2.0', (3.0 + 4j)]
 
 *list_begin, char_second_last, char_last = str_1
 print(f"# {list_begin=}, {char_second_last=}, {char_last=}")

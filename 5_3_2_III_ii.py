@@ -1,4 +1,4 @@
-list_s = [1,2.0,["3"]]
+list_s = [1, 2.0, ["3"]]
 list_s *= 3
 print(f"# list_s *= 3\t\t: {list_s}")
 # list_s *= 3		: [1, 2.0, ['3'], 1, 2.0, ['3'], 1, 2.0, ['3']]
@@ -10,7 +10,7 @@ print(f"# list_s[-1][0] = 4\t: {list_s}")
 string_1 = "abc"
 list_1 = ["xyz"]
 
-list_s[3:]=[]
+list_s[3:] = []
 list_s.append(string_1)
 print(f"# list_s.append(s)\t: {list_s}")
 # list_s.append(s)	: [1, 2.0, [4], 'abc']
@@ -53,7 +53,7 @@ print(f"# list_s.pop()\t\t: {list_s.pop()}, {list_s=}")
 print(f"# list_s.pop(1)\t\t: {list_s.pop(1)}, {list_s=}")
 # list_s.pop(1)		: 2.0, list_s=[1, 'xyz', 'xyz', 'xyz']
 
-list_s.insert(2,string_1)
+list_s.insert(2, string_1)
 print(f"# list_s.insert(2.0,s)\t: {list_s}")
 # list_s.insert(2.0,s)	: [1, 'xyz', 'abc', 'xyz', 'xyz']
 
