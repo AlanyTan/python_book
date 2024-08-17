@@ -15,5 +15,5 @@ print(f"# {set_1.intersection_update([0, 2, 'a', 'c'])=}, {set_1=}")
 print(f"# {set_1.difference_update('abc')=}, {set_1=}")
 # set_1.difference_update('abc')=None, set_1={0, 2}
 
-print(f"# {set_1.symmetric_difference_update([2,'a'])=}, {set_1=}")
+print(f"# {set_1.symmetric_difference_update([2, 'a'])=}, {set_1=}")
 # set_1.symmetric_difference_update([2,'a'])=None, set_1={0, 'a'}

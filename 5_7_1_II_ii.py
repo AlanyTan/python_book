@@ -1,4 +1,4 @@
-str_1="ABCDEF"
+str_1 = "ABCDEF"
 print(f"# {'ABC' in str_1=}")
 # 'ABC' in str_1=True
 
@@ -14,6 +14,6 @@ set_1 = {'one', 'two', 'three'}
 print(f"# {'one' in set_1=}")
 # 'one' in set_1=True
 
-dict_1=dict(zip(tuple_1, set_1))
+dict_1 = dict(zip(tuple_1, set_1))
 print(f"# {'a' not in dict_1=}")
 # 'a' not in dict_1=False

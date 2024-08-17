@@ -1,5 +1,5 @@
-string_example="AbCdEfABCDEF"
-tuple_example=(1,2,"3","four",5.0, 1)
+string_example = "AbCdEfABCDEF"
+tuple_example = (1, 2, "3", "four", 5.0, 1)
 
 print(f"# convert string to list: {set(string_example)}")
 # convert string to set: {'F', 'C', 'A', 'D', 'f', 'E', 'd', 'b', 'B'}

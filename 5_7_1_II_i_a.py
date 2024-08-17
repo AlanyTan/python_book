@@ -17,7 +17,7 @@ si_1, si_2, si_3 = set_1
 print(f"# {si_1=}, {si_2=}, {si_3=}")
 # si_1='two', si_2='one', si_3='three'
 
-dict_1=dict(zip(tuple_1, set_1))
+dict_1 = dict(zip(tuple_1, set_1))
 dk_1, dk_2, dk_3 = dict_1
 print(f"# {dk_1=}, {dk_2=}, {dk_3=}")
 # dk_1='a', dk_2='b', dk_3='c'

@@ -2,7 +2,7 @@ string_example = "AbCdEf"
 print(f"# tuple of {string_example} is {tuple(string_example)}")
 # tuple of AbCdEf is ('A', 'b', 'C', 'd', 'E', 'f')
 
-list_example = [1,2,"3","four",5.0]
+list_example = [1, 2, "3", "four", 5.0]
 print(f"# tuple of {list_example} is {tuple(list_example)}")
 # tuple of [1, 2, '3', 'four', 5.0] is (1, 2, '3', 'four', 5.0)
 
