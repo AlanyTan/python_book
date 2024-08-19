@@ -24,7 +24,7 @@ logger = logging.getLogger("m6_3_2_geometry")
 from . import circle
 from .rectangle import perimeter
 
-CONST_1='defined in sub package __init__.py'
+CONST_1 = 'defined in sub package __init__.py'
 
-logger.debug("    in m6_3_2_package/m6_3_2_geometry/__init__.py, "
-             f"{[d for d in dir() if not d.startswith('__')]}")
+logger.debug("    in m6_3_2_package/m6_3_2_geometry/__init__.py, %s",
+             [d for d in dir() if not d.startswith('__')])

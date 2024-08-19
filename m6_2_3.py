@@ -2,63 +2,62 @@
 Main script demonstrating dir() and globals().
 """
 """save this as m6_2_3.py"""
-
 import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - %(name)s"
+                    "(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger("main_script")
-
 import m6_2_3_scope
-#DEBUG - m6_2_3_scope(m6_2_3_scope.py:16) - in module global scope, globals() == locals()=True
+#DEBUG - m6_2_3_scope(m6_2_3_scope.py:14) - in module m6_2_3_scope, root level, globals() == locals()=True
+
 
 def first_level_local_namespace() -> None:
     """Demo func #1 for locals()"""
     logger.debug(f"in scope of first_level_local_ns, {globals() == locals()=}")
     first_level_var = 0
+
     def second_level_local_namespace() -> None:
         logger.debug(f"inside second_level_local_ns, {globals() == locals()=}")
         second_level_var = 1
-        print("#===second level globals:"
-          , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
-          , sep='\n#   ')
-        print("#===second level locals:"
-          , *[(k, v) for k, v in locals().items() if not k.startswith('__')]
-          , sep='\n#   ')
+        print("#===second level globals:", *
+              [(k, v) for k, v in globals().items() if not k.startswith('__')],
+              sep='\n#   ')
+        print("#===second level locals:", *
+              [(k, v) for k, v in locals().items() if not k.startswith('__')],
+              sep='\n#   ')
         print(f"#===second_level_local_namespace {dir()=}")
         m6_2_3_scope.module_level_local_namespace()
 
-    print("#==first level globals:"
-          , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
-          , sep='\n#  ')
-    print("#==first level locals:"
-          , *[(k, v) for k, v in locals().items() if not k.startswith('__')]
-          , sep='\n#  ')
+    print("#==first level globals:", *
+          [(k, v) for k, v in globals().items() if not k.startswith('__')],
+          sep='\n#  ')
+    print("#==first level locals:", *
+          [(k, v) for k, v in locals().items() if not k.startswith('__')],
+          sep='\n#  ')
     print(f"#==first_level_local_namespace {dir()=}")
     second_level_local_namespace()
 
+
 logger.debug(f"in root level, {globals() == locals()=}")
-#DEBUG - main_script(m6_2_3.py:39) - in root level, globals() == locals()=True
+#DEBUG - main_script(m6_2_3.py:37) - in root level, globals() == locals()=True
 
-print("#=root level globals:"
-      , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
-      , sep='\n# ')
+print("#=root level globals:", *
+      [(k, v) for k, v in globals().items() if not k.startswith('__')],
+      sep='\n# ')
 #=root level globals:
-#=root level globals:
-# ('logging', <module 'logging' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\logging\\__init__.py'>)
-#   ('logger', <Logger main_script (DEBUG)>)
-# ('m6_2_3_scope', <module 'm6_2_3_scope' from 'C:\\Users\\user\\Documents\\python_book\\m6_2_3_scope.py'>)
-# ('first_level_local_namespace', <function first_level_local_namespace at 0x000001C1C8FF71A0>)
+# ('logging', <module 'logging' from '/usr/local/lib/python3.12/logging/__init__.py'>)
+# ('logger', <Logger main_script (DEBUG)>)
+# ('m6_2_3_scope', <module 'm6_2_3_scope' from '/workspaces/python-book/m6_2_3_scope.py'>)
+# ('first_level_local_namespace', <function first_level_local_namespace at 0x7d44526c2160>)
 
-print(f"#=root level dir(): "
-      ,[x for x in dir() if not x.startswith('__')])
+print(f"#=root level dir(): ", [x for x in dir() if not x.startswith('__')])
 #=root level dir():  ['first_level_local_namespace', 'logger', 'logging', 'm6_2_3_scope']
 
-print(f"#=root level dir(m6_2_3_scope): "
-      ,[x for x in dir(m6_2_3_scope) if not x.startswith('__')])
+print(f"#=root level dir(m6_2_3_scope): ", [
+      x for x in dir(m6_2_3_scope) if not x.startswith('__')])
 #=root level dir(m6_2_3_scope):  ['global_var', 'logger', 'logging', 'm6_1_circle', 'module_level_local_namespace']
 
 first_level_local_namespace()
-#DEBUG - main_script(m6_2_3.py:16) - in scope of first_level_local_ns, globals() == locals()=False
+#DEBUG - main_script(m6_2_3.py:15) - in scope of first_level_local_ns, globals() == locals()=False
 #==first level globals:
 #  ('logging', <module 'logging' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\logging\\__init__.py'>)
 #   ('logger', <Logger main_script (DEBUG)>)
@@ -68,7 +67,7 @@ first_level_local_namespace()
 #  ('first_level_var', 0)
 #  ('second_level_local_namespace', <function first_level_local_namespace.<locals>.second_level_local_namespace at 0x00000206D89420C0>)
 #==first_level_local_namespace dir()=['first_level_var', 'second_level_local_namespace']
-#DEBUG - main_script(m6_2_3.py:20) - inside second_level_local_ns, globals() == locals()=False
+#DEBUG - main_script(m6_2_3.py:19) - inside second_level_local_ns, globals() == locals()=False
 #===second level globals:
 #   ('logging', <module 'logging' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\logging\\__init__.py'>)
 #   ('logger', <Logger main_script (DEBUG)>)
@@ -77,7 +76,7 @@ first_level_local_namespace()
 #===second level locals:
 #   ('second_level_var', 1)
 #===second_level_local_namespace dir()=['second_level_var']
-#DEBUG - m6_2_3_scope(m6_2_3_scope.py:18) - in scope of module_level_local_ns, globals() == locals()=False
+#DEBUG - m6_2_3_scope(m6_2_3_scope.py:19) - in function module_level_local_namespace, globals() == locals()=False
 #==module_level_local_namespace globals:
 #   ('logging', <module 'logging' from 'C:\\Users\\user\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\logging\\__init__.py'>)
 #   ('logger', <Logger m6_2_3_scope (DEBUG)>)

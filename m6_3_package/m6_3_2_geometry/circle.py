@@ -8,9 +8,10 @@ Functions:
 
 PI = 3.14159265
 
-def circumference (r: float|int) -> float:
+
+def circumference(r: float | int) -> float:
     """calculate circle circumference
-    
+
     Args:
         r: the radius of the circle
 
@@ -19,9 +20,10 @@ def circumference (r: float|int) -> float:
     """
     return r * 2 * PI
 
-def area (r: float|int) -> float:
+
+def area(r: float | int) -> float:
     """calculate circle area
-    
+
     Args:
         r: the radius of the circle
 
@@ -30,10 +32,11 @@ def area (r: float|int) -> float:
     """
     return r**2 * PI
 
+
 def main():
     """if this file is called directly run some tests"""
-    r=2
-    print(f"testing r={r} circumference is {circumference(r)}" )
+    r = 2
+    print(f"testing r={r} circumference is {circumference(r)}")
     print(f"testing r={r} area is {area(r)}")
 
 

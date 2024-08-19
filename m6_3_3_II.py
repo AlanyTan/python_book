@@ -1,6 +1,5 @@
 """Main script to demo from package import module"""
 """save this as m6_3_3_II.py"""
-
 from m6_3_package.m6_3_2_geometry import circle
 #DEBUG - m6_3_package(__init__.py:26) - m6_3_package/__init__.py Initializing package
 #DEBUG - m6_3_2_geometry(__init__.py:29) -     in m6_3_2_package/m6_3_2_geometry/__init__.py, ['CONST_1', 'circle', 'logger', 'logging', 'perimeter', 'rectangle']
@@ -35,9 +34,8 @@ from m6_3_package.m6_3_2_geometry.circle import circumference
 print(f"# circumference of {radius=} is {circumference(radius)}")
 # circumference of radius=3 is 18.849555900000002
 
-print("#=4.root_level_local_namespace globals:"
-        , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
-        , sep='\n# ')
+print("#=4.root_level_local_namespace globals:", *
+      [(k, v) for k, v in globals().items() if not k.startswith('__')], sep='\n# ')
 #=4.root_level_local_namespace globals:
 # ('circle', <module 'm6_3_package.m6_3_2_geometry.circle' from 'C:\\Users\\user\\Documents\\python_book\\m6_3_package\\m6_3_2_geometry\\circle.py'>)
 # ('m6_3_2_geometry', <module 'm6_3_package.m6_3_2_geometry' from 'C:\\Users\\user\\Documents\\python_book\\m6_3_package\\m6_3_2_geometry\\__init__.py'>)

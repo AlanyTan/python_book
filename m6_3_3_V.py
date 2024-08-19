@@ -1,25 +1,24 @@
 """Main script to demo import package"""
 """save this as m6_3_3_V.py"""
-
 import m6_3_package.m6_3_2_geometry as geometry
 #DEBUG - m6_3_package(__init__.py:26) - m6_3_package/__init__.py Initializing package
 #DEBUG - m6_3_2_geometry(__init__.py:29) -     in m6_3_2_package/m6_3_2_geometry/__init__.py, ['CONST_1', 'circle', 'logger', 'logging', 'perimeter', 'rectangle']
 
-print("#=root_level_local_namespace globals:"
-        , *[(k, v) for k, v in globals().items() if not k.startswith('__')]
-        , sep='\n# ')
+print("#=root_level_local_namespace globals:",
+      *[(k, v) for k, v in globals().items() if not k.startswith('__')],
+      sep='\n# ')
 #=root_level_local_namespace globals:
 # ('geometry', <module 'm6_3_package.m6_3_2_geometry' from 'C:\\Users\\user\\Documents\\python_book\\m6_3_package\\m6_3_2_geometry\\__init__.py'>)
 
-print("#=root level dir(geometry)"
-      , [d for d in dir(geometry) if not d.startswith('__')])
+print("#=root level dir(geometry)", [
+      d for d in dir(geometry) if not d.startswith('__')])
 #=root level dir(geometry) ['CONST_1', 'circle', 'logger', 'logging', 'perimeter', 'rectangle']
 
 radius = 3
 print(f"# area of {radius=} is {geometry.circle.area(radius)}")
 # area of radius=3 is 28.27433385
 
-length=4
+length = 4
 #print(f"# perimeter of square {length=} is "
 #      f" {geometry.perimeter(length)}")
 # perimeter of square length=4 is 16

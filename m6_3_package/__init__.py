@@ -19,11 +19,13 @@ import logging
 logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger("m6_3_package")
-
+CONST_INIT = "defined in package __init__.py"
 """Be caurious of using special variable __all__"""
-__all__ = ["module_1", "m6_3_2_geometry"]
+__all__ = ["CONST_INIT", "module_1", "m6_3_2_geometry"]
 
 logger.debug("m6_3_package/__init__.py Initializing package")
+
+
 def func_in_init() -> str:
     """demo function inside __init__.py"""
     return "in func_in_init of m6_3_package"
