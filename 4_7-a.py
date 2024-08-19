@@ -1,10 +1,7 @@
-def rectangle_area(x, y): return x * y
-
-
-l = 3
-w = 4
-print(f"# area of {l} by {w} is {
-      rectangle_area(l, w)}, {type(rectangle_area)=}")
+rectangle_area = lambda x,y: x*y
+l=3
+w=4
+print(f"# area of {l} by {w} is {rectangle_area(l,w)}, {type(rectangle_area)=}")
 # area of 3 by 4 is 12, type(rectangle_area)=<class 'function'>
 
 rectangle_area = 0
