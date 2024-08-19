@@ -17,3 +17,12 @@ print(f"# {set([2, 0, 'a', 'b']).difference(set_1)=}")
 
 print(f"# {set_1.symmetric_difference([2, 0, 'a', 'b'])=}")
 # set_1.symmetric_difference([2, 0, 'a', 'b'])={1, 'b', 'a'}
+
+print(f"# {set_1.isdisjoint('123')=}")
+# set_1.isdisjoint('123')=True
+
+print(f"# {set_1.issuperset(range_1)=}")
+# set_1.issuperset(range_1)=True
+
+print(f"# {set_1.issubset(range(9))=}")
+# set_1.issubset(range(9))=True
