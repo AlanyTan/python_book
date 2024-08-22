@@ -1,4 +1,4 @@
 Saving text: text content containing 2 & True
 Saving number: 2
 Saving boolean: True
-into file C:\Users\alan\OneDrive\Documents\python_book\m7_2_1.data.txt
+into file /workspaces/python-book/m7_2_1.data.txt

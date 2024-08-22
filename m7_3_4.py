@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 
 from m7_2_3 import write_to_file, BYTES_FOR_INT
 
+
 def unpack_for_b_read(full_content: bytes, idx: int) -> tuple:
     """Func to read content based on the length in the content.
 
@@ -42,16 +43,16 @@ def unpack_for_b_read(full_content: bytes, idx: int) -> tuple:
     """
     idx_content = idx + BYTES_FOR_INT
     length = int.from_bytes(full_content[idx:idx_content], 'little')
-    byte_chunk = full_content[idx_content:idx_content+length]
-    return byte_chunk, length+BYTES_FOR_INT
+    byte_chunk = full_content[idx_content:idx_content + length]
+    return byte_chunk, length + BYTES_FOR_INT
 
-def read_from_file(file_name: str, open_mode: str
-                   , encoding_type: str = None) -> None:
+
+def read_from_file(file_name: str, open_mode: str, encoding_type: str = None) -> None:
     """Main func demo read() from both text and binary files.
 
     Will read a text, an int, a bool, from the files given by files
     and print the length read. 
-    
+
     Args:
         file_names: a list of tuple representing filenames and type of text/binary.
 
@@ -59,9 +60,9 @@ def read_from_file(file_name: str, open_mode: str
         None
     """
     file_obj = open(file_name, "r" + open_mode, encoding=encoding_type)
-    logger.debug(f"opened {file_name.split('\\')[-1]}, {open_mode=}")
+    logger.debug("open %s for read, open_mode=%s", file_name[-15:], open_mode)
     contents = file_obj.read()
-    logger.debug(f"read data: {type(contents)=}")
+    logger.debug("read data: %s", type(contents))
     if open_mode == 'b':
         idx = 0
         text_info_bytes, length = unpack_for_b_read(contents, idx)
@@ -69,43 +70,51 @@ def read_from_file(file_name: str, open_mode: str
         idx += length
 
         int_info_bytes, length = unpack_for_b_read(contents, idx)
-        int_info = int.from_bytes(int_info_bytes,'little')
+        int_info = int.from_bytes(int_info_bytes, 'little')
         idx += length
 
         bool_info_bytes, length = unpack_for_b_read(contents, idx)
-        bool_info = bool(int.from_bytes(bool_info_bytes,'little'))
-        print("# Read text:", repr(text_info), ", number:", int_info, 
-            ", and boolean:", bool_info)
+        bool_info = bool(int.from_bytes(bool_info_bytes, 'little'))
+        print("# Read text:", repr(text_info), ", number:", int_info,
+              ", and boolean:", bool_info)
     else:
         lines = contents.split('\n')
         text_info = lines[0]
         int_info = int(lines[1])
         bool_info = bool(lines[2] == "True")
-        print("# Read text:", text_info, ", number:", int_info, 
-            ", and boolean:", bool_info)
+        print("# Read text:", text_info, ", number:", int_info,
+              ", and boolean:", bool_info)
 
     file_obj.close()
 
-def main(base_name: str) -> None:
-    """Main func calls read_from_file text file then binary file"""
-    write_to_file(base_name + ".data.txt", "t", 'utf-8')
-    write_to_file(base_name + ".data.bin", "b", None)
-    read_from_file(base_name + ".data.txt", "t", 'utf-8')
-    read_from_file(base_name + ".data.bin", "b", None)
-    
-if __name__ == '__main__':
-    base_name = __file__[:-3]
-    main(base_name)
 
-#DEBUG - m7_2_2(m7_2_3.py:33) - write_to_file() called with m7_3_4.data.txt, open_mode='t' 
-#DEBUG - m7_2_2(m7_2_3.py:46) - open_mod!='b', processing data as text.
-#DEBUG - m7_2_2(m7_2_3.py:53) - write to text file content=['Python程序设计', 2, False, 'A string literal.']
-#DEBUG - m7_2_2(m7_2_3.py:33) - write_to_file() called with m7_3_4.data.bin, open_mode='b' 
-#DEBUG - m7_2_2(m7_2_3.py:36) - open_mode=='b', processing data as binary.
-#DEBUG - m7_2_2(m7_2_3.py:43) - write to binary file content=[bytearray(b'Python\xe7\xa8\x8b\xe5\xba\x8f\xe8\xae\xbe\xe8\xae\xa1'), b'\x02\x00\x00\x00', b'\x00', b'a bytes litteral']
-#DEBUG - __main__(m7_3_4.py:62) - opened m7_3_4.data.txt, open_mode='t'
-#DEBUG - __main__(m7_3_4.py:64) - read data: type(contents)=<class 'str'>
+def main(name_base: str) -> None:
+    """Main func calls read_from_file text file then binary file"""
+    write_to_file(name_base + ".data.txt", "t", 'utf-8')
+    write_to_file(name_base + ".data.bin", "b", None)
+    read_from_file(name_base + ".data.txt", "t", 'utf-8')
+    read_from_file(name_base + ".data.bin", "b", None)
+
+
+if __name__ == '__main__':
+    namebase = __file__[:-3]
+    main(namebase)
+
+#DEBUG - m7_2_3(m7_2_3.py:33) - entering write_to_file(...m7_3_4.data.txt, t, utf-8)...
+#DEBUG - m7_2_3(m7_2_3.py:47) - processing data as text.
+#DEBUG - m7_2_3(m7_2_3.py:54) - writelines() to text file: ['Python程序设计', 2, False, 'A string literal.']
+#DEBUG - m7_2_3(m7_2_3.py:57) - file {'...m7_3_4.data.txt'} closed.
+#DEBUG - m7_2_3(m7_2_3.py:33) - entering write_to_file(...m7_3_4.data.bin, b, None)...
+#DEBUG - m7_2_3(m7_2_3.py:37) - processing data as binary.
+#DEBUG - m7_2_3(m7_2_3.py:44) - writelines() to binary file: [bytearray(b'Python\xe7\xa8\x8b\xe5\xba\x8f\xe8\xae\xbe\xe8\xae\xa1'), b'\x02\x00\x00\x00', b'\x00', b'a bytes litteral']
+#DEBUG - m7_2_2(m7_2_2.py:39) - ..pack_for_write: bytearray(b'Python\xe7\xa8\x8b\xe5\xba\x8f\xe8\xae\xbe\xe8\xae\xa1') is 18 bytes
+#DEBUG - m7_2_2(m7_2_2.py:39) - ..pack_for_write: b'\x02\x00\x00\x00' is 4 bytes
+#DEBUG - m7_2_2(m7_2_2.py:39) - ..pack_for_write: b'\x00' is 1 bytes
+#DEBUG - m7_2_2(m7_2_2.py:39) - ..pack_for_write: b'a bytes litteral' is 16 bytes
+#DEBUG - m7_2_3(m7_2_3.py:57) - file {'...m7_3_4.data.bin'} closed.
+#DEBUG - __main__(m7_3_4.py:63) - open m7_3_4.data.txt for read, open_mode=t
+#DEBUG - __main__(m7_3_4.py:65) - read data: <class 'str'>
 # Read text: Python程序设计 , number: 2 , and boolean: False
-#DEBUG - __main__(m7_3_4.py:62) - opened m7_3_4.data.bin, open_mode='b'
-#DEBUG - __main__(m7_3_4.py:64) - read data: type(contents)=<class 'bytes'>
+#DEBUG - __main__(m7_3_4.py:63) - open m7_3_4.data.bin for read, open_mode=b
+#DEBUG - __main__(m7_3_4.py:65) - read data: <class 'bytes'>
 # Read text: 'Python程序设计' , number: 2 , and boolean: False

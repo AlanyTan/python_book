@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 
 BYTES_FOR_INT = 4
 
-def pack_for_b_write(bytestream: bytes|bytearray) -> bytes:
+
+def pack_for_b_write(bytestream: bytes | bytearray) -> bytes:
     """Func to add length of bytes in front of the bytestream itself.
 
     This function can be used to convert a bytestream to a structure 
@@ -32,19 +33,19 @@ def pack_for_b_write(bytestream: bytes|bytearray) -> bytes:
     Note:
         length of bytestream is added as BYTES_FOR_INT bytes, so the length
         of the bytestream this function can handle is limited by this CONSTANT.
-        i.e. when BYTES_FOR_INT=4, the largest bytes this func can handle 
-        is 2^32-1 long.
+        i.e. when BYTES_FOR_INT=4, this func can handle 2^32-1 bytes stream.
     """
     length = len(bytestream)
+    logger.debug("..pack_for_write: %s is %s bytes", bytestream, length)
     return length.to_bytes(BYTES_FOR_INT, 'little') + bytestream
 
-def write_to_file(file_name: str, open_mode: str = None
-         , encoding_type: str = None) -> None:
+
+def write_to_file(file_name: str, open_mode: str = None, encoding_type: str = None) -> None:
     """Main func demo write() into both text and binary files.
 
     Will write a text an int, a bool to the files given by files
     and print the length written. 
-    
+
     Args:
         file_name: name of the file to open and write to
         open_mode: 'b' represents open in binary mode, 't' for text mode
@@ -58,48 +59,65 @@ def write_to_file(file_name: str, open_mode: str = None
     text_info = "Python程序设计"
     bool_info = False
 
-    file_name_no_path = file_name.split('\\')[-1]
-    logger.debug(f"write_to_file() called with {file_name_no_path}, {open_mode=} ")
+    short_file_name = "..." + file_name[-15:]
+    logger.debug("entering write_to_file(%s, %s, %s)...",
+                 short_file_name, open_mode, encoding_type)
 
     file_obj = open(file_name, "w+" + open_mode, encoding=encoding_type)
     if open_mode == 'b':
-        logger.debug(f"open_mode=='b', processing data as binary.")
+        logger.debug("processing data as binary.")
         print("# .write() str to bin file returned:",
               file_obj.write(pack_for_b_write(bytes(text_info, 'utf-8'))))
         print("# .write() int to bin file returned:",
               file_obj.write(pack_for_b_write(
-                        int_info.to_bytes(BYTES_FOR_INT,'little'))))
+                  int_info.to_bytes(BYTES_FOR_INT, 'little'))))
         print("# .write() bool to bin file returned:",
               file_obj.write(pack_for_b_write(bytearray([bool_info]))))
     else:
-        logger.debug(f"open_mod!='b', processing data as text.")
+        logger.debug("processing data as text.")
         print("# .write() str to text file returned:",
-              file_obj.write(text_info+NEWLINE))
+              file_obj.write(text_info + NEWLINE))
         print("# .write() int to text file returned:",
-              file_obj.write(str(int_info)+NEWLINE))
+              file_obj.write(str(int_info) + NEWLINE))
         print("# .write() bool to text file returned:",
-              file_obj.write(str(bool_info)+NEWLINE))
-    logger.debug(f"file {file_name_no_path} closed.")
+              file_obj.write(str(bool_info) + NEWLINE))
+    logger.debug("file %s closed.", {short_file_name})
     file_obj.close()
 
-def main(base_name: str) -> None:
-    write_to_file(base_name + ".data.txt", "t", 'utf-8')
-    write_to_file(base_name + ".data.bin", "b", None)
-    
+
+def main(name_base: str) -> None:
+    """Main func demo write() into text file.
+
+    Will call write_to_file to write() an int, a bool, a str variable and 
+    a str literal to a text file and a binary file.
+
+    Args:
+        base_name: string representing file name trunk,
+                    will add .txt or .bin to indicate text or binary files.
+
+    Returns: 
+        None
+    """
+    write_to_file(name_base + ".data.txt", "t", 'utf-8')
+    write_to_file(name_base + ".data.bin", "b", None)
+
 
 if __name__ == "__main__":
-    base_name = __file__[:-3]
-    main(base_name)
+    namebase = __file__[:-3]
+    main(namebase)
 
-#DEBUG - __main__(m7_2_2.py:62) - write_to_file() called with m7_2_2.data.txt, open_mode='t' 
-#DEBUG - __main__(m7_2_2.py:75) - open_mod!='b', processing data as text.
+#DEBUG - __main__(m7_2_2.py:63) - entering write_to_file(...m7_2_2.data.txt, t, utf-8)...
+#DEBUG - __main__(m7_2_2.py:77) - processing data as text.
 # .write() str to text file returned: 11
 # .write() int to text file returned: 2
 # .write() bool to text file returned: 6
-#DEBUG - __main__(m7_2_2.py:82) - file m7_2_2.data.txt closed.
-#DEBUG - __main__(m7_2_2.py:62) - write_to_file() called with m7_2_2.data.bin, open_mode='b' 
-#DEBUG - __main__(m7_2_2.py:66) - open_mode=='b', processing data as binary.
+#DEBUG - __main__(m7_2_2.py:84) - file {'...m7_2_2.data.txt'} closed.
+#DEBUG - __main__(m7_2_2.py:63) - entering write_to_file(...m7_2_2.data.bin, b, None)...
+#DEBUG - __main__(m7_2_2.py:68) - processing data as binary.
+#DEBUG - __main__(m7_2_2.py:39) - ..pack_for_write: b'Python\xe7\xa8\x8b\xe5\xba\x8f\xe8\xae\xbe\xe8\xae\xa1' is 18 bytes
 # .write() str to bin file returned: 22
+#DEBUG - __main__(m7_2_2.py:39) - ..pack_for_write: b'\x02\x00\x00\x00' is 4 bytes
 # .write() int to bin file returned: 8
+#DEBUG - __main__(m7_2_2.py:39) - ..pack_for_write: bytearray(b'\x00') is 1 bytes
 # .write() bool to bin file returned: 5
-#DEBUG - __main__(m7_2_2.py:82) - file m7_2_2.data.bin closed.
+#DEBUG - __main__(m7_2_2.py:84) - file {'...m7_2_2.data.bin'} closed.

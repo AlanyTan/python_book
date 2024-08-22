@@ -1,6 +1,6 @@
-2024-08-02 04:30:15,381 INFO - __main__(m7_4_4_I.py:22) - log set to m7_4_4_I.log, calling main()
-2024-08-02 04:30:15,381 DEBUG - __main__(m7_4_4_I.py:14) - this is a DEBUG level message
-2024-08-02 04:30:15,381 INFO - __main__(m7_4_4_I.py:15) - this is an INFO level message
-2024-08-02 04:30:15,381 WARNING - __main__(m7_4_4_I.py:16) - this is a WARNING level message
-2024-08-02 04:30:15,381 ERROR - __main__(m7_4_4_I.py:17) - this is a ERROR level message
-2024-08-02 04:30:15,381 CRITICAL - __main__(m7_4_4_I.py:18) - this is a CRITICAL level message
+2024-08-22 03:43:57,379 INFO - __main__(m7_4_4_I.py:27) - log set to /workspaces/python-book/m7_4_4_I.log, calling main()
+2024-08-22 03:43:57,380 DEBUG - __main__(m7_4_4_I.py:19) - this is a DEBUG level message
+2024-08-22 03:43:57,380 INFO - __main__(m7_4_4_I.py:20) - this is an INFO level message
+2024-08-22 03:43:57,380 WARNING - __main__(m7_4_4_I.py:21) - this is a WARNING level message
+2024-08-22 03:43:57,380 ERROR - __main__(m7_4_4_I.py:22) - this is a ERROR level message
+2024-08-22 03:43:57,380 CRITICAL - __main__(m7_4_4_I.py:23) - this is a CRITICAL level message

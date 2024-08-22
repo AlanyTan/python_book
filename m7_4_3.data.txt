@@ -1,4 +1,0 @@
-Python程序设计
-2
-False
-A string literal.
