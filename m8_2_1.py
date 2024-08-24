@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
 logger = logging.getLogger(__name__)
 
 
-def safe_read_file(fname: str) -> str:
+def safe_read_file(fname: str) -> str | None:
     """open the given filename, read it's first line and return it.
 
     It tries to open the given filename, and read the first line
@@ -32,7 +32,8 @@ def safe_read_file(fname: str) -> str:
         return texts
     except FileNotFoundError as e:
         logger.error("File %s was not found, object file exist:%s, line %s",
-                     basename(fname), 'file' in dir(), e.__traceback__.tb_lineno)
+                     basename(fname), 'file' in dir(),
+                     e.__traceback__.tb_lineno)
     except Exception as e:
         logger.error("An unexpected error occurred: %r line %s",
                      e, e.__traceback__.tb_lineno)
@@ -42,8 +43,7 @@ def main(fnames: list[str]) -> None:
     """main func demo sending different denominators to save_divide.
 
     Args:
-        list_of_numbers_to_try: a list containing numbers to be used
-        as denominator when trying to call save_divide.
+        fname: a list of str representing filenames to open
     """
     for fname in fnames:
         print(f"#1st line of text in file:{safe_read_file(fname)}")
