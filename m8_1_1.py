@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
 logger = logging.getLogger(__name__)
 
 
-def safe_divide(numerator: float, denominator: float) -> float:
+def safe_divide(numerator: float, denominator: float) -> float | None:
     """division with data checking before the / operation.
 
     Args:

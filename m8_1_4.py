@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
 logger = logging.getLogger(__name__)
 
 
-def safe_read_file(fname: str) -> str:
+def safe_read_file(fname: str) -> str | None:
     """open the given filename, read it's first line, and return it. 
 
     If run into exception, will report the error, otherwise, report

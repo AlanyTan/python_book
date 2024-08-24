@@ -10,7 +10,8 @@ logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
 logger = logging.getLogger(__name__)
 
 
-def safe_divide(numerator: int | float, denominator: int | float) -> float | int:
+def safe_divide(numerator: int | float, denominator: int | float
+                ) -> float | int | None:
     """division with data checking before the / operation.
 
     This version also tries to return integer if numerator is divisible 
@@ -23,8 +24,7 @@ def safe_divide(numerator: int | float, denominator: int | float) -> float | int
 
     Returns:
         the quotient as int if divisible, or quotient as float if not,
-        if both numerator and denominator are numbers and denominator is not 0,
-        otherwise return None.
+        if unable to divide, return None.
     """
     result = None
     logger.debug("trying to divide %r / %r...", numerator, denominator)
