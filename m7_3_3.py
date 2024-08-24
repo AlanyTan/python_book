@@ -1,7 +1,7 @@
-"""Module demonstrate using .readlines() and list operations to process file content.
+"""Demonstrate using .readlines() and list operations to process file content.
 
-This module realize the same functionality as m7_3_1_I, but replace sequential line
-processing with .readlines() and list, and generators.
+This module realize the same functionality as m7_3_1_I, but replace sequential 
+line processing with .readlines() and list, and generators.
 
 Usage: 
     python -m m7_3_3
