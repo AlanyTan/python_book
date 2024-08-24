@@ -21,11 +21,11 @@ logger = logging.getLogger(__name__)
 from m7_4_1_I import SAMPLE_DATA
 
 
-def write_csv(file_obj: io.BufferedReader, content_obj: any = None) -> None:
+def write_csv(file_obj: io.TextIOWrapper, content_obj: any = None) -> None:
     """create csv.writer using the given file_obj, then write content_obj to it.
 
     Args:
-        file_obj: a text file opened with newline='', this is where the csv will write into
+        file_obj: a text file opened with newline='', csv will write into
         content_obj: a 2d iterable contain data to be saved into csv.
 
     Returns:
@@ -43,7 +43,7 @@ def write_csv(file_obj: io.BufferedReader, content_obj: any = None) -> None:
     #        item, bool) else item for item in row])
 
 
-def read_csv(file_obj: io.BufferedReader) -> list[list]:
+def read_csv(file_obj: io.TextIOWrapper) -> list[list]:
     """create csv.reader using the given file_obj, then read its content.
 
     Args:
