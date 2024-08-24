@@ -22,7 +22,7 @@ from m7_4_1_I import SAMPLE_DATA
 
 
 def write_csv(file_obj: io.TextIOWrapper, content_obj: any = None) -> None:
-    """create csv.writer using the given file_obj, then write content_obj to it.
+    """create csv.writer using the given file_obj, then write content_obj to it
 
     Args:
         file_obj: a text file opened with newline='', csv will write into

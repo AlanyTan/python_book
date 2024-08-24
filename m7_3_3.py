@@ -56,7 +56,7 @@ def parse_line(line: str) -> list:
 
 
 def main(file_name: str) -> None:
-    """Demo using .readlines() read full content from file and batch process it using map().
+    """Demo using .readlines() read full content from file and batch process.
 
     This function demonstrate using .readlines() to read file lines into
     a list, and use list, map, generator to process the content, but 
@@ -69,7 +69,7 @@ def main(file_name: str) -> None:
         None
     """
     file_r = open(file_name, 'r', encoding='utf-8')
-    logger.debug("input file %s opened for reading.", file_name[-15:])
+    logger.debug("input file %s opened for reading", file_name[-15:])
     count = 0
     for result in map(parse_line, file_r.readlines(1048576)):
         if result:
@@ -86,11 +86,11 @@ if __name__ == "__main__":
     namebase = __file__[:-3]
     filename = namebase + ".data.txt"
     if creat_input_file(filename, EXAMPLE_CONTENT):
-        logger.debug("input file %s created.", filename[-15:])
+        logger.debug("input file %s created", filename[-15:])
         main(filename)
 
-#DEBUG - __main__(m7_3_3.py:89) - input file m7_3_3.data.txt created.
-#DEBUG - __main__(m7_3_3.py:72) - input file m7_3_3.data.txt opened for reading.
+#DEBUG - __main__(m7_3_3.py:89) - input file m7_3_3.data.txt created
+#DEBUG - __main__(m7_3_3.py:72) - input file m7_3_3.data.txt opened for reading
 #DEBUG - __main__(m7_3_3.py:38) - parsing line 'abc.def\n'
 # Read: abc.def
 #   a's ASCII code is 97

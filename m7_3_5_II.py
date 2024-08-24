@@ -13,7 +13,7 @@ Dependencies:
     m7_2_3
 """
 
-import io
+from typing import IO
 import os
 import logging
 logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 from m7_2_3 import write_to_file, BYTES_FOR_INT
 
 
-def unpack_b_read(file_obj: io.BufferedReader, idx: int) -> tuple:
+def unpack_b_read(file_obj: IO, idx: int) -> tuple:
     """Func to read file_obj content according to idx given
 
     This function extracts the next object directly from 
@@ -55,7 +55,8 @@ def unpack_b_read(file_obj: io.BufferedReader, idx: int) -> tuple:
     return byte_chunk, file_obj.tell()
 
 
-def read_from_file(file_name: str, open_mode: str, encoding_type: str = None) -> None:
+def read_from_file(file_name: str, open_mode: str = '',
+                   encoding_type: str | None = None) -> None:
     """Main func demo seek of both text/binary files.
 
     Will read a text, an int, a bool, from the files given by files

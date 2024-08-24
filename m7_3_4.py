@@ -47,17 +47,17 @@ def unpack_for_b_read(full_content: bytes, idx: int) -> tuple:
     return byte_chunk, length + BYTES_FOR_INT
 
 
-def read_from_file(file_name: str, open_mode: str, encoding_type: str = None) -> None:
+def read_from_file(file_name: str, open_mode: str = '',
+                   encoding_type: str | None = None) -> None:
     """Main func demo read() from both text and binary files.
 
-    Will read a text, an int, a bool, from the files given by files
-    and print the length read. 
+    Will open the given file_name and read a text, an int, a bool, based on 
+    open_mode, and print the length read. 
 
     Args:
-        file_names: a list of tuple representing filenames and type of text/binary.
-
-    Returns: 
-        None
+        file_name: a str representing filename and type of text/binary
+        open_mode: 't' for text, 'b' for binary, default is 't'
+        encoding_type: 'utf-8' recommended
     """
     file_obj = open(file_name, "r" + open_mode, encoding=encoding_type)
     logger.debug("open %s for read, open_mode=%s", file_name[-15:], open_mode)

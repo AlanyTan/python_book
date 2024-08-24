@@ -24,7 +24,7 @@ EXAMPLE_CONTENT = ["abc.def\n",
                    ]
 
 
-def creat_input_file(file_name: str, file_content: list = None) -> bool:
+def creat_input_file(file_name: str, file_content: list = []) -> bool:
     """Create file with given file_name and write prepared content to it.
 
     Args: 
@@ -53,7 +53,7 @@ def main(file_name: str) -> None:
         None
     """
     file_r = open(file_name, 'r', encoding='utf-8')
-    logger.debug("input file %s opened for reading.", file_name[-15:])
+    logger.debug("input file %s opened for reading", file_name[-15:])
     count = 0
     while line := file_r.readline():
         # the above while can be replaced by a for loop with exact same effect
@@ -87,11 +87,11 @@ if __name__ == "__main__":
     namebase = __file__[:-3]
     filename = namebase + ".data.txt"
     if creat_input_file(filename, EXAMPLE_CONTENT):
-        logger.debug("input file %s created.", filename[-15:])
+        logger.debug("input file %s created", filename[-15:])
         main(filename)
 
-#DEBUG - __main__(m7_3_2.py:90) - input file m7_3_2.data.txt created.
-#DEBUG - __main__(m7_3_2.py:56) - input file m7_3_2.data.txt opened for reading.
+#DEBUG - __main__(m7_3_2.py:90) - input file m7_3_2.data.txt created
+#DEBUG - __main__(m7_3_2.py:56) - input file m7_3_2.data.txt opened for reading
 #DEBUG - __main__(m7_3_2.py:61) -  raw data read: 'abc.def\n'
 # Read: abc.def
 #   a's ASCII code is 97
