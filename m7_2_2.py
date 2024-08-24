@@ -40,11 +40,11 @@ def pack_for_b_write(bytestream: bytes | bytearray) -> bytes:
     return length.to_bytes(BYTES_FOR_INT, 'little') + bytestream
 
 
-def write_to_file(file_name: str, open_mode: str = None, encoding_type: str = None) -> None:
+def write_to_file(file_name: str, open_mode: str = '',
+                  encoding_type: str | None = None) -> None:
     """Main func demo write() into both text and binary files.
 
-    Will write a text an int, a bool to the files given by files
-    and print the length written. 
+    Write a text, an int, a bool to the files and return chars/bytes written 
 
     Args:
         file_name: name of the file to open and write to
