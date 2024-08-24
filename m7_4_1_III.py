@@ -12,7 +12,7 @@ Note:
 """
 
 import csv
-import io
+from typing import TextIO
 from os.path import basename
 import logging
 logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 from m7_4_1_I import SAMPLE_DATA
 
 
-def dict_write_csv(file_obj: io.BufferedReader,
+def dict_write_csv(file_obj: TextIO,
                    content_dicts: list[dict]) -> None:
     """create csv.DictWriter using the given file_obj, then write
     content_obj as dict to it.
@@ -46,7 +46,7 @@ def dict_write_csv(file_obj: io.BufferedReader,
         csv_writer.writerow(row)
 
 
-def dict_read_csv(file_obj: io.BufferedReader) -> dict:
+def dict_read_csv(file_obj: TextIO) -> list[dict]:
     """create csv.DictReader using the given file_obj, then read its content.
 
     Args:

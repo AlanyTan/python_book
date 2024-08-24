@@ -11,7 +11,7 @@ Note:
     read, all numbers are converted to float
 """
 import csv
-import io
+from typing import TextIO, Any
 from os.path import basename
 import logging
 logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 from m7_4_1_I import SAMPLE_DATA
 
 
-def write_csv(file_obj: io.TextIOWrapper, content_obj: any = None) -> None:
+def write_csv(file_obj: TextIO, content_obj: Any = None) -> None:
     """create csv.writer using the given file_obj, then write content_obj to it
 
     Args:
@@ -43,7 +43,7 @@ def write_csv(file_obj: io.TextIOWrapper, content_obj: any = None) -> None:
     #        item, bool) else item for item in row])
 
 
-def read_csv(file_obj: io.TextIOWrapper) -> list[list]:
+def read_csv(file_obj: TextIO) -> list[list]:
     """create csv.reader using the given file_obj, then read its content.
 
     Args:

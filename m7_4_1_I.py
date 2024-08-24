@@ -18,6 +18,7 @@ logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
                     "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
 logger = logging.getLogger(__name__)
 from os.path import basename
+from typing import Any
 
 SAMPLE_DATA = [
     ['ID', 'Name', 'Age', 'Grade', 'Pass/Fail'],
@@ -31,21 +32,20 @@ DELIMINATOR = ','
 NEWLINE = '\n'
 
 
-def convert_to_csv(obj: any = None) -> str:
+def convert_to_csv(obj: Any = None) -> str:
     """convert a 2-d iterable object to string of csv.
 
-    This function uses repr() to represent each object within obj. 
-    So strings will be quoted using single quotation marks (unless 
-    the string contains quotation marks), numbers, bools and None 
-    are not quoted.
+    Uses repr() to represent each object within obj. So strings will be quoted 
+    using single quotation marks (unless the string contains quotation marks), 
+    numbers, bools and None are not quoted.
 
     Args: 
         obj: a 2-d iterable, of which outer iterable is used as row
             while inner iterable is interpreted as cell.
 
     Returns:
-        a string representation of obj in which newline is the seperation of rows
-        and DELIMATOR is used as seperator of cells.
+        a string representation of obj in which newline is the seperation of 
+        rows and DELIMATOR is used as seperator of cells.
     """
     logger.debug("convert_to_csv() is called with: %80s...", repr(obj)[:80])
     csv_list = []
@@ -59,9 +59,9 @@ def convert_from_csv(csv: str) -> list[list]:
     """convert a string representing csv to list of lists.
 
     This function parse string csv, split by \n to rows and then split by , to 
-    cells, it will respect quotation marks QUOTE do not use \n and , within QUOTE 
-    to split. It does not handle quotation marks within quotation marks though, it
-    does not handle escape sequence either. 
+    cells, it will respect quotation marks QUOTE do not use \n and , within  
+    QUOTE to split. It does not handle quotation marks within quotation marks 
+    though, it does not handle escape sequence either. 
 
     Args:
         csv: string representing the content of a csv file.
@@ -71,7 +71,7 @@ def convert_from_csv(csv: str) -> list[list]:
     """
     logger.debug("convert_from_csv() called with: %80s...", repr(csv))
 
-    def str_to_obj(element: str) -> any:
+    def str_to_obj(element: str) -> Any:
         match element:
             case 'True' | 'False':
                 return element == 'True'
