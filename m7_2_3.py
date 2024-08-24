@@ -14,7 +14,8 @@ logger = logging.getLogger(__name__)
 from m7_2_2 import BYTES_FOR_INT, pack_for_b_write
 
 
-def write_to_file(file_name: str, open_mode: str = None, encoding_type: str = None) -> None:
+def write_to_file(file_name: str, open_mode: str = '',
+                  encoding_type: str | None = None) -> None:
     """func demo writelines() into both text and binary files.
 
     Will write a list containing a text, an int, a bool to the file_name file. 
@@ -28,7 +29,6 @@ def write_to_file(file_name: str, open_mode: str = None, encoding_type: str = No
     int_info = 2
     text_info = "Python程序设计"
     bool_info = False
-
     short_file_name = "..." + file_name[-15:]
     logger.debug("entering write_to_file(%s, %s, %s)...",
                  short_file_name, open_mode, encoding_type)
