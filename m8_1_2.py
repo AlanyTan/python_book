@@ -5,8 +5,8 @@ Usage:
 """
 
 import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)9s\
+ - %(filename)s:%(lineno)d  %(name)s.%(funcName)s() - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -74,19 +74,19 @@ if __name__ == "__main__":
     denominators_to_try = [0, '8.1.2', 2, '1', 5]
     main(denominators_to_try)
 
-#DEBUG - __main__(m8_1_2.py:30) - trying to divide 4 / 0...
-#ERROR - __main__(m8_1_2.py:40) -   Cannot divide by 0: ('float division by zero',), line 34
+#    DEBUG - m8_1_2.py:30  __main__.safe_divide() - trying to divide 4 / 0...
+#    ERROR - m8_1_2.py:40  __main__.safe_divide() -   Cannot divide by 0: ('float division by zero',), line 34
 # safe_divide(a, b)=None
-#DEBUG - __main__(m8_1_2.py:30) - trying to divide 4 / '8.1.2'...
-#ERROR - __main__(m8_1_2.py:43) -   Incompatible value: ("could not convert string to float: '8.1.2'",), line 33
+#    DEBUG - m8_1_2.py:30  __main__.safe_divide() - trying to divide 4 / '8.1.2'...
+#    ERROR - m8_1_2.py:43  __main__.safe_divide() -   Incompatible value: ("could not convert string to float: '8.1.2'",), line 33
 # safe_divide(a, b)=None
-#DEBUG - __main__(m8_1_2.py:30) - trying to divide 4 / 2...
-#INFO - __main__(m8_1_2.py:35) -   calculated 4.0/2.0 = 2.0
+#    DEBUG - m8_1_2.py:30  __main__.safe_divide() - trying to divide 4 / 2...
+#     INFO - m8_1_2.py:35  __main__.safe_divide() -   calculated 4.0/2.0 = 2.0
 # safe_divide(a, b)=2
-#DEBUG - __main__(m8_1_2.py:30) - trying to divide 4 / '1'...
-#INFO - __main__(m8_1_2.py:35) -   calculated 4.0/1.0 = 4.0
-#ERROR - __main__(m8_1_2.py:46) -   Unexpected Exception: TypeError("unsupported operand type(s) for %: 'int' and 'str'"), line 36
+#    DEBUG - m8_1_2.py:30  __main__.safe_divide() - trying to divide 4 / '1'...
+#     INFO - m8_1_2.py:35  __main__.safe_divide() -   calculated 4.0/1.0 = 4.0
+#    ERROR - m8_1_2.py:46  __main__.safe_divide() -   Unexpected Exception: TypeError("unsupported operand type(s) for %: 'int' and 'str'"), line 36
 # safe_divide(a, b)=4.0
-#DEBUG - __main__(m8_1_2.py:30) - trying to divide 4 / 5...
-#INFO - __main__(m8_1_2.py:35) -   calculated 4.0/5.0 = 0.8
+#    DEBUG - m8_1_2.py:30  __main__.safe_divide() - trying to divide 4 / 5...
+#     INFO - m8_1_2.py:35  __main__.safe_divide() -   calculated 4.0/5.0 = 0.8
 # safe_divide(a, b)=0.8

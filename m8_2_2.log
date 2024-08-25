@@ -1,20 +1,40 @@
-2024-08-23 07:01:22,550 DEBUG - __main__ m8_2_2.main:37 - this is a DEBUG level message
-2024-08-23 07:01:22,550 INFO - __main__ m8_2_2.main:38 - this is an INFO level message
-2024-08-23 07:01:22,551 WARNING - __main__ m8_2_2.main:39 - this is a WARNING level message
-2024-08-23 07:01:22,551 ERROR - __main__ m8_2_2.main:40 - this is a ERROR level message
-2024-08-23 07:01:22,551 CRITICAL - __main__ m8_2_2.main:41 - this is a CRITICAL level message
-2024-08-23 07:01:40,565 DEBUG - __main__ m8_2_2.main:37 - this is a DEBUG level message
-2024-08-23 07:01:40,566 INFO - __main__ m8_2_2.main:38 - this is an INFO level message
-2024-08-23 07:01:40,566 WARNING - __main__ m8_2_2.main:39 - this is a WARNING level message
-2024-08-23 07:01:40,566 ERROR - __main__ m8_2_2.main:40 - this is a ERROR level message
-2024-08-23 07:01:40,566 CRITICAL - __main__ m8_2_2.main:41 - this is a CRITICAL level message
-2024-08-23 17:22:41,680 DEBUG - __main__ m8_2_2.main:49 - this is a DEBUG level message
-2024-08-23 17:22:41,680 INFO - __main__ m8_2_2.main:50 - this is an INFO level message
-2024-08-23 17:22:41,680 WARNING - __main__ m8_2_2.main:51 - this is a WARNING level message
-2024-08-23 17:22:41,681 ERROR - __main__ m8_2_2.main:52 - this is a ERROR level message
-2024-08-23 17:22:41,681 CRITICAL - __main__ m8_2_2.main:53 - this is a CRITICAL level message
-2024-08-23 19:24:08,867 DEBUG - __main__ m8_2_2.main:60 - this is a DEBUG level message
-2024-08-23 19:24:08,868 INFO - __main__ m8_2_2.main:61 - this is an INFO level message
-2024-08-23 19:24:08,868 WARNING - __main__ m8_2_2.main:62 - this is a WARNING level message
-2024-08-23 19:24:08,868 ERROR - __main__ m8_2_2.main:63 - this is a ERROR level message
-2024-08-23 19:24:08,868 CRITICAL - __main__ m8_2_2.main:64 - this is a CRITICAL level message
+024-08-24 20:40:40,827 DEBUG - m8_2_2 - m8_2_2.py:66  __main__.main() - this is a DEBUG level message
+2024-08-24 20:40:40,829 INFO - m8_2_2 - m8_2_2.py:67  __main__.main() - this is an INFO level message
+2024-08-24 20:40:40,829 WARNING - m8_2_2 - m8_2_2.py:68  __main__.main() - this is a WARNING level message
+2024-08-24 20:40:40,830 ERROR - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a ERROR level message
+2024-08-24 20:40:40,830 CRITICAL - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a CRITICAL level message
+2024-08-24 20:40:40,830 DEBUG - m8_2_2 - m8_2_2.py:60  __main__.logging_context() - shutting down the logging facility...
+2024-08-24 21:50:23,235 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
+2024-08-24 21:50:23,236 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
+2024-08-24 21:50:23,237 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
+2024-08-24 21:50:23,237 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
+2024-08-24 21:50:23,237 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
+2024-08-24 21:50:23,238 DEBUG - m8_2_2 - m8_2_2.py:61  __main__.logging_context() - shutting down the logging facility...
+2024-08-24 21:50:23,238 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
+2024-08-24 21:50:23,238 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
+2024-08-24 21:50:23,239 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
+2024-08-24 21:50:23,239 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
+2024-08-24 21:50:23,239 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
+2024-08-24 21:50:23,239 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
+2024-08-24 21:50:23,240 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
+2024-08-24 21:50:23,240 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
+2024-08-24 21:50:23,240 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
+2024-08-24 21:50:23,240 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
+2024-08-24 21:50:23,241 DEBUG - m8_2_2 - m8_2_2.py:61  __main__.logging_context() - shutting down the logging facility...
+2024-08-24 21:50:23,241 DEBUG - m8_2_2 - m8_2_2.py:61  __main__.logging_context() - shutting down the logging facility...
+2024-08-24 21:53:28,679 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
+2024-08-24 21:53:28,681 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
+2024-08-24 21:53:28,681 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
+2024-08-24 21:53:28,682 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
+2024-08-24 21:53:28,682 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
+2024-08-24 21:53:51,359 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
+2024-08-24 21:53:51,360 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
+2024-08-24 21:53:51,360 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
+2024-08-24 21:53:51,360 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
+2024-08-24 21:53:51,360 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
+2024-08-24 23:04:35,841 DEBUG - m8_2_2 - m8_2_2.py:75  __main__.main() - this is a DEBUG level message
+2024-08-24 23:04:35,841 INFO - m8_2_2 - m8_2_2.py:76  __main__.main() - this is an INFO level message
+2024-08-24 23:04:35,842 WARNING - m8_2_2 - m8_2_2.py:77  __main__.main() - this is a WARNING level message
+2024-08-24 23:04:35,842 ERROR - m8_2_2 - m8_2_2.py:78  __main__.main() - this is a ERROR level message
+2024-08-24 23:04:35,842 CRITICAL - m8_2_2 - m8_2_2.py:79  __main__.main() - this is a CRITICAL level message
+2024-08-24 23:04:35,842 INFO - m8_2_2 - m8_2_2.py:66  __main__.logging_context() - shutting down the logging facility...

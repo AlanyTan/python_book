@@ -14,15 +14,16 @@ logger.setLevel(logging.DEBUG)
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.INFO)
-c_format = logging.Formatter("#%(levelname)s - "
-                             "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+c_format = logging.Formatter("#%(levelname)9s - %(filename)s:%(lineno)d"
+                             " %(name)s.%(funcName)s() - %(message)s")
 console_handler.setFormatter(c_format)
 logger.addHandler(console_handler)
 
 file_handler = logging.handlers.RotatingFileHandler(
     log_file, maxBytes=1048576, backupCount=9, encoding='utf-8')
-f_format = logging.Formatter("%(asctime)s %(levelname)s - %(name)s "
-                             "%(module)s.%(funcName)s:%(lineno)d - %(message)s")
+f_format = logging.Formatter("%(asctime)s %(levelname)s - %(module)s - "
+                             "%(filename)s:%(lineno)d  %(name)s.%(funcName)s()"
+                             " - %(message)s")
 file_handler.setFormatter(f_format)
 logger.addHandler(file_handler)
 
@@ -42,9 +43,9 @@ if __name__ == '__main__':
     logger.info("returned from  main()")
     logging.shutdown()
 
-#INFO - __main__(m7_4_4_II.py:40) - log set to /workspaces/python-book/m7_4_4_II.log, calling main()
-#INFO - __main__(m7_4_4_II.py:33) - this is an INFO level message
-#WARNING - __main__(m7_4_4_II.py:34) - this is a WARNING level message
-#ERROR - __main__(m7_4_4_II.py:35) - this is a ERROR level message
-#CRITICAL - __main__(m7_4_4_II.py:36) - this is a CRITICAL level message
-#INFO - __main__(m7_4_4_II.py:42) - returned from  main()
+#     INFO - m7_4_4_II.py:41 __main__.<module>() - log set to /workspaces/python-book/m7_4_4_II.log, calling main()
+#     INFO - m7_4_4_II.py:34 __main__.main() - this is an INFO level message
+#  WARNING - m7_4_4_II.py:35 __main__.main() - this is a WARNING level message
+#    ERROR - m7_4_4_II.py:36 __main__.main() - this is a ERROR level message
+# CRITICAL - m7_4_4_II.py:37 __main__.main() - this is a CRITICAL level message
+#     INFO - m7_4_4_II.py:43 __main__.<module>() - returned from  main()

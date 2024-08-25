@@ -1,0 +1,1 @@
+First Sixteen Characters of a text file.

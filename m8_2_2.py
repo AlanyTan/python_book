@@ -3,18 +3,17 @@
 import logging
 import logging.handlers
 from contextlib import contextmanager
-from typing import Iterator
+from typing import Generator
 
 
-@contextmanager
-def logging_context(name: str, stream: str = 'INFO', file: str = '', *,
-                    level: str = 'DEBUG') -> Iterator[logging.Logger]:
-    """using contextmanager to setup/shutdown logging
+def get_logger(name: str, stream: str | bool = 'INFO', file: str | bool = '',
+               *, level: str = 'DEBUG') -> logging.Logger:
+    """configure a logger with multiple handlers
 
     Args:
         name: the name of the logger that will be shown in the logs
-        stream: if Truthy set stream log level to it, default is INFO
-        file: if Truthy set rotating file log level to it, default is ''
+        stream: set stream log level, default is 'INFO'
+        file: set rotating file log level, default is OFF
         level: the logger's own level, default is 'DEBUG'
 
     Yields:
@@ -33,8 +32,8 @@ def logging_context(name: str, stream: str = 'INFO', file: str = '', *,
     if stream in LOG_LEVEL:
         console_handler = logging.StreamHandler()
         console_handler.setLevel(LOG_LEVEL[stream])
-        c_format = logging.Formatter("#%(levelname)s - %(name)s(%(filename)s:"
-                                     "%(lineno)d) - %(message)s")
+        c_format = logging.Formatter("#%(levelname)9s - %(filename)s:%(lineno)d"
+                                     " %(name)s.%(funcName)s() - %(message)s")
         console_handler.setFormatter(c_format)
         logger_.addHandler(console_handler)
 
@@ -43,15 +42,31 @@ def logging_context(name: str, stream: str = 'INFO', file: str = '', *,
         file_handler = logging.handlers.RotatingFileHandler(
             log_file, maxBytes=1048576, backupCount=9, encoding='utf-8')
         file_handler.setLevel(LOG_LEVEL[file])
-        f_format = logging.Formatter("%(asctime)s %(levelname)s - %(name)s "
-                                     "%(module)s.%(funcName)s:%(lineno)d - "
-                                     "%(message)s")
+        f_format = logging.Formatter("%(asctime)s %(levelname)s - %(module)s "
+                                     "- %(filename)s:%(lineno)d  "
+                                     "%(name)s.%(funcName)s() - %(message)s")
         file_handler.setFormatter(f_format)
         logger_.addHandler(file_handler)
 
+    if not [isinstance(v, logging.Handler)
+            for k, v in locals().items() if 'handler' in k]:
+        logger_.addHandler(logging.NullHandler())
+
+    return logger_
+
+
+@contextmanager
+def logging_context(*args, **kwargs) -> Generator[logging.Logger, None, None]:
+    """use contextmanager to setup/shutdown logging"""
     try:
+        logger_ = get_logger(*args, **kwargs)
         yield logger_
     finally:
+        try:
+            logger_.info("shutting down the logging facility...")
+        except Exception as e:
+            print(f"Can't log final message to logger, {e=}"
+                  "shutting down the logging facility...")
         logging.shutdown()
 
 
@@ -65,10 +80,11 @@ def main():
 
 
 if __name__ == "__main__":
-    with logging_context(__name__, file='DEBUG') as logger:
+    with logging_context(__name__) as logger:
         main()
 
-#INFO - __main__(m8_2_2.py:38) - this is an INFO level message
-#WARNING - __main__(m8_2_2.py:39) - this is a WARNING level message
-#ERROR - __main__(m8_2_2.py:40) - this is a ERROR level message
-#CRITICAL - __main__(m8_2_2.py:41) - this is a CRITICAL level message
+#     INFO - m8_2_2.py:73 __main__.main() - this is an INFO level message
+#  WARNING - m8_2_2.py:74 __main__.main() - this is a WARNING level message
+#    ERROR - m8_2_2.py:75 __main__.main() - this is a ERROR level message
+# CRITICAL - m8_2_2.py:76 __main__.main() - this is a CRITICAL level message
+#     INFO - m8_2_2.py:63 __main__.logging_context() - shutting down the logging facility...

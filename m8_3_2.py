@@ -118,18 +118,19 @@ if __name__ == "__main__":
 
 # Enter age, 'exit' to quit:50
 #main(): sequence nubmer is: R000
-# Enter age, 'exit' to quit:60
-#main(): sequence nubmer is: R001
 # Enter age, 'exit' to quit:70
 #main(): sequence nubmer is: S00
-# Enter age, 'exit' to quit:80
-#main(): sequence nubmer is: S01
-# Enter age, 'exit' to quit:ErrR
-#WARNING - __main__(m8_3_2.py:59) - Generator received RuntimeError <RuntimeError('lost previous#')> from caller.
+# Enter age, 'exit' to quit:60
 #main(): sequence nubmer is: R001
-# Enter age, 'exit' to quit:30
-#main(): sequence nubmer is: R002
+# Enter age, 'exit' to quit:ErrR
+#  WARNING - m8_3_2.py:59 __main__.counter() - Generator received RuntimeError <RuntimeError('lost previous#')> from caller.
+#main(): sequence nubmer is: R001
 # Enter age, 'exit' to quit:ErrS
-#WARNING - __main__(m8_3_2.py:59) - Generator received RuntimeError <RuntimeError('lost previous#')> from caller.
+#  WARNING - m8_3_2.py:59 __main__.counter() - Generator received RuntimeError <RuntimeError('lost previous#')> from caller.
+#main(): sequence nubmer is: S00
+# Enter age, 'exit' to quit:20
+#main(): sequence nubmer is: R002
+# Enter age, 'exit' to quit:90
 #main(): sequence nubmer is: S01
 # Enter age, 'exit' to quit:exit
+#     INFO - m8_2_2.py:66 __main__.logging_context() - shutting down the logging facility...

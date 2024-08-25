@@ -5,3 +5,17 @@
 2024-08-22 05:50:58,572 ERROR - __main__ m7_4_4_II.main:35 - this is a ERROR level message
 2024-08-22 05:50:58,572 CRITICAL - __main__ m7_4_4_II.main:36 - this is a CRITICAL level message
 2024-08-22 05:50:58,572 INFO - __main__ m7_4_4_II.<module>:42 - returned from  main()
+2024-08-24 18:02:57,222 INFO - m7_4_4_II -             m7_4_4_II.py:40  __main__.<module>() - log set to /workspaces/python-book/m7_4_4_II.log, calling main()
+2024-08-24 18:02:57,222 DEBUG - m7_4_4_II -             m7_4_4_II.py:32  __main__.main() - this is a DEBUG level message
+2024-08-24 18:02:57,223 INFO - m7_4_4_II -             m7_4_4_II.py:33  __main__.main() - this is an INFO level message
+2024-08-24 18:02:57,223 WARNING - m7_4_4_II -             m7_4_4_II.py:34  __main__.main() - this is a WARNING level message
+2024-08-24 18:02:57,223 ERROR - m7_4_4_II -             m7_4_4_II.py:35  __main__.main() - this is a ERROR level message
+2024-08-24 18:02:57,223 CRITICAL - m7_4_4_II -             m7_4_4_II.py:36  __main__.main() - this is a CRITICAL level message
+2024-08-24 18:02:57,223 INFO - m7_4_4_II -             m7_4_4_II.py:42  __main__.<module>() - returned from  main()
+2024-08-24 18:25:39,093 INFO - m7_4_4_II - m7_4_4_II.py:41  __main__.<module>() - log set to /workspaces/python-book/m7_4_4_II.log, calling main()
+2024-08-24 18:25:39,094 DEBUG - m7_4_4_II - m7_4_4_II.py:33  __main__.main() - this is a DEBUG level message
+2024-08-24 18:25:39,094 INFO - m7_4_4_II - m7_4_4_II.py:34  __main__.main() - this is an INFO level message
+2024-08-24 18:25:39,095 WARNING - m7_4_4_II - m7_4_4_II.py:35  __main__.main() - this is a WARNING level message
+2024-08-24 18:25:39,095 ERROR - m7_4_4_II - m7_4_4_II.py:36  __main__.main() - this is a ERROR level message
+2024-08-24 18:25:39,095 CRITICAL - m7_4_4_II - m7_4_4_II.py:37  __main__.main() - this is a CRITICAL level message
+2024-08-24 18:25:39,095 INFO - m7_4_4_II - m7_4_4_II.py:43  __main__.<module>() - returned from  main()

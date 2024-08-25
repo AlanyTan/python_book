@@ -5,8 +5,8 @@ Usage:
 """
 
 import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)9s\
+ - %(filename)s:%(lineno)d  %(name)s.%(funcName)s() - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -48,13 +48,13 @@ def main() -> None:
 if __name__ == "__main__":
     main()
 
-#DEBUG - __main__(m8_1_1.py:26) - trying to divide '4' / '4'...
-#INFO - __main__(m8_1_1.py:31) -   calculated 4.0/4.0 = 1.0
+#    DEBUG - m8_1_1.py:26 __main__.safe_divide() - trying to divide '4' / '4'...
+#     INFO - m8_1_1.py:31 __main__.safe_divide() -   calculated 4.0/4.0 = 1.0
 # safe_divide(a, a)=1.0
-#DEBUG - __main__(m8_1_1.py:26) - trying to divide '4' / 0...
-#ERROR - __main__(m8_1_1.py:33) - #Error cannot divide 4 / 0!
+#    DEBUG - m8_1_1.py:26 __main__.safe_divide() - trying to divide '4' / 0...
+#    ERROR - m8_1_1.py:33 __main__.safe_divide() - #Error cannot divide 4 / 0!
 # safe_divide(a, b)=None
-#DEBUG - __main__(m8_1_1.py:26) - trying to divide 'a' / '4'...
-#ERROR - __main__(m8_1_1.py:33) - #Error cannot divide a / 4!
+#    DEBUG - m8_1_1.py:26 __main__.safe_divide() - trying to divide 'a' / '4'...
+#    ERROR - m8_1_1.py:33 __main__.safe_divide() - #Error cannot divide a / 4!
 # safe_divide('a', a)=None
 # program continues..

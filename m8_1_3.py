@@ -5,8 +5,8 @@ Usage:
 """
 
 import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)9s\
+ - %(filename)s:%(lineno)d  %(name)s.%(funcName)s() - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -64,20 +64,20 @@ if __name__ == "__main__":
     denominators_to_try = [0, '8.1.3', 2, '1', 5]
     main(denominators_to_try)
 
-#DEBUG - __main__(m8_1_3.py:28) - trying to divide 4 / 0...
-#ERROR - __main__(m8_1_3.py:34) -   Cannot divide by 0: ('float division by zero',), line 32
+#    DEBUG - m8_1_3.py:28  __main__.safe_divide() - trying to divide 4 / 0...
+#    ERROR - m8_1_3.py:34  __main__.safe_divide() -   Cannot divide by 0: ('float division by zero',), line 32
 # safe_divide(a, b)=None
-#DEBUG - __main__(m8_1_3.py:28) - trying to divide 4 / '8.1.3'...
-#ERROR - __main__(m8_1_3.py:37) -   Incompatible value: ("could not convert string to float: '8.1.2'",), line 31
+#    DEBUG - m8_1_3.py:28  __main__.safe_divide() - trying to divide 4 / '8.1.3'...
+#    ERROR - m8_1_3.py:37  __main__.safe_divide() -   Incompatible value: ("could not convert string to float: '8.1.3'",), line 31
 # safe_divide(a, b)=None
-#DEBUG - __main__(m8_1_3.py:28) - trying to divide 4 / 2...
-#INFO - __main__(m8_1_3.py:43) -   calculated 4.0/2.0 = 2.0
-#INFO - __main__(m8_1_3.py:45) -    divisible, converting 2.0 to int
+#    DEBUG - m8_1_3.py:28  __main__.safe_divide() - trying to divide 4 / 2...
+#     INFO - m8_1_3.py:43  __main__.safe_divide() -   calculated 4.0/2.0 = 2.0
+#     INFO - m8_1_3.py:45  __main__.safe_divide() -    divisible, converting 2.0 to int
 # safe_divide(a, b)=2
-#DEBUG - __main__(m8_1_3.py:28) - trying to divide 4 / '1'...
-#INFO - __main__(m8_1_3.py:43) -   calculated 4.0/1.0 = 4.0
-#INFO - __main__(m8_1_3.py:45) -    divisible, converting 4.0 to int
+#    DEBUG - m8_1_3.py:28  __main__.safe_divide() - trying to divide 4 / '1'...
+#     INFO - m8_1_3.py:43  __main__.safe_divide() -   calculated 4.0/1.0 = 4.0
+#     INFO - m8_1_3.py:45  __main__.safe_divide() -    divisible, converting 4.0 to int
 # safe_divide(a, b)=4
-#DEBUG - __main__(m8_1_3.py:28) - trying to divide 4 / 5...
-#INFO - __main__(m8_1_3.py:43) -   calculated 4.0/5.0 = 0.8
+#    DEBUG - m8_1_3.py:28  __main__.safe_divide() - trying to divide 4 / 5...
+#     INFO - m8_1_3.py:43  __main__.safe_divide() -   calculated 4.0/5.0 = 0.8
 # safe_divide(a, b)=0.8

@@ -5,17 +5,17 @@ Usage:
 """
 
 from os.path import basename
-import m7_4_1_II
-from m8_2_2 import logging_context as log_to
 import traceback
+from m8_2_2 import logging_context as log_to
 
 
 def safe_read_file(fname: str, size: int) -> str | None:
     """open the given filename, read it's first line, and return it. 
 
-    It tries to open the given filename, and read the first line, 
-    if fname is not found, it tries to treat fname as extention name
-    and look for a file with same prefix as current program file. 
+    It tries to open the given filename, and read the first size of characters, 
+    if fname is not found, it tries to treat fname as extention name and try
+    to add current program filename trunk as prefix; if size is not numerical
+    it tries to read the first line instead.
 
     Args:
         fname: string representing the file name to open.
@@ -49,18 +49,18 @@ def safe_read_file(fname: str, size: int) -> str | None:
         logger.error(" in exept block, the file %s was not found, line %s",
                      basename(fname), e.__traceback__.tb_lineno)
     except Exception as e:
-        tb_info = []
+        tb_list = []
         current_exception = e
         while current_exception and current_exception.__traceback__:
-            tb_info.extend(
-                traceback.extract_tb(current_exception.__traceback__))
+            tb_info = traceback.extract_tb(current_exception.__traceback__)
+            tb_list.extend([f"{current_exception!r} in {funcn}() @{fn}:{ln}"
+                            for fn, ln, funcn, _ in tb_info])
             current_exception = current_exception.__cause__ or \
                 current_exception.__context__
-        stack_count = len(tb_info)
-        logger.error("unexpected error (%s %s)" + (" @ %s" * stack_count),
-                     e, e.__notes__ if hasattr(e, "__notes__") else '',
-                     *[f"{funcname}() at {filen}:{ln}"
-                       for (filen, ln, funcname, _) in tb_info])
+        tb_list[0:0] = [] if tb_list else [f"{e!r}"]
+        stack_count = len(tb_list)
+        logger.error("unexpected error %s: %s" + (" <= %s" * (stack_count - 1)),
+                     e.__notes__ if hasattr(e, "__notes__") else '', *tb_list)
     else:
         logger.debug(" in else block opened file successfully.")
         try:
@@ -99,37 +99,38 @@ def main(fname: str) -> None:
         list_of_numbers_to_try: a list containing numbers to be used
         as denominator when trying to call save_divide.
     """
-    print(f"# normal read:{safe_read_file("csv", 16)=}")
+    print(f"# normal read:{safe_read_file("txt", 16)=}")
     print(f"# Raise warning duplicate with myself:{safe_read_file("py", 16)}")
     print(f"# Raise error read a dir:{safe_read_file("m6_3_package", 16)}")
     print(f"# Raise arbitary Error:{safe_read_file("raise.err", 16)}")
 
 
 if __name__ == "__main__":
-    with open(__file__[:-3] + ".csv", "w", newline='', encoding='utf-8'
-              ) as csv_file_obj:
-        m7_4_1_II.write_csv(csv_file_obj, m7_4_1_II.SAMPLE_DATA)
-    with log_to(__name__, stream='') as logger:
+    with log_to(__name__, stream='DEBUG') as logger:
+        with open(__file__[:-3] + ".txt", "w", newline='', encoding='utf-8'
+                  ) as file_obj:
+            print("First Sixteen Characters of a text file.", file=file_obj)
         main(__file__)
 
-#DEBUG - m7_4_1_II(m7_4_1_II.py:34) - write_csv() called with: m8_3_1.csv(w), [['ID', 'Name', 'Age', 'Grade', 'Pass/Fail'], [1, 'Zhang, Alice', 18, 80.5, True], [2, 'Yusuf, Bob', 19, 70, True], [3, 'Xanders, Carole', 17, 55, False], [4, 'West, David', 18, 85.5, True]]
-#DEBUG - __main__(m8_3_1.py:27) - trying to work with file ...csv
-#WARNING - __main__(m8_3_1.py:35) -  in inner except, file not found line 33, trying adding current filename as prefix.
-#DEBUG - __main__(m8_3_1.py:65) -  in else block opened file successfully.
-#INFO - __main__(m8_3_1.py:80) - successfully read 16 chars from csv
-#DEBUG - __main__(m8_3_1.py:87) -  in finally block: File closed.
-# normal read:safe_read_file("csv", 16)='"ID","Name","Age'
-#DEBUG - __main__(m8_3_1.py:27) - trying to work with file ...py
-#WARNING - __main__(m8_3_1.py:35) -  in inner except, file not found line 33, trying adding current filename as prefix.
-#ERROR - __main__(m8_3_1.py:60) - unexpected error (Retrying file is the same as myself, skiping ) @ safe_read_file() at m8_3_1.py:40 @ safe_read_file() at m8_3_1.py:33
-#WARNING - __main__(m8_3_1.py:89) -  closing py run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
+
+#    DEBUG - m8_3_1.py:27 __main__.safe_read_file() - trying to work with file ...txt
+#  WARNING - m8_3_1.py:35 __main__.safe_read_file() -  in inner except, file not found line 33, trying adding current filename as prefix.
+#    DEBUG - m8_3_1.py:65 __main__.safe_read_file() -  in else block opened file successfully.
+#     INFO - m8_3_1.py:80 __main__.safe_read_file() - successfully read 16 chars from txt
+#    DEBUG - m8_3_1.py:87 __main__.safe_read_file() -  in finally block: File closed.
+# normal read:safe_read_file("txt", 16)='First Sixteen Ch'
+#    DEBUG - m8_3_1.py:27 __main__.safe_read_file() - trying to work with file ...py
+#  WARNING - m8_3_1.py:35 __main__.safe_read_file() -  in inner except, file not found line 33, trying adding current filename as prefix.
+#    ERROR - m8_3_1.py:62 __main__.safe_read_file() - unexpected error : UserWarning('Retrying file is the same as myself, skiping') in safe_read_file() @/m8_3_1.py:40 <= FileNotFoundError(2, 'No such file or directory') in safe_read_file() @/m8_3_1.py:33
+#  WARNING - m8_3_1.py:89 __main__.safe_read_file() -  closing py run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
 # Raise warning duplicate with myself:None
-#DEBUG - __main__(m8_3_1.py:27) - trying to work with file ...m6_3_package
-#WARNING - __main__(m8_3_1.py:45) - opening file run into unknown exception IsADirectoryError(21, 'Is a directory')
-#ERROR - __main__(m8_3_1.py:60) - unexpected error ([Errno 21] Is a directory: 'm6_3_package' ['ADDED NOTE: Unexpected like opening a dir.']) @ safe_read_file() at /workspaces/python-book/m8_3_1.py:33
-#WARNING - __main__(m8_3_1.py:89) -  closing m6_3_package run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
+#    DEBUG - m8_3_1.py:27 __main__.safe_read_file() - trying to work with file ...m6_3_package
+#  WARNING - m8_3_1.py:45 __main__.safe_read_file() - opening file run into unknown exception IsADirectoryError(21, 'Is a directory')
+#    ERROR - m8_3_1.py:62 __main__.safe_read_file() - unexpected error ['ADDED NOTE: Unexpected like opening a dir.']: IsADirectoryError(21, 'Is a directory') in safe_read_file() @/m8_3_1.py:33
+#  WARNING - m8_3_1.py:89 __main__.safe_read_file() -  closing m6_3_package run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
 # Raise error read a dir:None
-#DEBUG - __main__(m8_3_1.py:27) - trying to work with file ...raise.err
-#ERROR - __main__(m8_3_1.py:60) - unexpected error (It's not allowed to read raise.err ) @ safe_read_file() at /workspaces/python-book/m8_3_1.py:30
-#WARNING - __main__(m8_3_1.py:89) -  closing raise.err run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
+#    DEBUG - m8_3_1.py:27 __main__.safe_read_file() - trying to work with file ...raise.err
+#    ERROR - m8_3_1.py:62 __main__.safe_read_file() - unexpected error : PermissionError("It's not allowed to read raise.err") in safe_read_file() @/m8_3_1.py:30
+#  WARNING - m8_3_1.py:89 __main__.safe_read_file() -  closing raise.err run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
 # Raise arbitary Error:None
+#     INFO - m8_2_2.py:66 __main__.logging_context() - shutting down the logging facility...

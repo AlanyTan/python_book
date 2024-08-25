@@ -2,8 +2,8 @@
 
 from os.path import basename
 import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)9s\
+ - %(filename)s:%(lineno)d  %(name)s.%(funcName)s() - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -89,26 +89,26 @@ if __name__ == "__main__":
         logger.info("shutting down logging.")
         logging.shutdown()
 
-#DEBUG - __main__(m8_1_5.py:25) - trying to work with file ...m8_1_5.py
-#DEBUG - __main__(m8_1_5.py:41) -  in else block opened file successfully.
-#INFO - __main__(m8_1_5.py:56) - successfully read 16 chars from m8_1_5.py
-#DEBUG - __main__(m8_1_5.py:63) -  in finally block: File closed.
-# first 16 chars of  file:"""Demo nested t
-#DEBUG - __main__(m8_1_5.py:25) - trying to work with file ...py
-#WARNING - __main__(m8_1_5.py:30) -  in inner except, file not found line 28, trying adding current filename as prefix.
-#DEBUG - __main__(m8_1_5.py:41) -  in else block opened file successfully.
-#INFO - __main__(m8_1_5.py:56) - successfully read 16 chars from py
-#DEBUG - __main__(m8_1_5.py:63) -  in finally block: File closed.
-# first 16 chars of  file:"""Demo nested t
-#DEBUG - __main__(m8_1_5.py:25) - trying to work with file ...m8_1_5.py
-#DEBUG - __main__(m8_1_5.py:41) -  in else block opened file successfully.
-#WARNING - __main__(m8_1_5.py:45) - reading 'sixteen' chars from m8_1_5.py failed with TypeError("argument should be integer or None, not 'str'"), line 43, reading the first line instead
-#INFO - __main__(m8_1_5.py:49) - read first line from the file instead (38 chars)
-#DEBUG - __main__(m8_1_5.py:63) -  in finally block: File closed.
+#    DEBUG - m8_1_5.py:25  __main__.safe_read_file() - trying to work with file ...m8_1_5.py
+#    DEBUG - m8_1_5.py:41  __main__.safe_read_file() -  in else block opened file successfully.
+#     INFO - m8_1_5.py:56  __main__.safe_read_file() - successfully read 16 chars from m8_1_5.py
+#    DEBUG - m8_1_5.py:63  __main__.safe_read_file() -  in finally block: File closed.
+# first 16 chars of file:"""Demo nested t
+#    DEBUG - m8_1_5.py:25  __main__.safe_read_file() - trying to work with file ...py
+#  WARNING - m8_1_5.py:30  __main__.safe_read_file() -  in inner except, file not found line 28, trying adding current filename as prefix.
+#    DEBUG - m8_1_5.py:41  __main__.safe_read_file() -  in else block opened file successfully.
+#     INFO - m8_1_5.py:56  __main__.safe_read_file() - successfully read 16 chars from py
+#    DEBUG - m8_1_5.py:63  __main__.safe_read_file() -  in finally block: File closed.
+# first 16 chars of file fallback:"""Demo nested t
+#    DEBUG - m8_1_5.py:25  __main__.safe_read_file() - trying to work with file ...m8_1_5.py
+#    DEBUG - m8_1_5.py:41  __main__.safe_read_file() -  in else block opened file successfully.
+#  WARNING - m8_1_5.py:45  __main__.safe_read_file() - reading 'sixteen' chars from m8_1_5.py failed with TypeError("argument should be integer or None, not 'str'"), line 43, reading the first line instead
+#     INFO - m8_1_5.py:49  __main__.safe_read_file() - read first line from the file instead (38 chars)
+#    DEBUG - m8_1_5.py:63  __main__.safe_read_file() -  in finally block: File closed.
 # wrong type of size in file:"""Demo nested try-except structure"""
-#DEBUG - __main__(m8_1_5.py:25) - trying to work with file ...donot.exist
-#WARNING - __main__(m8_1_5.py:30) -  in inner except, file not found line 28, trying adding current filename as prefix.
-#ERROR - __main__(m8_1_5.py:35) -  in exept block, the file donot.exist was not found, line 33
-#WARNING - __main__(m8_1_5.py:65) -  closing donot.exist run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
+#    DEBUG - m8_1_5.py:25  __main__.safe_read_file() - trying to work with file ...donot.exist
+#  WARNING - m8_1_5.py:30  __main__.safe_read_file() -  in inner except, file not found line 28, trying adding current filename as prefix.
+#    ERROR - m8_1_5.py:35  __main__.safe_read_file() -  in exept block, the file donot.exist was not found, line 33
+#  WARNING - m8_1_5.py:65  __main__.safe_read_file() -  closing donot.exist run into exception: UnboundLocalError("cannot access local variable 'file' where it is not associated with a value"), maybe it was never opened?
 # non-exist file:None
-#INFO - __main__(m8_1_5.py:89) - shutting down logging.
+#     INFO - m8_1_5.py:89  __main__.<module>() - shutting down logging.

@@ -2,8 +2,8 @@
 
 from os.path import basename
 import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)9s\
+ - %(filename)s:%(lineno)d  %(name)s.%(funcName)s() - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -46,17 +46,17 @@ def main(fnames: list[str]) -> None:
         fname: a list of str representing filenames to open
     """
     for fname in fnames:
-        print(f"#1st line of text in file:{safe_read_file(fname)}")
+        print(f"# 1st line of text in file:{safe_read_file(fname)}")
 
 
 if __name__ == "__main__":
     file_names = [__file__, "example.txt"]
     main(file_names)
 
-#DEBUG - __main__(m8_2_1.py:26) - trying to work with ...m8_2_1.py
-#DEBUG - __main__(m8_2_1.py:28) -  file opened as <class '_io.TextIOWrapper'>
-#DEBUG - __main__(m8_2_1.py:31) - finished with block, file closed: True
-#1st line of text in file:"""Demo with structure inside try-except."""
-#DEBUG - __main__(m8_2_1.py:26) - trying to work with ...example.txt
-#ERROR - __main__(m8_2_1.py:34) - File example.txt was not found, object file exist:False, line 27
-#1st line of text in file:None
+#    DEBUG - m8_2_1.py:26  __main__.safe_read_file() - trying to work with ...m8_2_1.py
+#    DEBUG - m8_2_1.py:28  __main__.safe_read_file() -  file opened as <class '_io.TextIOWrapper'>
+#    DEBUG - m8_2_1.py:31  __main__.safe_read_file() - finished with block, file closed: True
+#1 st line of text in file:"""Demo with structure inside try-except."""
+#    DEBUG - m8_2_1.py:26  __main__.safe_read_file() - trying to work with ...example.txt
+#    ERROR - m8_2_1.py:34  __main__.safe_read_file() - File example.txt was not found, object file exist:False, line 27
+# 1st line of text in file:None

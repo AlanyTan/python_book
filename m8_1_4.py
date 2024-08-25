@@ -2,8 +2,8 @@
 
 from os.path import basename
 import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+logging.basicConfig(level=logging.DEBUG, format="#%(levelname)9s\
+ - %(filename)s:%(lineno)d  %(name)s.%(funcName)s() - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -62,13 +62,13 @@ if __name__ == "__main__":
         logger.info("shutting down logging.")
         logging.shutdown()
 
-#DEBUG - __main__(m8_1_4.py:22) - trying to work with file ...m8_1_4.py
-#INFO - __main__(m8_1_4.py:34) -  in the else block (finished reading file properly)
-#INFO - __main__(m8_1_4.py:39) -  in the finally block: File closed.
+#    DEBUG - m8_1_4.py:22  __main__.safe_read_file() - trying to work with file ...m8_1_4.py
+#     INFO - m8_1_4.py:34  __main__.safe_read_file() -  in the else block (finished reading file properly)
+#     INFO - m8_1_4.py:39  __main__.safe_read_file() -  in the finally block: File closed.
 # 1st line of text in file:"""Demo try-except-else-finally structure"""
-#DEBUG - __main__(m8_1_4.py:22) - trying to work with file ...donot.exist
-#ERROR - __main__(m8_1_4.py:28) -  file donot.exist was not found, line 25
-#INFO - __main__(m8_1_4.py:41) -  in the finally block, File was never opened.
-#ERROR - __main__(m8_1_4.py:43) -   !func safe_read_file ended with errors.
+#    DEBUG - m8_1_4.py:22  __main__.safe_read_file() - trying to work with file ...donot.exist
+#    ERROR - m8_1_4.py:28  __main__.safe_read_file() -  file donot.exist was not found, line 25
+#     INFO - m8_1_4.py:41  __main__.safe_read_file() -  in the finally block, File was never opened.
+#    ERROR - m8_1_4.py:43  __main__.safe_read_file() -   !func safe_read_file ended with errors.
 # 1st line of text in file:None
-#INFO - __main__(m8_1_4.py:62) - shutting down logging.
+#     INFO - m8_1_4.py:62  __main__.<module>() - shutting down logging.
