@@ -5,10 +5,8 @@ Classes:
     Rectangle: opposite sides equal 90 dg angle
 """
 
-import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - %(name)s"
-                    "<%(filename)s:%(lineno)d> %(funcName)s() - %(message)s")
-logger = logging.getLogger(__name__)
+from m8_2_2 import get_logger, logging_context as log_to
+logger = get_logger(__name__, stream='DEBUG')
 
 
 class Parallelogram:
@@ -162,20 +160,21 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream=False):
+        main()
 
-#DEBUG - __main__<m9_2_1_I.py:22> Parallelogram() - defining class
-#DEBUG - __main__<m9_2_1_I.py:138> Rectangle() - defining class based on Parallelogram
-#DEBUG - __main__<m9_2_1_I.py:108> __init__() - Parallelogram constructor called
-#DEBUG - __main__<m9_2_1_I.py:42> long_side() - Parallelogram setter: called with l=4
-#DEBUG - __main__<m9_2_1_I.py:63> short_side() - Parallelogram setter: called with s=3
-#DEBUG - __main__<m9_2_1_I.py:74> acute_angle() - Parallelogram setter: called with aa=30
-#DEBUG - __main__<m9_2_1_I.py:126> height() - - Parallelogram.height() calculated using sin()
+#    DEBUG - m9_2_1_I.py:20 __main__.Parallelogram() - defining class
+#    DEBUG - m9_2_1_I.py:136 __main__.Rectangle() - defining class based on Parallelogram
+#    DEBUG - m9_2_1_I.py:106 __main__.__init__() - Parallelogram constructor called
+#    DEBUG - m9_2_1_I.py:40 __main__.long_side() - Parallelogram setter: called with l=4
+#    DEBUG - m9_2_1_I.py:61 __main__.short_side() - Parallelogram setter: called with s=3
+#    DEBUG - m9_2_1_I.py:72 __main__.acute_angle() - Parallelogram setter: called with aa=30
+#    DEBUG - m9_2_1_I.py:124 __main__.height() - - Parallelogram.height() calculated using sin()
 # para_1.area()=5.999999999999999
-#DEBUG - __main__<m9_2_1_I.py:142> __init__() - Rectangle constructor called
-#DEBUG - __main__<m9_2_1_I.py:108> __init__() - Parallelogram constructor called
-#DEBUG - __main__<m9_2_1_I.py:42> long_side() - Parallelogram setter: called with l=4
-#DEBUG - __main__<m9_2_1_I.py:63> short_side() - Parallelogram setter: called with s=3
-#DEBUG - __main__<m9_2_1_I.py:74> acute_angle() - Parallelogram setter: called with aa=90
-#DEBUG - __main__<m9_2_1_I.py:146> height() - Rectangle.height() return short_side directly
+#    DEBUG - m9_2_1_I.py:140 __main__.__init__() - Rectangle constructor called
+#    DEBUG - m9_2_1_I.py:106 __main__.__init__() - Parallelogram constructor called
+#    DEBUG - m9_2_1_I.py:40 __main__.long_side() - Parallelogram setter: called with l=4
+#    DEBUG - m9_2_1_I.py:61 __main__.short_side() - Parallelogram setter: called with s=3
+#    DEBUG - m9_2_1_I.py:72 __main__.acute_angle() - Parallelogram setter: called with aa=90
+#    DEBUG - m9_2_1_I.py:144 __main__.height() - Rectangle.height() return short_side directly
 # rect_1.area()=12

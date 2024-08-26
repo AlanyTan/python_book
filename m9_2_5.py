@@ -8,34 +8,33 @@ Class:
 """
 
 from abc import ABC, abstractmethod
-import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
-logger = logging.getLogger(__name__)
+from logging import Logger
+from m8_2_2 import get_logger, logging_context as log_to
 
 
 class Shape(ABC):
     """-first base Abstract Base Class of Shapes"""
     @abstractmethod
-    def area(self):
+    def area(self) -> float:
         """abstract method for culculating area of the shape"""
         pass
 
     @abstractmethod
-    def perimeter(self):
+    def perimeter(self) -> float:
         """abstract method for calculating perimeter of the shape"""
         pass
 
 
 class Polygon(Shape):
     """-second abstract class, inherited from Shape, multiple straight sides"""
-    _logger = None
+    _logger: Logger | None = None
 
     @property
-    def logger(self):
+    def logger(self) -> Logger:
         """logger: regular property return a logger named after the class"""
         if self.__class__._logger is None:
-            self.__class__._logger = logging.getLogger(self.__class__.__name__)
+            self.__class__._logger = get_logger(self.__class__.__name__,
+                                                stream="DEBUG")
         return self.__class__._logger
 
     @property
@@ -56,12 +55,50 @@ class Polygon(Shape):
 
     def __repr__(self) -> str:
         """return the string representation of self"""
+        self.logger.debug("representing sides %s as string", self.sides)
         return f"{self.__class__.__name__}{self.sides}"
 
 
-class Quadrilateral(Polygon):
+class Triangle(Polygon):
+    """first concrete class (rudamentary Triangle)"""
     @property
-    def no_of_sides(self):
+    def no_of_sides(self) -> int:
+        """override property set no_of_sides to 3"""
+        return 3
+
+    @property
+    def sides(self) -> tuple[int | float, int | float, int | float]:
+        """provide setter for overriden sides property"""
+        return self._sides
+
+    @sides.setter
+    def sides(self, s: tuple[int | float, int | float, int | float]) -> None:
+        if len(s) == 3:
+            self._sides = s
+        else:
+            self.logger.error("%r does not have %s sides to form a Triangle",
+                              s, self.no_of_sides)
+            raise ValueError(f"{s} does not have 3 sides")
+
+    def area(self) -> float:
+        """override to implement method area"""
+        half_perimeter = self.perimeter() / 2
+        temp_calc = half_perimeter
+        for s in self.sides:
+            temp_calc *= (half_perimeter - s)
+
+        return (temp_calc) ** (1 / 2)
+
+    def __init__(self, a: int | float, b: int | float, c: int | float) -> None:
+        """constructing a Triangle"""
+        self.logger.debug("constructing Triangle with %s, %s, %s", a, b, c)
+        self.sides = (a, b, c)
+
+
+class Quadrilateral(Polygon):
+    """third abstract class, still have abstract methods not implemented"""
+    @property
+    def no_of_sides(self) -> int:
         """override property set no_of_sides to 4"""
         return 4
 
@@ -74,7 +111,8 @@ class Rectangle(Quadrilateral):
         return tuple(self._sides)
 
     @sides.setter
-    def sides(self, s: tuple[int | float]) -> None:
+    def sides(self, s: tuple[int | float, int | float,
+                             int | float, int | float]) -> None:
         if len(s) == 4 and s[0] == s[2] and s[1] == s[3]:
             self._sides = list(s)
         else:
@@ -91,31 +129,35 @@ class Rectangle(Quadrilateral):
 
 
 def main():
-    """showing Shape, Quadrilater are abstract; Rectangle can be instantiated"""
+    """demo Shape, Quadrilater are abstract; Rectangle can be instantiated"""
+    shapes = []
     try:
         shape_1 = Shape()
     except TypeError as e:
-        logger.error(f"{e} at line {e.__traceback__.tb_lineno}")
+        logger.error("%r at line %s", e, e.__traceback__.tb_lineno)
+
+    shapes.append(Triangle(2, 3, 4))
 
     try:
         quad_1 = Quadrilateral()
     except TypeError as e:
-        logger.error(f"{e} at line {e.__traceback__.tb_lineno}")
+        logger.error("%r at line %s", e, e.__traceback__.tb_lineno)
 
-    rect_1 = Rectangle(1, 2)
-    print(f"# {rect_1.sides=}, {rect_1.area()=}")
+    shapes.append(Rectangle(1, 2))
 
-    try:
-        rect_1.sides = (1, 2, 3, 4)
-    except ValueError as e:
-        logger.error(f"{e} at line {e.__traceback__.tb_lineno}")
+    for s in shapes:
+        print(f"# {s=}, {s.perimeter()=}, {s.area()=}")
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream="DEBUG") as logger:
+        main()
 
-# ERROR - __main__(m9_2_5.py:98) - Can't instantiate abstract class Shape without an implementation for abstract methods 'area', 'perimeter' at line 96
-# ERROR - __main__(m9_2_5.py:103) - Can't instantiate abstract class Quadrilateral without an implementation for abstract methods 'area', 'sides' at line 101
-# rect_1.sides=(1, 2, 1, 2), rect_1.area()=2
-# ERROR - Rectangle(m9_2_5.py:81) - given (1, 2, 3, 4) can't form a rectangle.
-# ERROR - __main__(m9_2_5.py:111) - (1, 2, 3, 4) do not meet rectangle sides requirement. at line 109
+#    ERROR - m9_2_5.py:137 main.main() - TypeError("Can't instantiate abstract class Shape without an implementation for abstract methods 'area', 'perimeter'") at line 135
+#    DEBUG - m9_2_5.py:94 Triangle.__init__() - constructing Triangle with 2, 3, 4
+#    ERROR - m9_2_5.py:144 main.main() - TypeError("Can't instantiate abstract class Quadrilateral without an implementation for abstract methods 'area', 'sides'") at line 142
+#    DEBUG - m9_2_5.py:58 Triangle.__repr__() - representing sides (2, 3, 4) as string
+# s=Triangle(2, 3, 4), s.perimeter()=9, s.area()=2.9047375096555625
+#    DEBUG - m9_2_5.py:58 Rectangle.__repr__() - representing sides (1, 2, 1, 2) as string
+# s=Rectangle(1, 2, 1, 2), s.perimeter()=6, s.area()=2
+#     INFO - m8_2_2.py:67 main.logging_context() - shutting down the logging facility...

@@ -4,14 +4,14 @@ Classes:
     Circle: defined by a radius
 """
 
-import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - %(name)s"
-                    "<%(filename)s:%(lineno)d> %(funcName)s() - %(message)s")
-logger = logging.getLogger(__name__)
+from m8_2_2 import get_logger, logging_context as log_to
+logger = get_logger(__name__, stream='DEBUG')
 
 
 class Circle:
     """a better Circle class with attributes and constructor
+
+    defines radius as an object attribute, calc area and circumference from it
 
     Attributes:
         PI (float): Class attribute for the constant PI
@@ -65,16 +65,17 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream=False):
+        main()
 
-#DEBUG - __main__<m9_1_3_I.py:22> Circle() - class attribute PI=3.14159265
-#DEBUG - __main__<m9_1_3_I.py:36> __init__() - creating circle with 1...
+#    DEBUG - m9_1_3_I.py:22 __main__.Circle() - class attribute PI=3.14159265
+#    DEBUG - m9_1_3_I.py:36 __main__.__init__() - creating circle with 1...
 # circle_1.PI=3.14159265, circle_1.radius=1
-#DEBUG - __main__<m9_1_3_I.py:41> circumference() -  calculating Circle circumference...
+#    DEBUG - m9_1_3_I.py:41 __main__.circumference() -  calculating Circle circumference...
 # circle_1.circumference()=6.2831853
-#DEBUG - __main__<m9_1_3_I.py:46> area() -  calculating Circle area...
+#    DEBUG - m9_1_3_I.py:46 __main__.area() -  calculating Circle area...
 # circle_1.area()=3.14159265
-#DEBUG - __main__<m9_1_3_I.py:36> __init__() - creating circle with 2...
+#    DEBUG - m9_1_3_I.py:36 __main__.__init__() - creating circle with 2...
 # Circle.PI=3.14, circle_1.PI=3.14, circle_2.PI=3.14
-#ERROR - __main__<m9_1_3_I.py:31> __init__() -  class Circle init can't create circle with negative radius -1!
-#ERROR - __main__<m9_1_3_I.py:64> main() - ValueError("can't create circle with negative r=-1!a circle's radius has to be >= 0") at line 62
+#    ERROR - m9_1_3_I.py:31 __main__.__init__() -  class Circle init can't create circle with negative radius -1!
+#    ERROR - m9_1_3_I.py:64 __main__.main() - ValueError("can't create circle with negative r=-1!a circle's radius has to be >= 0") at line 62

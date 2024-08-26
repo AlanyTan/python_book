@@ -5,14 +5,14 @@ Classes:
     Polygon:defined by the length of a series of straight sides
 """
 
-import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - %(name)s"
-                    "<%(filename)s:%(lineno)d> %(funcName)s() - %(message)s")
-logger = logging.getLogger(__name__)
+from m8_2_2 import get_logger, logging_context as log_to
+logger = get_logger(__name__, stream='DEBUG')
 
 
 class Circle:
     """improved circle class to introduce properties
+
+    define radius as properties instead of attribute
 
     Attributes:
         PI(float): (Class Attribute) constant PI used by this class
@@ -153,7 +153,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream=False):
+        main()
 
 #DEBUG - __main__<m9_1_3_II.py:21> Circle() - class attribute PI=3.14159265
 #DEBUG - __main__<m9_1_3_II.py:58> Polygon() - class root level

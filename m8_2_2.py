@@ -29,7 +29,8 @@ def get_logger(name: str, stream: str | bool = 'INFO', file: str | bool = '',
     logger_ = logging.getLogger(name)
     logger_.setLevel(LOG_LEVEL[level] if level in LOG_LEVEL else logging.DEBUG)
 
-    if stream in LOG_LEVEL:
+    if stream in LOG_LEVEL and (logging.StreamHandler not in
+                                {h.__class__ for h in logger_.handlers}):
         console_handler = logging.StreamHandler()
         console_handler.setLevel(LOG_LEVEL[stream])
         c_format = logging.Formatter("#%(levelname)9s - %(filename)s:%(lineno)d"
@@ -37,7 +38,8 @@ def get_logger(name: str, stream: str | bool = 'INFO', file: str | bool = '',
         console_handler.setFormatter(c_format)
         logger_.addHandler(console_handler)
 
-    if file in LOG_LEVEL:
+    if file in LOG_LEVEL and (logging.handlers.RotatingFileHandler not in
+                              {h.__class__ for h in logger_.handlers}):
         log_file = f"{__file__[:-3]}.log"
         file_handler = logging.handlers.RotatingFileHandler(
             log_file, maxBytes=1048576, backupCount=9, encoding='utf-8')
@@ -48,8 +50,7 @@ def get_logger(name: str, stream: str | bool = 'INFO', file: str | bool = '',
         file_handler.setFormatter(f_format)
         logger_.addHandler(file_handler)
 
-    if not [isinstance(v, logging.Handler)
-            for k, v in locals().items() if 'handler' in k]:
+    if not logger_.hasHandlers():
         logger_.addHandler(logging.NullHandler())
 
     return logger_

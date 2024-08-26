@@ -3,7 +3,8 @@
 import m9_2_5
 
 
-def main():
+def main() -> None:
+    """print out docstring of two classes"""
     print('"""')
     help(m9_2_5.Polygon)
     help(m9_2_5.Rectangle)
@@ -50,10 +51,12 @@ class Polygon(Shape)
  |
  |  __abstractmethods__ = frozenset({'area', 'no_of_sides', 'sides'})
  |
+ |  __annotations__ = {'_logger': logging.Logger | None}
+ |
  |  ----------------------------------------------------------------------
  |  Methods inherited from Shape:
  |
- |  area(self)
+ |  area(self) -> float
  |      abstract method for culculating area of the shape
  |
  |  ----------------------------------------------------------------------
@@ -64,6 +67,7 @@ class Polygon(Shape)
  |
  |  __weakref__
  |      list of weak references to the object
+
 
 Help on class Rectangle in module m9_2_5:
 
@@ -98,6 +102,8 @@ class Rectangle(Quadrilateral)
  |  Data and other attributes defined here:
  |
  |  __abstractmethods__ = frozenset()
+ |
+ |  __annotations__ = {}
  |
  |  ----------------------------------------------------------------------
  |  Readonly properties inherited from Quadrilateral:

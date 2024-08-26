@@ -5,12 +5,9 @@ Classes:
     Square: all 4 sides same length, all angles 90 degrees
 """
 
-import logging
-logging.basicConfig(level=logging.INFO, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
-logger = logging.getLogger(__name__)
-
-from m9_2_1_I import Parallelogram
+from m8_2_2 import get_logger, logging_context as log_to
+from m9_2_1_I import Parallelogram, logger
+logger.setLevel('INFO')
 
 
 class Rectangle(Parallelogram):
@@ -23,7 +20,7 @@ class Rectangle(Parallelogram):
             l: length of long sides
             s: length of short sides
         """
-        self.logger = logging.getLogger(self.__class__.__name__)
+        self.logger = get_logger(self.__class__.__name__)
         super().__init__(l, s, 90)
 
     def height(self) -> int | float:
@@ -49,8 +46,8 @@ class Rectangle(Parallelogram):
         elif ss == os:
             return Rectangle(ss, sl + ol)
         else:
-            self.logger.error(f"cannot add {self} and {other}, "
-                              "no sides are equal")
+            self.logger.error(
+                "no equal sides, cannot add %s and %s", self, other)
             raise ValueError(f"none of the sides of {self} and {other} are "
                              "equal, can't add.")
 
@@ -69,8 +66,8 @@ class Rectangle(Parallelogram):
         elif ss == os:
             self.long_side = sl + ol
         else:
-            self.logger.error(f"cannot add {self} and {other}, "
-                              "no sides are equal")
+            self.logger.error("%s does not have an equal side as %s, cannot"
+                              "be added to me!", other, self)
             raise ValueError(f"none of the sides of {self} and {other} are "
                              "equal, can't add.")
         return self
@@ -87,7 +84,7 @@ class Square(Rectangle):
         """
         super().__init__(l, l)
 
-    def __str__(self):
+    def __str__(self) -> str:
         """return text desc of Square"""
         return f"Square({self.long_side})"
 
@@ -99,13 +96,14 @@ class Square(Rectangle):
         if ol in [sl, ss, 0] and os == 0:
             return self
         else:
-            self.logger.error(f"adding a non-zero {other} rectangle to {self}"
-                              " will make it a non-square rectangle!")
-            raise TypeError(f"Self-add result won't be a Square: adding {other}"
-                            f" onto {self} resulting in non-square.")
+            self.logger.error("adding a non-zero rectangle %s to %s will make "
+                              "it a non-square rectangle!", other, self)
+            raise TypeError(f"Self-add result won't be a Square: adding "
+                            f"{other} onto {self} resulting in non-square.")
 
 
-def main():
+def main() -> None:
+    """demonstrate + and += overloading"""
     rect_1 = Rectangle(3, 4)
     rect_2 = Rectangle(7, 5)
     sq_1 = Square(3)
@@ -114,7 +112,7 @@ def main():
         print(f"# {sq_1 + rect_1 + rect_2}")
         print(f"# {sq_1 + rect_2 + rect_1}")
     except ValueError as e:
-        logger.error(f"{e} line {e.__traceback__.tb_lineno}")
+        logger.error("%r line %s", e, e.__traceback__.tb_lineno)
 
     try:
         rect_1_alias = rect_1
@@ -123,16 +121,19 @@ def main():
 
         sq_1 += rect_1
     except TypeError as e:
-        logger.error(f"{e} line {e.__traceback__.tb_lineno}")
+        logger.error("%r line %s", e, e.__traceback__.tb_lineno)
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream=False):
+        main()
 
+#    DEBUG - m9_2_1_I.py:20 m9_2_1_I.Parallelogram() - defining class
+#    DEBUG - m9_2_1_I.py:136 m9_2_1_I.Rectangle() - defining class based on Parallelogram
 # Rectangle(7, 3)
 # Rectangle(8, 7)
-# ERROR - Square(m9_2_3_II.py:52) - cannot add Square(3) and Rectangle(7, 5), no sides are equal
-# ERROR - __main__(m9_2_3_II.py:117) - none of the sides of Square(3) and Rectangle(7, 5) are equal, can't add. line 115
+#    ERROR - m9_2_3_II.py:49 Square.__add__() - no equal sides, cannot add Square(3) and Rectangle(7, 5)
+#    ERROR - m9_2_3_II.py:115 m9_2_1_I.main() - ValueError("none of the sides of Square(3) and Rectangle(7, 5) are equal, can't add.") line 112
 # rect_1=Rectangle(7, 3), rect_1_alias is rect_1=True
-# ERROR - Square(m9_2_3_II.py:102) - adding a non-zero Rectangle(7, 3) rectangle to Square(3) will make it a non-square rectangle!
-# ERROR - __main__(m9_2_3_II.py:126) - Self-add result won't be a Square: adding Rectangle(7, 3) onto Square(3) resulting in non-square. line 124
+#    ERROR - m9_2_3_II.py:99 Square.__iadd__() - adding a non-zero rectangle Rectangle(7, 3) to Square(3) will make it a non-square rectangle!
+#    ERROR - m9_2_3_II.py:124 m9_2_1_I.main() - TypeError("Self-add result won't be a Square: adding Rectangle(7, 3) onto Square(3) resulting in non-square.") line 121

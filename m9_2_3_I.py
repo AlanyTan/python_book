@@ -5,23 +5,22 @@ Classes:
     Square: all 4 sides same length, all angles 90 degrees
 """
 
-import logging
-logging.basicConfig(level=logging.INFO, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
-from m9_2_1_I import Parallelogram
+from m8_2_2 import get_logger, logging_context as log_to
+from m9_2_1_I import Parallelogram, logger
+logger.setLevel('INFO')
 
 
 class Rectangle(Parallelogram):
     """Rectangle, ingerited from Parallelogram all angels are 90 degrees."""
 
-    def __init__(self, l: int | float, s: int | float):
+    def __init__(self, l: int | float, s: int | float) -> None:
         """Construct a Rectangle object
 
         Args:
             l: length of long sides
             s: length of short sides
         """
-        self.logger = logging.getLogger(self.__class__.__name__)
+        self.logger = get_logger(self.__class__.__name__)
         super().__init__(l, s, 90)
 
     def height(self) -> int | float:
@@ -30,29 +29,29 @@ class Rectangle(Parallelogram):
 
     def __repr__(self) -> str:
         """return string representation of Rectangle"""
-        self.logger.info(f"__repr__() called.")
+        self.logger.info("repr() is called.")
         return f"Rectangle({self.long_side}, {self.short_side})"
 
 
 class Square(Rectangle):
     """Square, inherited from Rectangle all sides same length"""
 
-    def __init__(self, l: int | float):
+    def __init__(self, l: int | float) -> None:
         """Construct a square object
 
         Args:
             l: length of sides
         """
-        self.logger = logging.getLogger(self.__class__.__name__)
         super().__init__(l, l)
 
     def __str__(self):
         """return text desc of Square"""
-        self.logger.info(f"__str__()called.")
+        self.logger.info("str() is called.")
         return f"Square({self.long_side})"
 
 
-def main():
+def main() -> None:
+    """demonstrate repr and str overloading"""
     rect_1 = Rectangle(3, 4)
     print(f"# {str(rect_1)=}, {repr(rect_1)=}")
 
@@ -61,11 +60,14 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream=False):
+        main()
 
-# INFO - Rectangle(m9_2_3_I.py:33) - __repr__() called.
-# INFO - Rectangle(m9_2_3_I.py:33) - __repr__() called.
+#    DEBUG - m9_2_1_I.py:20 m9_2_1_I.Parallelogram() - defining class
+#    DEBUG - m9_2_1_I.py:136 m9_2_1_I.Rectangle() - defining class based on Parallelogram
+#     INFO - m9_2_3_I.py:32 Rectangle.__repr__() - repr() is called.
+#     INFO - m9_2_3_I.py:32 Rectangle.__repr__() - repr() is called.
 # str(rect_1)='Rectangle(4, 3)', repr(rect_1)='Rectangle(4, 3)'
-# INFO - Square(m9_2_3_I.py:51) - __str__()called.
-# INFO - Square(m9_2_3_I.py:33) - __repr__() called.
+#     INFO - m9_2_3_I.py:49 Square.__str__() - str() is called.
+#     INFO - m9_2_3_I.py:32 Square.__repr__() - repr() is called.
 # Square(5), sq_1=Rectangle(5, 5)

@@ -4,10 +4,8 @@ Classes:
     Circle: defined by a radius
 """
 
-import logging
-logging.basicConfig(level=logging.DEBUG, format="#%(levelname)s - %(name)s"
-                    "<%(filename)s:%(lineno)d> %(funcName)s() - %(message)s")
-logger = logging.getLogger(__name__)
+from m8_2_2 import get_logger, logging_context as log_to
+logger = get_logger(__name__, stream='DEBUG')
 
 
 class Circle:
@@ -36,10 +34,11 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream=False):
+        main()
 
-# DEBUG - __main__(m9_1_2.py:16) - class Circle root level attribute PI=3.14159265
-# DEBUG - __main__(m9_1_2.py:32) - main: defining circle_1
-# DEBUG - __main__(m9_1_2.py:34) - main: calling circle_1.circumference(2)
-# DEBUG - __main__(m9_1_2.py:26) -  class Circle method circumference()
+#    DEBUG - m9_1_2.py:14 __main__.Circle() - class Circle root level attribute PI=3.14159265
+#    DEBUG - m9_1_2.py:30 __main__.main() - main: defining circle_1
+#    DEBUG - m9_1_2.py:32 __main__.main() - main: calling circle_1.circumference(2)
+#    DEBUG - m9_1_2.py:24 __main__.circumference() -  class Circle method circumference()
 # circle_1.circumference(2)=12.5663706

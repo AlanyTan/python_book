@@ -4,18 +4,17 @@ Classes:
     Tiangle:defined by the length of three sides
 """
 
-import logging
-logging.basicConfig(level=logging.INFO, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
-logger = logging.getLogger(__name__)
+from m8_2_2 import get_logger, logging_context as log_to
 
 
 class Triangle:
     """Triangle class to demo properties"""
     _instances = []
 
+    logger = get_logger("Triangle", stream="DEBUG")
+
     @staticmethod
-    def is_valid_sides(*sides: tuple) -> bool:
+    def is_valid_sides(*sides: int | float) -> bool:
         """validate if provided arguments can form a triangle
 
         Args:
@@ -30,26 +29,30 @@ class Triangle:
         try:
             temp_sides = sorted(map(float, sides))
         except Exception as e:
-            logger.warning(f" {sides} contain element(s) that is not numeric")
+            Triangle.logger.warning("%r: %r contain non-numeric element(s) ",
+                                    e, sides)
             return False
 
         if len(sides) != 3:
-            logger.warning(f" {sides} does not have 3 numbers.")
+            Triangle.logger.warning("%r does not have 3 numbers", sides)
             return False
         elif temp_sides[0] + temp_sides[1] < temp_sides[2]:
-            logger.warning(f" {sides} two short sides < than long side")
+            Triangle.logger.warning("%r: two short sides < than long side",
+                                    temp_sides)
             return False
         else:
             return True
 
     @classmethod
-    def count(cls, threshold: float = 0) -> None:
+    def count(cls, threshold: float = 0) -> int:
         """count Triangles bigger (or smaller) than the given threshold
 
         Args:
             threshold: if positive, only count triangles bigger than threshold
                        if negative, only count triangles smaller than abs of it
         """
+        cls.logger.debug("counting %s with area greater than %s",
+                         cls.__name__, threshold)
         sign = (threshold > 0) - (threshold < 0)
         filtered_instance = [
             tri for tri in cls._instances if threshold <= (tri.area() * sign)]
@@ -61,23 +64,22 @@ class Triangle:
         return tuple(self._sides)
 
     @sides.setter
-    def sides(self, s: tuple[int | float]) -> None:
+    def sides(self, s: tuple[int | float, int | float, int | float]) -> None:
         if self.is_valid_sides(*s):
             self._sides = list(map(float, s))
-            self.logger.debug(f".sides setter called with {s=}")
+            self.logger.debug("setting %r", s)
         else:
-            self.logger.error(f"Invalid lenths {s=}, a+b must >= c")
+            self.logger.error("Invalid lenths %r, a+b must >= c", s)
             raise ValueError(f"Invalid lenths {s}! ")
 
-    def __init__(self, *sides: tuple):
+    def __init__(self, *sides: int | float):
         """Initialize a triangle with lengths of three sides
 
         Args:
             s1, s2, s3: three numbers represent length of 3 sides, or
             iterable: with 3 items each can be converted a number
         """
-        self.logger = logging.getLogger(self.__class__.__name__)
-        self.logger.debug(f".__init__() called with {sides=}")
+        self.logger.debug("constructing %r", sides)
         self.sides = sides
         self._instances.append(self)
 
@@ -128,27 +130,35 @@ def main():
             print(f"# {tris[-1]=}")
 
     except ValueError as e:
-        logger.error(f"{e} at line {e.__traceback__.tb_lineno}")
+        logger.error("%r at line %s", e, e.__traceback__.tb_lineno)
 
     print(f"# {Triangle.count()=}")
 
 
 if __name__ == "__main__":
-    main()
+    with log_to(__name__, stream="DEBUG") as logger:
+        main()
 
 # sides=(2, 3, 4), Triangle.is_valid_sides(*sides)=True
 # sides=(3, 4, 5), Triangle.is_valid_sides(*sides)=True
-# WARNING - __main__(m9_2_4.py:40) -  (1, 2, 4) two short sides < than long side
+#  WARNING - m9_2_4.py:40 Triangle.is_valid_sides() - [1.0, 2.0, 4.0]: two short sides < than long side
 # sides=(1, 2, 4), Triangle.is_valid_sides(*sides)=False
-# WARNING - __main__(m9_2_4.py:33) -  ('a', 'b', 'c') contain element(s) that is not numeric
+#  WARNING - m9_2_4.py:32 Triangle.is_valid_sides() - ValueError("could not convert string to float: 'a'"): ('a', 'b', 'c') contain non-numeric element(s)
 # sides=('a', 'b', 'c'), Triangle.is_valid_sides(*sides)=False
-# WARNING - __main__(m9_2_4.py:40) -  (3, 4, '8') two short sides < than long side
+#  WARNING - m9_2_4.py:40 Triangle.is_valid_sides() - [3.0, 4.0, 8.0]: two short sides < than long side
 # sides=(3, 4, '8'), Triangle.is_valid_sides(*sides)=False
-# WARNING - __main__(m9_2_4.py:37) -  (4, 5) does not have 3 numbers.
+#  WARNING - m9_2_4.py:37 Triangle.is_valid_sides() - (4, 5) does not have 3 numbers
 # sides=(4, 5), Triangle.is_valid_sides(*sides)=False
+#    DEBUG - m9_2_4.py:82 Triangle.__init__() - constructing (2, 3, 4)
+#    DEBUG - m9_2_4.py:70 Triangle.sides() - setting (2, 3, 4)
 # tris[-1]=Triangle(2.0, 3.0, 4.0)
+#    DEBUG - m9_2_4.py:82 Triangle.__init__() - constructing (3, 4, 5)
+#    DEBUG - m9_2_4.py:70 Triangle.sides() - setting (3, 4, 5)
 # tris[-1]=Triangle(3.0, 4.0, 5.0)
-# WARNING - __main__(m9_2_4.py:40) -  (1, 2, 4) two short sides < than long side
-# ERROR - Triangle(m9_2_4.py:69) - Invalid lenths s=(1, 2, 4), a+b must >= c
-# ERROR - __main__(m9_2_4.py:131) - Invalid lenths (1, 2, 4)!  at line 127
+#    DEBUG - m9_2_4.py:82 Triangle.__init__() - constructing (1, 2, 4)
+#  WARNING - m9_2_4.py:40 Triangle.is_valid_sides() - [1.0, 2.0, 4.0]: two short sides < than long side
+#    ERROR - m9_2_4.py:72 Triangle.sides() - Invalid lenths (1, 2, 4), a+b must >= c
+#    ERROR - m9_2_4.py:133 __main__.main() - ValueError('Invalid lenths (1, 2, 4)! ') at line 129
+#    DEBUG - m9_2_4.py:54 Triangle.count() - counting Triangle with area greater than 0
 # Triangle.count()=2
+#     INFO - m8_2_2.py:67 __main__.logging_context() - shutting down the logging facility...
