@@ -1,16 +1,20 @@
 """Demo Composite pattern"""
 from abc import ABC, abstractmethod
-import logging
-logging.basicConfig(level=logging.INFO, format="#%(levelname)s - "
-                    "%(name)s(%(filename)s:%(lineno)d) - %(message)s")
+from logging import Logger
+from m8_2_2 import get_logger, logging_context as log_to
 
 
 class Academics(ABC):
     """Academics abstract class, have advance and graduate methods"""
+    _logger: Logger | None = None
+
     @property
     def logger(self):
         """all class inherits Academics will have .logger property"""
-        return logging.getLogger(self.__class__.__name__)
+        if not self.__class__._logger:
+            self.__class__._logger = get_logger(
+                self.__class__.__name__, "DEBUG")
+        return self.__class__._logger
 
     @abstractmethod
     def advance(self):
@@ -24,6 +28,8 @@ class Academics(ABC):
 
 
 class Student(Academics):
+    """the individual class"""
+
     def __init__(self, name: str, grade: int = 1):
         """construct a student with name and entry grade"""
         self.name = name
@@ -32,6 +38,7 @@ class Student(Academics):
 
     def advance(self):
         """advance to next school year, one higher grade level"""
+        self.logger.debug("%r is advancing to next grade", self)
         self.grade += 1
 
     def graduate(self):
@@ -44,18 +51,26 @@ class Student(Academics):
 
 
 class Composite(Academics):
-    """The collection class that will call advance and graduate for all children"""
+    """the collection class of students, also implemented advance & graduate"""
 
-    def __init__(self, *args):
+    def __init__(self, *args) -> None:
         """construct Coposite class to be a container of children"""
         self.children = []
-        self.children.extend(args)
+        if all([isinstance(x, Academics) for x in args]):
+            self.children.extend(args)
+        else:
+            self.logger.error("%r has members that are not Academics", args)
+            raise ValueError(f"{args} contain members are not Academics")
 
-    def add(self, child: Academics):
+    def add(self, child: Academics) -> None:
         """adding childre that are derived from Academics to the list"""
-        self.children.append(child)
+        if isinstance(child, Academics):
+            self.children.append(child)
+        else:
+            self.logger.error("%r is not Academics", child)
+            raise ValueError(f"{child} is not Academics")
 
-    def remove(self, child):
+    def remove(self, child) -> None:
         """remove a student from the list, log warning if not found"""
         try:
             self.children.remove(child)
@@ -63,31 +78,29 @@ class Composite(Academics):
             self.logger.warning(
                 f"cannot remove {child}, it may not exist. {e}")
 
-    def advance(self):
+    def advance(self) -> None:
         """move all childre to next grade level by calling their advance()"""
+        self.logger.debug("%r is advancing to next grade", self)
         for child in self.children:
             child.advance()
 
-    def graduate(self):
+    def graduate(self) -> None:
         """set all children to graduated by calling their graduate()"""
         for child in self.children:
             child.graduate()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """recursively use text to represent self"""
-        results = []
-        for child in self.children:
-            results.append(f"{repr(child)}")
-        return f"{self.__class__.__name__}({','.join(results)})"
+        return f"{self.__class__.__name__}({','.join([repr(c) for c
+                                                      in self.children])})"
 
 
-def main():
+def main() -> None:
+    """demo composite apply group actions"""
     student_1 = Student("Albert Einstein")
     student_2 = Student("Benjamin Franklin")
     student_3 = Student("Charles Darwin")
-    famous_class = Composite()
-    famous_class.add(student_1)
-    famous_class.add(student_2)
+    famous_class = Composite(student_1, student_2)
     famous_class.add(student_3)
 
     school = Composite(famous_class, Composite(
@@ -102,8 +115,17 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with log_to("main", stream=False) as logger:
+        main()
 
 # Composite(Composite(Student('Albert Einstein', 1),Student('Benjamin Franklin', 1),Student('Charles Darwin', 1)),Composite(Student('David Smith', 5),Student('Edward Jones', 5)))
+#    DEBUG - m9_4_4.py:83 Composite.advance() - Composite(Composite(Student('Albert Einstein', 1),Student('Benjamin Franklin', 1),Student('Charles Darwin', 1)),Composite(Student('David Smith', 5),Student('Edward Jones', 5))) is advancing to next grade
+#    DEBUG - m9_4_4.py:83 Composite.advance() - Composite(Student('Albert Einstein', 1),Student('Benjamin Franklin', 1),Student('Charles Darwin', 1)) is advancing to next grade
+#    DEBUG - m9_4_4.py:41 Student.advance() - Student('Albert Einstein', 1) is advancing to next grade
+#    DEBUG - m9_4_4.py:41 Student.advance() - Student('Benjamin Franklin', 1) is advancing to next grade
+#    DEBUG - m9_4_4.py:41 Student.advance() - Student('Charles Darwin', 1) is advancing to next grade
+#    DEBUG - m9_4_4.py:83 Composite.advance() - Composite(Student('David Smith', 5),Student('Edward Jones', 5)) is advancing to next grade
+#    DEBUG - m9_4_4.py:41 Student.advance() - Student('David Smith', 5) is advancing to next grade
+#    DEBUG - m9_4_4.py:41 Student.advance() - Student('Edward Jones', 5) is advancing to next grade
 # Composite(Composite(Student('Albert Einstein', 2),Student('Benjamin Franklin', 2),Student('Charles Darwin', 2)),Composite(Student('David Smith', 6),Student('Edward Jones', 6)))
 # unheard_class.children[0].graduated=True, student_1.graduated=False

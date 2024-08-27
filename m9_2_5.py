@@ -125,6 +125,7 @@ class Rectangle(Quadrilateral):
 
     def __init__(self, l: int | float, s: int | float):
         """regular constructor"""
+        self.logger.debug("constructing Rectangle with %s, %s", l, s)
         self.sides = ((l, s, l, s))
 
 
@@ -153,9 +154,10 @@ if __name__ == "__main__":
     with log_to("main", stream="DEBUG") as logger:
         main()
 
-#    ERROR - m9_2_5.py:137 main.main() - TypeError("Can't instantiate abstract class Shape without an implementation for abstract methods 'area', 'perimeter'") at line 135
+#    ERROR - m9_2_5.py:138 main.main() - TypeError("Can't instantiate abstract class Shape without an implementation for abstract methods 'area', 'perimeter'") at line 136
 #    DEBUG - m9_2_5.py:94 Triangle.__init__() - constructing Triangle with 2, 3, 4
-#    ERROR - m9_2_5.py:144 main.main() - TypeError("Can't instantiate abstract class Quadrilateral without an implementation for abstract methods 'area', 'sides'") at line 142
+#    ERROR - m9_2_5.py:145 main.main() - TypeError("Can't instantiate abstract class Quadrilateral without an implementation for abstract methods 'area', 'sides'") at line 143
+#    DEBUG - m9_2_5.py:128 Rectangle.__init__() - constructing Rectangle with 1, 2
 #    DEBUG - m9_2_5.py:58 Triangle.__repr__() - representing sides (2, 3, 4) as string
 # s=Triangle(2, 3, 4), s.perimeter()=9, s.area()=2.9047375096555625
 #    DEBUG - m9_2_5.py:58 Rectangle.__repr__() - representing sides (1, 2, 1, 2) as string
