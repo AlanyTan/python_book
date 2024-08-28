@@ -90,8 +90,8 @@ class Parallelogram:
             self._acute_angle = 180 - oa
         else:
             logger.error("Parallelogram setter: invalid angle oa=%s", oa)
-            raise ValueError(f"Provided {oa=} is invalid, "
-                             f"obtuse angle should be between 90 and 180 degrees")
+            raise ValueError(f"Provided {oa=} is invalid, obtuse angle "
+                             f" should be between 90 and 180 degrees")
 
     def __init__(self, l: int | float, s: int | float,
                  aa: int | float, oa: int | float | None = None):
@@ -111,8 +111,8 @@ class Parallelogram:
             self.acute_angle = aa if aa <= 90 else 180 - aa
         else:
             logger.debug("Parallelogram: invalue angles %s, %s", aa, oa)
-            raise ValueError(f"Provided {aa=} + {oa=} do not equal 180."
-                             f"Parallelogram require sum of the two angles to be 180.")
+            raise ValueError(f"Provided {aa=}+{oa=} do not equal 180. Parallel"
+                             f"ogram require sum of the two angles to be 180.")
 
     def perimeter(self) -> float:
         """returns the sum of all four sides"""
