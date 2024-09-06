@@ -13,7 +13,6 @@ print("#", type(True))
 print("#", type(None))
 # <class 'NoneType'>
 
-my_string = "Hello, world!"
 print("#", type("Hello, world!"))
 # <class 'str'>
 

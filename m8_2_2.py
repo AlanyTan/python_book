@@ -39,10 +39,11 @@ def get_logger(name: str, stream: str | bool = 'INFO', file: str | bool = '',
         logger_.addHandler(console_handler)
 
     log_file = f"{__file__[:-3]}.log"
-    file_handler = logging.handlers.RotatingFileHandler(
-        log_file, maxBytes=1048576, backupCount=9, encoding='utf-8')
-    if file in LOG_LEVEL and (file_handler.__class__ not in
+    file_handler_class = logging.handlers.RotatingFileHandler
+    if file in LOG_LEVEL and (file_handler_class not in
                               {h.__class__ for h in logger_.handlers}):
+        file_handler = file_handler_class(
+            log_file, maxBytes=1048576, backupCount=9, encoding='utf-8')
         file_handler.setLevel(LOG_LEVEL[file])
         f_format = logging.Formatter("%(asctime)s %(levelname)s - %(module)s "
                                      "- %(filename)s:%(lineno)d  "
@@ -71,7 +72,7 @@ def logging_context(*args, **kwargs) -> Generator[logging.Logger, None, None]:
         logging.shutdown()
 
 
-def main():
+def main() -> None:
     """log info, will appear both on screen and in file"""
     logger.debug("this is a DEBUG level message")
     logger.info("this is an INFO level message")
@@ -81,7 +82,7 @@ def main():
 
 
 if __name__ == "__main__":
-    with logging_context(__name__) as logger:
+    with logging_context(__name__, 'INFO', 'DEBUG') as logger:
         main()
 
 #     INFO - m8_2_2.py:73 __main__.main() - this is an INFO level message

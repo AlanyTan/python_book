@@ -1,40 +1,6 @@
-024-08-24 20:40:40,827 DEBUG - m8_2_2 - m8_2_2.py:66  __main__.main() - this is a DEBUG level message
-2024-08-24 20:40:40,829 INFO - m8_2_2 - m8_2_2.py:67  __main__.main() - this is an INFO level message
-2024-08-24 20:40:40,829 WARNING - m8_2_2 - m8_2_2.py:68  __main__.main() - this is a WARNING level message
-2024-08-24 20:40:40,830 ERROR - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a ERROR level message
-2024-08-24 20:40:40,830 CRITICAL - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a CRITICAL level message
-2024-08-24 20:40:40,830 DEBUG - m8_2_2 - m8_2_2.py:60  __main__.logging_context() - shutting down the logging facility...
-2024-08-24 21:50:23,235 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
-2024-08-24 21:50:23,236 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
-2024-08-24 21:50:23,237 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
-2024-08-24 21:50:23,237 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
-2024-08-24 21:50:23,237 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
-2024-08-24 21:50:23,238 DEBUG - m8_2_2 - m8_2_2.py:61  __main__.logging_context() - shutting down the logging facility...
-2024-08-24 21:50:23,238 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
-2024-08-24 21:50:23,238 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
-2024-08-24 21:50:23,239 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
-2024-08-24 21:50:23,239 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
-2024-08-24 21:50:23,239 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
-2024-08-24 21:50:23,239 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
-2024-08-24 21:50:23,240 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
-2024-08-24 21:50:23,240 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
-2024-08-24 21:50:23,240 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
-2024-08-24 21:50:23,240 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
-2024-08-24 21:50:23,241 DEBUG - m8_2_2 - m8_2_2.py:61  __main__.logging_context() - shutting down the logging facility...
-2024-08-24 21:50:23,241 DEBUG - m8_2_2 - m8_2_2.py:61  __main__.logging_context() - shutting down the logging facility...
-2024-08-24 21:53:28,679 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
-2024-08-24 21:53:28,681 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
-2024-08-24 21:53:28,681 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
-2024-08-24 21:53:28,682 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
-2024-08-24 21:53:28,682 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
-2024-08-24 21:53:51,359 DEBUG - m8_2_2 - m8_2_2.py:67  __main__.main() - this is a DEBUG level message
-2024-08-24 21:53:51,360 INFO - m8_2_2 - m8_2_2.py:68  __main__.main() - this is an INFO level message
-2024-08-24 21:53:51,360 WARNING - m8_2_2 - m8_2_2.py:69  __main__.main() - this is a WARNING level message
-2024-08-24 21:53:51,360 ERROR - m8_2_2 - m8_2_2.py:70  __main__.main() - this is a ERROR level message
-2024-08-24 21:53:51,360 CRITICAL - m8_2_2 - m8_2_2.py:71  __main__.main() - this is a CRITICAL level message
-2024-08-24 23:04:35,841 DEBUG - m8_2_2 - m8_2_2.py:75  __main__.main() - this is a DEBUG level message
-2024-08-24 23:04:35,841 INFO - m8_2_2 - m8_2_2.py:76  __main__.main() - this is an INFO level message
-2024-08-24 23:04:35,842 WARNING - m8_2_2 - m8_2_2.py:77  __main__.main() - this is a WARNING level message
-2024-08-24 23:04:35,842 ERROR - m8_2_2 - m8_2_2.py:78  __main__.main() - this is a ERROR level message
-2024-08-24 23:04:35,842 CRITICAL - m8_2_2 - m8_2_2.py:79  __main__.main() - this is a CRITICAL level message
-2024-08-24 23:04:35,842 INFO - m8_2_2 - m8_2_2.py:66  __main__.logging_context() - shutting down the logging facility...
+2024-09-06 07:30:19,133 DEBUG - m8_2_2 - m8_2_2.py:77  __main__.main() - this is a DEBUG level message
+2024-09-06 07:30:19,134 INFO - m8_2_2 - m8_2_2.py:78  __main__.main() - this is an INFO level message
+2024-09-06 07:30:19,135 WARNING - m8_2_2 - m8_2_2.py:79  __main__.main() - this is a WARNING level message
+2024-09-06 07:30:19,135 ERROR - m8_2_2 - m8_2_2.py:80  __main__.main() - this is a ERROR level message
+2024-09-06 07:30:19,135 CRITICAL - m8_2_2 - m8_2_2.py:81  __main__.main() - this is a CRITICAL level message
+2024-09-06 07:30:19,135 INFO - m8_2_2 - m8_2_2.py:68  __main__.logging_context() - shutting down the logging facility...
