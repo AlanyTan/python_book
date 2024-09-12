@@ -7,18 +7,18 @@ groups = {
     'D': ['Mongolia', 'Nigeria', 'Oman', 'Poland']
 }
 time_field_availability = {
-    'day_1_am': ['east', 'north', 'south'],
-    'day_1_pm': ['east', 'west', 'north',],
+    'day_1_am': ['west', 'north', 'south'],
+    'day_1_pm': ['east', 'north', 'south'],
     'day_2_am': ['east', 'west', 'south'],
-    'day_2_pm': ['west', 'north', 'south'],
+    'day_2_pm': ['east', 'west', 'north'],
     'day_3_am': ['east', 'west', 'north', 'south'],
     'day_3_pm': ['east', 'west', 'north', 'south'],
     'day_4_am': ['east', 'west', 'north', 'south'],
-    'day_4_pm': ['east', 'north', 'south'],
-    'day_5_am': ['east', 'west', 'north',],
-    'day_5_pm': ['east', 'west', 'south'],
-    'day_6_am': ['west', 'north', 'south'],
-    'day_6_pm': ['east', 'west', 'north', 'south'],
+    'day_4_pm': ['east', 'west', 'north', 'south'],
+    'day_5_am': ['west', 'north', 'south'],
+    'day_5_pm': ['east', 'north', 'south'],
+    'day_6_am': ['east', 'west', 'south'],
+    'day_6_pm': ['east', 'west', 'north'],
     'day_7_am': ['east', 'west', 'north', 'south'],
     'day_7_pm': ['east', 'west', 'north', 'south'], }
 ##### End of Start conditions #####
@@ -70,38 +70,36 @@ def schedule_matches(groups: dict, fields_available: list[dict],
                                max(team_schedule[x], [''])))
             while sorted_guest_group:
                 guest_team = sorted_guest_group.pop(0)
-
-                match_ = tuple(sorted([guest_team, home_team])
-                               ) if round_robin_rounds % 2 else (
-                                   guest_team, home_team)
-                match_count = [m[0] for m in match_schedule.keys()
-                               ].count(match_)
-                if (match_count >= (round_robin_rounds /
-                                    (2 - round_robin_rounds % 2))
-                    ) or field[0] in team_schedule.get(guest_team):
+                if field[0] in team_schedule.get(guest_team):
                     continue
 
-                match_schedule[(match_, match_count + 1, home_group)] = field
+                match_ = (guest_team, home_team)
+                match_count = [m[0] for m in match_schedule.values()
+                               ].count(match_)
+                meet_count = [set(m[0]) for m in match_schedule.values()
+                              ].count(set(match_))
+                if meet_count >= round_robin_rounds:
+                    continue
+                if match_count >= round_robin_rounds / (
+                        2 - round_robin_rounds % 2):
+                    continue
+
+                match_schedule[field] = (match_, meet_count + 1, home_group)
                 team_schedule[home_team].append(field[0])
                 team_schedule[guest_team].append(field[0])
                 current_round_paired.extend(match_)
-                # we had a match, no need to check the rest of the group
                 sorted_guest_group = []
-                # this field had been used by this match,
                 field = None
 
         if not current_round_paired:
-            # no teams can use this field, skip this field for now...
             field = None
 
     return match_schedule
 
 
-# call the schedule_matches function
-match_schedule = schedule_matches(groups, fields_available, round_robin_rounds)
-
 # output schedule with table format
-scheduled_match = {match_schedule[k]: k for k in match_schedule}
+scheduled_matches = schedule_matches(
+    groups, fields_available, round_robin_rounds)
 fields = sorted({field for fields in time_field_availability.values()
                  for field in fields})
 group_name_width = max([len(group_name) for group_name in groups])
@@ -115,7 +113,7 @@ print(table_title)
 for time in time_field_availability:
     print(f"{time:{time_width + 2}}", end='')
     for field in fields:
-        match_ = scheduled_match.get((time, field), None)
+        match_ = scheduled_matches.get((time, field), None)
         print(f"{match_[2]:>{group_name_width}})"
               f"{match_[0][0]:>{team_name_width}}"
               f":{match_[0][1]:<{team_name_width}}" if match_
@@ -125,7 +123,10 @@ for time in time_field_availability:
 
 # output schedule with list formst
 print("\nBy time and field:")
-for seq, match_ in enumerate(match_schedule):
-    print(f"{seq:3}, {match_schedule.get(match_)}\t "
-          f"{match_[2]:{group_name_width}}"
-          f"{match_[0:2]}")
+for seq, (time_field, match_) in enumerate(scheduled_matches.items()):
+    print(f"{seq + 1:3},",
+          "{:{time_width}}  {:8}".format(*time_field, time_width=time_width),
+          f"{match_[2]:{group_name_width}}",
+          "{:>{team_name_width}}:{:{team_name_width}}".format(
+              *match_[0], team_name_width=team_name_width),
+          f" match-up {match_[1]}")
