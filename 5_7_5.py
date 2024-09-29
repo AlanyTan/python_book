@@ -39,9 +39,9 @@ def schedule_matches(groups: dict, fields_available: list[dict],
                             opponent, default is 2.
 
     Returns:
-        a dict, keys are tuples of (tuple(guest_team,host_team), # of times 
-        these two teams played each other, the group_name); the value is the
-        field these two teams will be playing
+        a dict, keys are tuples of (time, field), values are tuples of 
+        (tuple(guest_team,home_team), # of times these two teams played each 
+        other, the group_name)
     """
     field = None
     match_schedule = {}
@@ -55,7 +55,7 @@ def schedule_matches(groups: dict, fields_available: list[dict],
                                               (len(team_schedule[x[0]]), max(
                                                   team_schedule[x[0]], [''])))
         current_round_paired = []
-        for home_team, home_group in teams_sorted_by_round_played:
+        for home_team, group_name in teams_sorted_by_round_played:
             if field is None:
                 field = next(fields_available)
 
@@ -63,13 +63,13 @@ def schedule_matches(groups: dict, fields_available: list[dict],
                or (field[0] in team_schedule.get(home_team)):
                 continue
 
-            sorted_guest_group = sorted(
+            sorted_guest_queue = sorted(
                 filter(lambda x: x != home_team and x not in
-                       current_round_paired, groups[home_group][::-1]),
+                       current_round_paired, groups[group_name][::-1]),
                 key=lambda x: (len(team_schedule[x]),
                                max(team_schedule[x], [''])))
-            while sorted_guest_group:
-                guest_team = sorted_guest_group.pop(0)
+            while sorted_guest_queue:
+                guest_team = sorted_guest_queue.pop(0)
                 if field[0] in team_schedule.get(guest_team):
                     continue
 
@@ -84,11 +84,11 @@ def schedule_matches(groups: dict, fields_available: list[dict],
                         2 - round_robin_rounds % 2):
                     continue
 
-                match_schedule[field] = (match_, meet_count + 1, home_group)
+                match_schedule[field] = (match_, meet_count + 1, group_name)
                 team_schedule[home_team].append(field[0])
                 team_schedule[guest_team].append(field[0])
                 current_round_paired.extend(match_)
-                sorted_guest_group = []
+                sorted_guest_queue = []
                 field = None
 
         if not current_round_paired:
@@ -101,7 +101,7 @@ def schedule_matches(groups: dict, fields_available: list[dict],
 scheduled_matches = schedule_matches(
     groups, fields_available, round_robin_rounds)
 fields = sorted({field for fields in time_field_availability.values()
-                 for field in fields})
+                 for field in fields}, key=len)
 group_name_width = max([len(group_name) for group_name in groups])
 team_name_width = max([len(t) for group in groups.values() for t in group])
 time_width = max([len(time) for time in time_field_availability])
