@@ -101,7 +101,7 @@ def schedule_matches(groups: dict, fields_available: list[dict],
 scheduled_matches = schedule_matches(
     groups, fields_available, round_robin_rounds)
 fields = sorted({field for fields in time_field_availability.values()
-                 for field in fields}, key=len)
+                 for field in fields}, key=lambda x: (len(x), x))
 group_name_width = max([len(group_name) for group_name in groups])
 team_name_width = max([len(t) for group in groups.values() for t in group])
 time_width = max([len(time) for time in time_field_availability])
